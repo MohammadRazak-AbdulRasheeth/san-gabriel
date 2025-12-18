@@ -33,6 +33,11 @@ const Button = ({
     outline: `
       bg-transparent border-blue-900 text-blue-900 
       hover:bg-blue-900 hover:text-white focus:ring-blue-900
+    `,
+    revenue: `
+      bg-green-600 hover:bg-green-700 text-white border-green-600 
+      hover:border-green-700 focus:ring-green-500
+      ${disabled ? '' : 'hover:shadow-lg'}
     `
   };
 

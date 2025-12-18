@@ -1,22 +1,39 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
-import { serviceCategories } from '../data/services';
+import { services, getServiceById } from '../data/services';
 
 const Contact = () => {
+  const [searchParams] = useSearchParams();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Get preselected service from URL parameter
+  const preselectedServiceId = searchParams.get('service');
+  const preselectedService = preselectedServiceId ? getServiceById(preselectedServiceId) : null;
+  
   const [formData, setFormData] = useState({
     fullName: '',
     companyName: '',
     email: '',
     phone: '',
-    serviceInterest: '',
+    serviceInterest: preselectedService ? preselectedService.name : '',
     budgetRange: '',
     timeline: '',
     contactMethod: 'email',
     description: ''
   });
+
+  // Update service interest when URL parameter changes
+  useEffect(() => {
+    if (preselectedService) {
+      setFormData(prev => ({
+        ...prev,
+        serviceInterest: preselectedService.name
+      }));
+    }
+  }, [preselectedService]);
 
   const budgetRanges = [
     '$5K - $10K',
@@ -304,9 +321,9 @@ const Contact = () => {
                       className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
                     >
                       <option value="">Select a service</option>
-                      {serviceCategories.map(category => (
-                        <option key={category.id} value={category.name}>
-                          {category.name}
+                      {services.map(service => (
+                        <option key={service.id} value={service.name}>
+                          {service.name}
                         </option>
                       ))}
                     </select>

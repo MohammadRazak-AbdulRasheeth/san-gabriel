@@ -1,15 +1,16 @@
 // Mock framer-motion for Jest tests
 import React from 'react';
 
-// Filter out framer-motion specific props
+// Filter out framer-motion specific props to prevent React warnings
 const filterMotionProps = (props) => {
   const {
     initial, animate, exit, transition, variants, whileHover, whileTap, whileInView,
     whileFocus, whileDrag, drag, dragConstraints, dragElastic, dragMomentum,
     onDragStart, onDragEnd, onDrag, layout, layoutId, viewport, onAnimationStart,
-    onAnimationComplete, custom, inherit, ...rest
+    onAnimationComplete, custom, inherit, style, ...rest
   } = props;
-  return rest;
+  // Return only valid DOM props
+  return { style, ...rest };
 };
 
 const createMotionComponent = (Component) => {
@@ -48,4 +49,52 @@ const motion = {
 
 const AnimatePresence = ({ children }) => <>{children}</>;
 
-export { motion, AnimatePresence };
+// Mock useScroll hook - returns mock scroll progress values
+const useScroll = () => ({
+  scrollY: { get: () => 0, onChange: () => () => {} },
+  scrollX: { get: () => 0, onChange: () => () => {} },
+  scrollYProgress: { get: () => 0, onChange: () => () => {} },
+  scrollXProgress: { get: () => 0, onChange: () => () => {} },
+});
+
+// Mock useTransform hook - returns a mock motion value
+const useTransform = (value, inputRange, outputRange) => {
+  // Return a mock motion value that returns the first output value
+  const defaultValue = Array.isArray(outputRange) ? outputRange[0] : outputRange;
+  return {
+    get: () => defaultValue,
+    set: () => {},
+    onChange: () => () => {},
+  };
+};
+
+// Mock useMotionValue hook
+const useMotionValue = (initial) => ({
+  get: () => initial,
+  set: () => {},
+  onChange: () => () => {},
+});
+
+// Mock useSpring hook
+const useSpring = (value) => value;
+
+// Mock useAnimation hook
+const useAnimation = () => ({
+  start: () => Promise.resolve(),
+  stop: () => {},
+  set: () => {},
+});
+
+// Mock useInView hook
+const useInView = () => [null, true];
+
+export { 
+  motion, 
+  AnimatePresence, 
+  useScroll, 
+  useTransform, 
+  useMotionValue, 
+  useSpring, 
+  useAnimation,
+  useInView
+};

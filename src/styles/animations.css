@@ -1,4 +1,27 @@
 /* Ultra-Cool Animations for San Gabriel Website */
+/* Requirements: 14.3, 14.4 - Smooth animations and hover effects */
+
+/* ============================================
+   REDUCED MOTION PREFERENCES
+   Respects user's system preference for reduced motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .float-animation,
+  .morphing-bg,
+  .particle-animation,
+  .loading-dot {
+    animation: none !important;
+  }
+}
 
 /* 3D Perspective Effects */
 .perspective-1000 {
@@ -230,4 +253,410 @@
     0 0 10px currentColor,
     0 0 15px currentColor,
     0 0 20px currentColor;
+}
+
+/* ============================================
+   FADE-IN ANIMATIONS FOR SERVICE CARDS
+   Requirements: 14.3 - Smooth scroll animations
+   ============================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+/* Staggered fade-in for lists */
+@keyframes fadeInStagger {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in-stagger {
+  animation: fadeInStagger 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+/* Stagger delays for list items */
+.stagger-delay-1 { animation-delay: 0.05s; }
+.stagger-delay-2 { animation-delay: 0.1s; }
+.stagger-delay-3 { animation-delay: 0.15s; }
+.stagger-delay-4 { animation-delay: 0.2s; }
+.stagger-delay-5 { animation-delay: 0.25s; }
+.stagger-delay-6 { animation-delay: 0.3s; }
+.stagger-delay-7 { animation-delay: 0.35s; }
+.stagger-delay-8 { animation-delay: 0.4s; }
+
+/* ============================================
+   CTA HOVER EFFECTS
+   Requirements: 14.4 - Visual feedback on hover
+   ============================================ */
+.cta-hover-effect {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.cta-hover-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.cta-hover-effect:hover::before {
+  left: 100%;
+}
+
+.cta-hover-effect:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   PORTFOLIO ITEM HOVER EFFECTS
+   Requirements: 14.4 - Visual feedback on hover
+   ============================================ */
+.portfolio-hover {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.portfolio-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 20px 40px -10px rgba(0, 0, 0, 0.15),
+    0 10px 20px -5px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-hover:hover .portfolio-image {
+  transform: scale(1.08);
+}
+
+.portfolio-image {
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ============================================
+   SERVICE CARD HOVER EFFECTS
+   Requirements: 14.4 - Visual feedback on hover
+   ============================================ */
+.service-card-hover {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.service-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 20px 40px -10px rgba(0, 0, 0, 0.1),
+    0 10px 20px -5px rgba(0, 0, 0, 0.05);
+}
+
+/* ============================================
+   SMOOTH SCROLL BEHAVIOR
+   Requirements: 14.3 - Smooth scroll for CTA navigation
+   ============================================ */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ============================================
+   CARD STACKING/RACKING SCROLL ANIMATION
+   Creates deck of cards stacking effect
+   ============================================ */
+.stacking-card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.stacking-card:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+
+/* Stacking shadow effect */
+.stacking-shadow {
+  box-shadow: 
+    0 10px 30px -10px rgba(0, 0, 0, 0.1),
+    0 20px 50px -20px rgba(0, 0, 0, 0.05);
+}
+
+.stacking-shadow:hover {
+  box-shadow: 
+    0 20px 40px -15px rgba(0, 0, 0, 0.15),
+    0 30px 60px -25px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   PARALLAX SCROLLING EFFECTS
+   Background elements move at different speeds
+   ============================================ */
+.parallax-slow {
+  will-change: transform;
+  transform: translateZ(-1px) scale(2);
+}
+
+.parallax-medium {
+  will-change: transform;
+  transform: translateZ(-0.5px) scale(1.5);
+}
+
+.parallax-fast {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ============================================
+   GRADIENT BORDER ANIMATION
+   Glowing animated gradient borders
+   ============================================ */
+.gradient-border-animated {
+  position: relative;
+  background: linear-gradient(45deg, #f97316, #3b82f6, #10b981, #f97316);
+  background-size: 400% 400%;
+  animation: gradient-shift 4s ease infinite;
+  padding: 3px;
+  border-radius: 16px;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-border-animated > * {
+  background: white;
+  border-radius: 14px;
+}
+
+/* Glowing border effect */
+.glow-border {
+  position: relative;
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #f97316, #3b82f6, #10b981, #f97316);
+  background-size: 400% 400%;
+  animation: gradient-shift 4s ease infinite;
+  border-radius: inherit;
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glow-border:hover::before {
+  opacity: 0.7;
+}
+
+/* ============================================
+   GLASS MORPHISM / NEUMORPHISM EFFECTS
+   Modern frosted glass appearance
+   ============================================ */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.glass-card-dark {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Neumorphism effect */
+.neumorphism {
+  background: #f0f0f3;
+  box-shadow: 
+    8px 8px 16px #d1d1d4,
+    -8px -8px 16px #ffffff;
+  border-radius: 16px;
+}
+
+.neumorphism:hover {
+  box-shadow: 
+    12px 12px 20px #d1d1d4,
+    -12px -12px 20px #ffffff;
+}
+
+/* ============================================
+   3D CARD PERSPECTIVE EFFECTS
+   Adds depth and dimension to cards
+   ============================================ */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card-3d:hover {
+  transform: rotateY(5deg) rotateX(5deg) translateZ(20px);
+}
+
+.card-3d-content {
+  transform: translateZ(30px);
+}
+
+/* ============================================
+   MORPHING BLOB ANIMATIONS
+   Organic shape-shifting backgrounds
+   ============================================ */
+@keyframes blob-morph {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(0deg);
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  50% {
+    border-radius: 50% 50% 30% 70% / 40% 70% 30% 60%;
+    transform: rotate(180deg);
+  }
+  75% {
+    border-radius: 40% 60% 50% 50% / 60% 40% 60% 40%;
+  }
+}
+
+.blob-morph {
+  animation: blob-morph 8s ease-in-out infinite;
+}
+
+/* ============================================
+   INTERSECTION OBSERVER ANIMATIONS
+   Fade-in effects when elements enter viewport
+   ============================================ */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ============================================
+   BUTTON SHINE EFFECT
+   Animated light sweep on hover
+   ============================================ */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.btn-shine:hover::after {
+  left: 100%;
+}
+
+/* ============================================
+   FLOATING ANIMATION VARIANTS
+   Different floating speeds and patterns
+   ============================================ */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(3deg); }
+}
+
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(-3deg); }
+}
+
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-25px); }
+}
+
+.float-slow { animation: float-slow 6s ease-in-out infinite; }
+.float-medium { animation: float-medium 4s ease-in-out infinite; }
+.float-fast { animation: float-fast 3s ease-in-out infinite; }
+
+/* ============================================
+   PULSE GLOW EFFECT
+   Subtle pulsing glow for emphasis
+   ============================================ */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(249, 115, 22, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.6), 0 0 40px rgba(249, 115, 22, 0.3);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
 }

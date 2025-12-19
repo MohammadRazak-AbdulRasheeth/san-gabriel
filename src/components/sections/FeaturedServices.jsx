@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { HiOutlineCheckCircle } from 'react-icons/hi';
 import { featuredServices } from '../../data/services';
 import Button from '../ui/Button';
 import useReducedMotion from '../../hooks/useReducedMotion';
@@ -262,14 +263,14 @@ const FeaturedServices = () => {
                             className="flex items-center text-neutral-600 group"
                           >
                             <motion.span 
-                              className="text-accent-500 mr-3"
+                              className="text-accent-500 mr-3 flex-shrink-0"
                               whileHover={prefersReducedMotion ? {} : { 
                                 scale: 1.3, 
                                 rotate: 360,
                                 transition: { duration: 0.3 }
                               }}
                             >
-                              ✓
+                              <HiOutlineCheckCircle className="w-5 h-5" />
                             </motion.span>
                             <span className="group-hover:text-primary-900 transition-colors">
                               {item}

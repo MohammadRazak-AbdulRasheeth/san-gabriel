@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { HiOutlineExternalLink } from 'react-icons/hi';
 import { WEBSITE_ATTRIBUTION } from '../../../data/portfolio';
 import useReducedMotion from '../../../hooks/useReducedMotion';
 
@@ -95,9 +96,7 @@ const PortfolioItem = ({ item, index }) => {
           {/* Link indicator for websites */}
           {hasLink && (
             <span className="inline-flex items-center gap-1 text-accent-300 text-sm mt-2">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
+              <HiOutlineExternalLink className="w-4 h-4" />
               Visit Site
             </span>
           )}

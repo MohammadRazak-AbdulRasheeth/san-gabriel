@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { HiOutlineCheckCircle, HiOutlineStar, HiOutlineChevronDown, HiOutlineArrowRight } from 'react-icons/hi';
 import Button from '../../ui/Button';
 import ServicePricing from './ServicePricing';
 import useReducedMotion from '../../../hooks/useReducedMotion';
@@ -110,7 +111,7 @@ const ServiceCard = ({
               transition={{ duration: 0.2 }}
               className="text-accent-500"
             >
-              ▼
+              <HiOutlineChevronDown className="w-5 h-5" />
             </motion.span>
           </button>
           
@@ -153,7 +154,7 @@ const ServiceCard = ({
                 viewport={{ once: true }}
                 custom={index}
               >
-                <span className="text-green-500 mt-1">✓</span>
+                <HiOutlineCheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                 <span>{service}</span>
               </motion.li>
             ))}
@@ -168,7 +169,7 @@ const ServiceCard = ({
           <ul className="space-y-2">
             {advantages.map((advantage, index) => (
               <li key={index} className="flex items-start gap-2 text-neutral-700">
-                <span className="text-primary-500 mt-1">★</span>
+                <HiOutlineStar className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
                 <span>{advantage}</span>
               </li>
             ))}
@@ -211,6 +212,22 @@ const ServiceCard = ({
       {/* CTA Buttons - Stack vertically on mobile, wrap on larger screens */}
       {ctas && ctas.length > 0 && (
         <div className="flex flex-col sm:flex-row flex-wrap gap-3 mt-6" data-testid="service-ctas">
+          {/* Read More Button - Links to individual service page */}
+          <Link
+            to={`/services/${id}`}
+            className="w-full sm:w-auto"
+          >
+            <Button
+              variant="outline"
+              size="md"
+              className="w-full sm:w-auto min-h-[44px] border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white"
+            >
+              <span className="flex items-center gap-1">
+                Read More <HiOutlineArrowRight className="w-4 h-4" />
+              </span>
+            </Button>
+          </Link>
+          
           {ctas.map((cta, index) => (
             <Link
               key={index}

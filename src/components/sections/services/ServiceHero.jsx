@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { HiOutlineTruck, HiOutlineEye, HiOutlineCurrencyDollar, HiOutlineArrowRight, HiOutlineArrowDown } from 'react-icons/hi';
 import Button from '../../ui/Button';
 import useReducedMotion from '../../../hooks/useReducedMotion';
 
@@ -11,12 +12,11 @@ import useReducedMotion from '../../../hooks/useReducedMotion';
  * Requirements: 14.3, 14.4 - Smooth animations and hover effects with reduced motion support
  */
 const ServiceHero = () => {
-  // Respect reduced motion preferences (Requirements: 14.3, 14.4)
   const prefersReducedMotion = useReducedMotion();
   const flowSteps = [
-    { label: 'Traffic', icon: '🚗', description: 'High-traffic locations & routes' },
-    { label: 'Visibility', icon: '👁️', description: 'Physical & digital advertising' },
-    { label: 'Monetization', icon: '💰', description: 'Revenue-generating assets' }
+    { label: 'Traffic', Icon: HiOutlineTruck, description: 'High-traffic locations & routes' },
+    { label: 'Visibility', Icon: HiOutlineEye, description: 'Physical & digital advertising' },
+    { label: 'Monetization', Icon: HiOutlineCurrencyDollar, description: 'Revenue-generating assets' }
   ];
 
   // Animation duration helper
@@ -84,7 +84,9 @@ const ServiceHero = () => {
                   whileHover={prefersReducedMotion ? {} : { scale: 1.05, backgroundColor: 'rgba(255,255,255,0.15)' }}
                   transition={{ duration: getDuration(0.2) }}
                 >
-                  <div className="text-3xl md:text-4xl mb-2">{step.icon}</div>
+                  <div className="flex justify-center mb-2">
+                    <step.Icon className="w-10 h-10 md:w-12 md:h-12 text-accent-400" />
+                  </div>
                   <div className="text-lg md:text-xl font-bold text-accent-500">{step.label}</div>
                   <div className="text-xs md:text-sm text-gray-300 mt-1">{step.description}</div>
                 </motion.div>
@@ -92,24 +94,24 @@ const ServiceHero = () => {
                 {/* Arrow between steps - horizontal on desktop */}
                 {index < flowSteps.length - 1 && (
                   <motion.div
-                    className="hidden md:block text-3xl text-accent-500 mx-4"
+                    className="hidden md:block text-accent-500 mx-4"
                     initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: getDuration(0.5), delay: getDelay(0.8 + index * 0.2) }}
                   >
-                    →
+                    <HiOutlineArrowRight className="w-8 h-8" />
                   </motion.div>
                 )}
                 
                 {/* Mobile arrow (vertical) */}
                 {index < flowSteps.length - 1 && (
                   <motion.div
-                    className="md:hidden text-3xl text-accent-500 my-2"
+                    className="md:hidden text-accent-500 my-2"
                     initial={{ opacity: 0, y: prefersReducedMotion ? 0 : -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: getDuration(0.5), delay: getDelay(0.8 + index * 0.2) }}
                   >
-                    ↓
+                    <HiOutlineArrowDown className="w-8 h-8" />
                   </motion.div>
                 )}
               </div>

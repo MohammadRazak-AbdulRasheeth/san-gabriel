@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { HiOutlineCurrencyDollar, HiOutlineCheckCircle } from 'react-icons/hi';
 
 /**
  * ServicePricing Component
@@ -24,7 +25,9 @@ const ServicePricing = ({ amount, unit, note }) => {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
         {/* Pricing Label */}
         <div className="flex items-center gap-2">
-          <span className="text-green-600 text-2xl">💰</span>
+          <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+            <HiOutlineCurrencyDollar className="w-6 h-6 text-green-600" />
+          </div>
           <span className="font-semibold text-green-800 text-sm uppercase tracking-wide">
             Revenue Pricing
           </span>
@@ -55,9 +58,7 @@ const ServicePricing = ({ amount, unit, note }) => {
       {/* Clear & Transparent Badge */}
       <div className="mt-3 flex items-center gap-2">
         <span className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs font-medium px-2 py-1 rounded-full">
-          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-          </svg>
+          <HiOutlineCheckCircle className="w-4 h-4" />
           Transparent Pricing
         </span>
       </div>

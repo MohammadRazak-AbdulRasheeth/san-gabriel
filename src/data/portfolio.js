@@ -134,10 +134,40 @@ export const portfolioItems = [
     type: 'events',
     title: 'Community Event Branding',
     description: 'Complete event branding package with banners and signage',
-    imageUrl: '/portfolio/event-1.jpg',
+    imageUrl: '/requirementimage/Community-Charity-Events.png',
     url: null,
     featured: true,
     relatedServices: ['events-community', 'branding-banners-signs']
+  },
+  {
+    id: 'school-spirit-event',
+    type: 'events',
+    title: 'School Spirit & Homecoming',
+    description: 'High quality print and apparel for school events - banners, t-shirts, caps, and promotional materials',
+    imageUrl: '/requirementimage/White_Label_Homecoming.png',
+    url: null,
+    featured: true,
+    relatedServices: ['events-community', 'branding-banners-signs']
+  },
+  {
+    id: 'conference-essentials',
+    type: 'banners',
+    title: 'Conference Essentials',
+    description: 'Transform every handshake into a potential deal with conference prints and swags - roll-up banners, tote bags, caps, and branded merchandise',
+    imageUrl: '/requirementimage/White-Label-Conferences.png',
+    url: null,
+    featured: true,
+    relatedServices: ['branding-banners-signs', 'events-community']
+  },
+  {
+    id: 'healthcare-prints',
+    type: 'banners',
+    title: 'Healthcare & Professional Prints',
+    description: 'High-impact materials for healthcare and professional services - signage, brochures, roll-up banners, and business cards',
+    imageUrl: '/requirementimage/White-Label-Healthcare.png',
+    url: null,
+    featured: true,
+    relatedServices: ['advertise-with-us', 'branding-banners-signs']
   },
   {
     id: 'sponsor-wall-1',

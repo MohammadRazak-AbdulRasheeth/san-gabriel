@@ -5,12 +5,27 @@ import { getServiceById, getServicesByOrder } from '../data/services';
 import { getPortfolioByService } from '../data/portfolio';
 import Button from '../components/ui/Button';
 import ServicePricing from '../components/sections/services/ServicePricing';
-import { ServiceIcon, Icons } from '../components/ui/ServiceIcons';
+import { Icons } from '../components/ui/ServiceIcons';
 import useReducedMotion from '../hooks/useReducedMotion';
+
+// Map service IDs to their corresponding images
+// Using promotional images where they fit best
+const serviceImages = {
+  'revenue-generating-advertising': '/11servicesimages/1.REVENUE-GENERATING ADVERTISING SOLUTIONS .png',
+  'branding-banners-signs': '/requirementimage/White-Label-Conferences.png', // Conference essentials - banners, swag
+  'mobile-advertising': '/11servicesimages/3.MOBILE ADVERTISING – TRUCKING FLEETS .png',
+  'monetize-location': '/11servicesimages/4.MONETIZE YOUR LOCATION.png',
+  'advertise-with-us': '/requirementimage/White-Label-Healthcare.png', // Healthcare/SMB prints
+  'social-media-digital': '/11servicesimages/6.SOCIAL MEDIA & DIGITAL ADVERTISING SERVICES.png',
+  'website-design': '/11servicesimages/7.WEBSITE DESIGN & DEVELOPMENT.png',
+  'events-community': '/requirementimage/Community-Charity-Events.png', // Community events - marathon merchandise
+  'incorporation-services': '/11servicesimages/9.INCORPORATION & NOT-FOR-PROFIT SERVICES .png',
+  'strategy-technology-ai': '/11servicesimages/10.STRATEGY, TECHNOLOGY & AI.png',
+};
 
 /**
  * ServiceDetail Page
- * Individual service page with full content, how it works, benefits, and CTAs
+ * Individual service page with impressive layout featuring service images
  */
 const ServiceDetail = () => {
   const { category } = useParams();
@@ -25,82 +40,120 @@ const ServiceDetail = () => {
   const portfolioItems = getPortfolioByService(service.id);
   const allServices = getServicesByOrder();
   const otherServices = allServices.filter(s => s.id !== service.id).slice(0, 3);
+  const serviceImage = serviceImages[service.id];
 
   const getDuration = (duration) => prefersReducedMotion ? 0.01 : duration;
   const getDelay = (delay) => prefersReducedMotion ? 0 : delay;
 
   return (
     <div className="pt-20">
-      {/* Hero Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary-900 via-primary-700 to-primary-600 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 right-10 w-64 h-64 bg-accent-500 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 left-10 w-48 h-48 bg-green-500 rounded-full blur-3xl" />
-        </div>
+      {/* Hero Section with Large Image */}
+      <section className="relative bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-center">
+            {/* Content Side */}
+            <motion.div 
+              className="w-full lg:w-1/2 px-6 sm:px-8 lg:px-12 py-12 lg:py-20"
+              initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: getDuration(0.6) }}
+            >
+              {/* Breadcrumb */}
+              <nav className="mb-6">
+                <ol className="flex items-center gap-2 text-sm text-neutral-500">
+                  <li><Link to="/" className="hover:text-primary-900 transition-colors">Home</Link></li>
+                  <li>/</li>
+                  <li><Link to="/services" className="hover:text-primary-900 transition-colors">Services</Link></li>
+                  <li>/</li>
+                  <li className="text-primary-900 font-medium">{service.name}</li>
+                </ol>
+              </nav>
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: getDuration(0.6) }}
-          >
-            <nav className="mb-6">
-              <ol className="flex items-center gap-2 text-sm text-gray-300">
-                <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
-                <li>/</li>
-                <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
-                <li>/</li>
-                <li className="text-accent-400">{service.name}</li>
-              </ol>
-            </nav>
+              {/* Service Badge */}
+              {service.isCore && (
+                <span className="inline-block bg-accent-500 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4">
+                  CORE SERVICE
+                </span>
+              )}
+              {service.isFoundational && (
+                <span className="inline-block bg-neutral-700 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4">
+                  FOUNDATIONAL SERVICE
+                </span>
+              )}
 
-            {service.isCore && (
-              <span className="inline-block bg-accent-500 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4">
-                CORE SERVICE
-              </span>
-            )}
-            {service.isFoundational && (
-              <span className="inline-block bg-neutral-600 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4">
-                FOUNDATIONAL SERVICE
-              </span>
-            )}
+              {/* Title */}
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-900 mb-4">
+                {service.name}
+              </h1>
 
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 md:w-20 md:h-20 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center">
-                <ServiceIcon serviceId={service.id} className="w-10 h-10 md:w-12 md:h-12 text-accent-400" />
-              </div>
-              <h1 className="text-3xl md:text-5xl font-bold">{service.name}</h1>
-            </div>
-
-            <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mb-8 leading-relaxed">
-              {service.tagline}
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              {service.ctas?.map((cta, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
-                  whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
+              {/* Decorative Wavy Line */}
+              <div className="mb-6">
+                <svg 
+                  width="120" 
+                  height="12" 
+                  viewBox="0 0 120 12" 
+                  fill="none" 
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="text-primary-900"
                 >
-                  <Link to={`/contact?service=${cta.servicePreselect || service.id}`}>
-                    <Button
-                      variant={cta.primary ? 'primary' : 'outline'}
-                      size="lg"
-                      className={`min-h-[48px] ${!cta.primary ? 'border-white text-white hover:bg-white hover:text-primary-900' : ''}`}
-                    >
-                      {cta.label}
-                    </Button>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+                  <path 
+                    d="M2 6C2 6 7 2 12 6C17 10 22 6 22 6C22 6 27 2 32 6C37 10 42 6 42 6C42 6 47 2 52 6C57 10 62 6 62 6C62 6 67 2 72 6C77 10 82 6 82 6C82 6 87 2 92 6C97 10 102 6 102 6C102 6 107 2 112 6C117 10 118 6 118 6" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+
+              {/* Tagline */}
+              <p className="text-lg md:text-xl text-neutral-600 mb-8 leading-relaxed">
+                {service.tagline}
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-4">
+                <Link to={`/contact?service=${service.id}`}>
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="bg-primary-900 hover:bg-primary-800 text-white px-8 py-3 rounded-md font-medium"
+                  >
+                    Contact us
+                  </Button>
+                </Link>
+                <Link to="/services">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-primary-900 text-primary-900 hover:bg-primary-900 hover:text-white px-8 py-3 rounded-md font-medium"
+                  >
+                    All Services
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Image Side */}
+            <motion.div 
+              className="w-full lg:w-1/2"
+              initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: getDuration(0.6), delay: 0.2 }}
+            >
+              <div className="relative h-[300px] md:h-[400px] lg:h-[500px]">
+                <img
+                  src={serviceImage}
+                  alt={service.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Full Description Section */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-24 bg-neutral-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
@@ -108,12 +161,17 @@ const ServiceDetail = () => {
             viewport={{ once: true }}
             transition={{ duration: getDuration(0.5) }}
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-2">
               About This Service
             </h2>
-            <div className="prose prose-lg max-w-none text-neutral-700">
+            <div className="mb-6">
+              <svg width="80" height="8" viewBox="0 0 80 8" fill="none" className="text-primary-900">
+                <path d="M2 4C2 4 6 1 10 4C14 7 18 4 18 4C18 4 22 1 26 4C30 7 34 4 34 4C34 4 38 1 42 4C46 7 50 4 50 4C50 4 54 1 58 4C62 7 66 4 66 4C66 4 70 1 74 4C78 7 78 4 78 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </div>
+            <div className="prose prose-lg max-w-none text-neutral-600">
               {service.fullDescription?.split('\n\n').map((paragraph, index) => (
-                <p key={index} className="mb-4 leading-relaxed">
+                <p key={index} className="mb-4 leading-relaxed text-lg">
                   {paragraph}
                 </p>
               ))}
@@ -124,41 +182,60 @@ const ServiceDetail = () => {
 
       {/* Business Case Section */}
       {service.businessCase && (
-        <section className="py-16 md:py-20 bg-neutral-50">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: getDuration(0.5) }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-4">
-                {service.businessCase.title || 'Why This Service Exists'}
-              </h2>
-              <p className="text-lg text-neutral-600">
-                Understanding the problems we solve
-              </p>
-            </motion.div>
+        <section className="py-16 md:py-24 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col lg:flex-row items-center gap-12">
+              {/* Image */}
+              <motion.div 
+                className="w-full lg:w-1/2"
+                initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: getDuration(0.5) }}
+              >
+                <div className="rounded-2xl overflow-hidden shadow-xl">
+                  <img
+                    src={serviceImage}
+                    alt={service.name}
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              {service.businessCase.problems?.map((problem, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: getDuration(0.4), delay: getDelay(index * 0.1) }}
-                  className="bg-white rounded-xl p-6 shadow-md border-l-4 border-accent-500"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icons.Warning className="w-5 h-5 text-amber-600" />
-                    </div>
-                    <p className="text-neutral-700 text-lg">{problem}</p>
-                  </div>
-                </motion.div>
-              ))}
+              {/* Content */}
+              <motion.div 
+                className="w-full lg:w-1/2"
+                initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: getDuration(0.5), delay: 0.1 }}
+              >
+                <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-2">
+                  {service.businessCase.title || 'Why This Service Exists'}
+                </h2>
+                <div className="mb-6">
+                  <svg width="80" height="8" viewBox="0 0 80 8" fill="none" className="text-primary-900">
+                    <path d="M2 4C2 4 6 1 10 4C14 7 18 4 18 4C18 4 22 1 26 4C30 7 34 4 34 4C34 4 38 1 42 4C46 7 50 4 50 4C50 4 54 1 58 4C62 7 66 4 66 4C66 4 70 1 74 4C78 7 78 4 78 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                </div>
+                <ul className="space-y-4">
+                  {service.businessCase.problems?.map((problem, index) => (
+                    <motion.li
+                      key={index}
+                      initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: getDuration(0.3), delay: getDelay(index * 0.1) }}
+                      className="flex items-start gap-3"
+                    >
+                      <div className="w-6 h-6 bg-accent-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <Icons.Check className="w-4 h-4 text-white" />
+                      </div>
+                      <span className="text-neutral-700 text-lg">{problem}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -166,8 +243,8 @@ const ServiceDetail = () => {
 
       {/* How It Works Section */}
       {service.howItWorks && (
-        <section className="py-16 md:py-20 bg-white">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-16 md:py-24 bg-primary-900 text-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -175,15 +252,20 @@ const ServiceDetail = () => {
               transition={{ duration: getDuration(0.5) }}
               className="text-center mb-12"
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-4">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">
                 How It Works
               </h2>
-              <p className="text-lg text-neutral-600">
+              <div className="flex justify-center mb-4">
+                <svg width="80" height="8" viewBox="0 0 80 8" fill="none" className="text-accent-400">
+                  <path d="M2 4C2 4 6 1 10 4C14 7 18 4 18 4C18 4 22 1 26 4C30 7 34 4 34 4C34 4 38 1 42 4C46 7 50 4 50 4C50 4 54 1 58 4C62 7 66 4 66 4C66 4 70 1 74 4C78 7 78 4 78 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </div>
+              <p className="text-lg text-gray-300">
                 Our simple process to get you started
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {service.howItWorks.map((step, index) => (
                 <motion.div
                   key={index}
@@ -191,19 +273,13 @@ const ServiceDetail = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: getDuration(0.5), delay: getDelay(index * 0.15) }}
-                  className="relative"
+                  className="text-center"
                 >
-                  {index < service.howItWorks.length - 1 && (
-                    <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-accent-200 -translate-x-1/2 z-0" />
-                  )}
-                  
-                  <div className="bg-neutral-50 rounded-xl p-6 text-center relative z-10">
-                    <div className="w-16 h-16 bg-accent-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                      {step.step}
-                    </div>
-                    <h3 className="font-bold text-primary-900 text-lg mb-2">{step.title}</h3>
-                    <p className="text-neutral-600 text-sm">{step.description}</p>
+                  <div className="w-20 h-20 bg-accent-500 text-white rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-6 shadow-lg">
+                    {step.step}
                   </div>
+                  <h3 className="font-bold text-xl mb-3">{step.title}</h3>
+                  <p className="text-gray-300">{step.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -212,78 +288,107 @@ const ServiceDetail = () => {
       )}
 
       {/* Services & Benefits Grid */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-primary-50 to-accent-50">
+      <section className="py-16 md:py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12">
-            <motion.div
+          <div className="flex flex-col lg:flex-row-reverse items-start gap-12">
+            {/* Image */}
+            <motion.div 
+              className="w-full lg:w-1/2 lg:sticky lg:top-24"
+              initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: getDuration(0.5) }}
+            >
+              <div className="rounded-2xl overflow-hidden shadow-xl">
+                <img
+                  src={serviceImage}
+                  alt={service.name}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </motion.div>
+
+            {/* Content */}
+            <motion.div 
+              className="w-full lg:w-1/2"
               initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: getDuration(0.5) }}
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-6">
-                What We Offer
-              </h2>
-              <ul className="space-y-4">
-                {service.services?.map((item, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: getDuration(0.3), delay: getDelay(index * 0.1) }}
-                    className="flex items-start gap-3 bg-white rounded-lg p-4 shadow-sm"
-                  >
-                    <Icons.Check className="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-neutral-700">{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {service.benefits && (
-              <motion.div
-                initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: getDuration(0.5) }}
-              >
-                <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-6">
-                  Key Benefits
+              {/* What We Offer */}
+              <div className="mb-12">
+                <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-2">
+                  What We Offer
                 </h2>
+                <div className="mb-6">
+                  <svg width="80" height="8" viewBox="0 0 80 8" fill="none" className="text-primary-900">
+                    <path d="M2 4C2 4 6 1 10 4C14 7 18 4 18 4C18 4 22 1 26 4C30 7 34 4 34 4C34 4 38 1 42 4C46 7 50 4 50 4C50 4 54 1 58 4C62 7 66 4 66 4C66 4 70 1 74 4C78 7 78 4 78 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                </div>
                 <ul className="space-y-4">
-                  {service.benefits.map((benefit, index) => (
+                  {service.services?.map((item, index) => (
                     <motion.li
                       key={index}
-                      initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 20 }}
+                      initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: getDuration(0.3), delay: getDelay(index * 0.1) }}
-                      className="flex items-start gap-3 bg-white rounded-lg p-4 shadow-sm border-l-4 border-accent-500"
+                      className="flex items-start gap-3 bg-neutral-50 rounded-lg p-4"
                     >
-                      <Icons.Star className="w-6 h-6 text-accent-500 flex-shrink-0 mt-0.5" />
-                      <span className="text-neutral-700 font-medium">{benefit}</span>
+                      <Icons.Check className="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span className="text-neutral-700">{item}</span>
                     </motion.li>
                   ))}
                 </ul>
-              </motion.div>
-            )}
+              </div>
+
+              {/* Key Benefits */}
+              {service.benefits && (
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-2">
+                    Key Benefits
+                  </h2>
+                  <div className="mb-6">
+                    <svg width="80" height="8" viewBox="0 0 80 8" fill="none" className="text-primary-900">
+                      <path d="M2 4C2 4 6 1 10 4C14 7 18 4 18 4C18 4 22 1 26 4C30 7 34 4 34 4C34 4 38 1 42 4C46 7 50 4 50 4C50 4 54 1 58 4C62 7 66 4 66 4C66 4 70 1 74 4C78 7 78 4 78 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                  </div>
+                  <ul className="space-y-4">
+                    {service.benefits.map((benefit, index) => (
+                      <motion.li
+                        key={index}
+                        initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: getDuration(0.3), delay: getDelay(index * 0.1) }}
+                        className="flex items-start gap-3 bg-accent-50 rounded-lg p-4 border-l-4 border-accent-500"
+                      >
+                        <Icons.Star className="w-6 h-6 text-accent-500 flex-shrink-0 mt-0.5" />
+                        <span className="text-neutral-700 font-medium">{benefit}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </motion.div>
           </div>
 
+          {/* Design Advantages */}
           {service.advantages && service.advantages.length > 0 && (
             <motion.div
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: getDuration(0.5), delay: getDelay(0.2) }}
-              className="mt-12 bg-primary-900 rounded-2xl p-8 text-white"
+              className="mt-16 bg-primary-900 rounded-2xl p-8 text-white"
             >
               <h3 className="text-xl font-bold mb-6 text-center">Design Advantage</h3>
               <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
                 {service.advantages.map((advantage, index) => (
-                  <div key={index} className="flex items-center gap-2 bg-white/10 rounded-lg p-3">
+                  <div key={index} className="flex items-center gap-2 bg-white/10 rounded-lg p-4">
                     <Icons.Star className="w-5 h-5 text-accent-400 flex-shrink-0" />
-                    <span className="text-sm">{advantage}</span>
+                    <span>{advantage}</span>
                   </div>
                 ))}
               </div>
@@ -294,7 +399,7 @@ const ServiceDetail = () => {
 
       {/* Pricing Section */}
       {service.pricing && (
-        <section className="py-16 md:py-20 bg-white">
+        <section className="py-16 md:py-24 bg-neutral-50">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
@@ -303,9 +408,14 @@ const ServiceDetail = () => {
               transition={{ duration: getDuration(0.5) }}
               className="text-center mb-8"
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-2">
                 Transparent Pricing
               </h2>
+              <div className="flex justify-center mb-4">
+                <svg width="80" height="8" viewBox="0 0 80 8" fill="none" className="text-primary-900">
+                  <path d="M2 4C2 4 6 1 10 4C14 7 18 4 18 4C18 4 22 1 26 4C30 7 34 4 34 4C34 4 38 1 42 4C46 7 50 4 50 4C50 4 54 1 58 4C62 7 66 4 66 4C66 4 70 1 74 4C78 7 78 4 78 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </div>
               <p className="text-lg text-neutral-600">
                 Clear, honest pricing with no hidden fees
               </p>
@@ -322,7 +432,7 @@ const ServiceDetail = () => {
 
       {/* Portfolio Proof Section */}
       {service.portfolioProof && (
-        <section className="py-16 md:py-20 bg-green-50">
+        <section className="py-16 md:py-24 bg-green-50">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
@@ -331,9 +441,14 @@ const ServiceDetail = () => {
               transition={{ duration: getDuration(0.5) }}
               className="text-center"
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-green-800 mb-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-green-800 mb-2">
                 Portfolio Proof
               </h2>
+              <div className="flex justify-center mb-4">
+                <svg width="80" height="8" viewBox="0 0 80 8" fill="none" className="text-green-700">
+                  <path d="M2 4C2 4 6 1 10 4C14 7 18 4 18 4C18 4 22 1 26 4C30 7 34 4 34 4C34 4 38 1 42 4C46 7 50 4 50 4C50 4 54 1 58 4C62 7 66 4 66 4C66 4 70 1 74 4C78 7 78 4 78 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </div>
               <p className="text-lg text-green-700 mb-8">
                 {service.portfolioProof.attribution}
               </p>
@@ -366,7 +481,7 @@ const ServiceDetail = () => {
 
       {/* Related Portfolio Items */}
       {portfolioItems.length > 0 && (
-        <section className="py-16 md:py-20 bg-neutral-50">
+        <section className="py-16 md:py-24 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
@@ -375,9 +490,14 @@ const ServiceDetail = () => {
               transition={{ duration: getDuration(0.5) }}
               className="text-center mb-12"
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-2">
                 Our Work
               </h2>
+              <div className="flex justify-center mb-4">
+                <svg width="80" height="8" viewBox="0 0 80 8" fill="none" className="text-primary-900">
+                  <path d="M2 4C2 4 6 1 10 4C14 7 18 4 18 4C18 4 22 1 26 4C30 7 34 4 34 4C34 4 38 1 42 4C46 7 50 4 50 4C50 4 54 1 58 4C62 7 66 4 66 4C66 4 70 1 74 4C78 7 78 4 78 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </div>
               <p className="text-lg text-neutral-600">
                 Examples of this service in action
               </p>
@@ -391,7 +511,7 @@ const ServiceDetail = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: getDuration(0.4), delay: getDelay(index * 0.1) }}
-                  className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                  className="bg-neutral-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow"
                 >
                   <div className="aspect-[4/3] bg-neutral-200 relative">
                     <img
@@ -421,46 +541,57 @@ const ServiceDetail = () => {
       )}
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-primary-900 via-primary-700 to-primary-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-16 md:py-24 bg-primary-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 right-10 w-64 h-64 bg-accent-500 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 left-10 w-48 h-48 bg-green-500 rounded-full blur-3xl" />
+        </div>
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: getDuration(0.5) }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Ready to Get Started?
             </h2>
+            <div className="flex justify-center mb-6">
+              <svg width="80" height="8" viewBox="0 0 80 8" fill="none" className="text-accent-400">
+                <path d="M2 4C2 4 6 1 10 4C14 7 18 4 18 4C18 4 22 1 26 4C30 7 34 4 34 4C34 4 38 1 42 4C46 7 50 4 50 4C50 4 54 1 58 4C62 7 66 4 66 4C66 4 70 1 74 4C78 7 78 4 78 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </div>
             <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
               Let's discuss how {service.name.toLowerCase()} can help your business grow.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              {service.ctas?.map((cta, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
-                  whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link to={`/contact?service=${service.id}`}>
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="bg-accent-500 hover:bg-accent-600 text-white px-8 py-3 rounded-md font-medium min-w-[200px]"
                 >
-                  <Link to={`/contact?service=${cta.servicePreselect || service.id}`}>
-                    <Button
-                      variant={cta.primary ? 'primary' : 'outline'}
-                      size="lg"
-                      className={`min-h-[48px] min-w-[200px] ${!cta.primary ? 'border-white text-white hover:bg-white hover:text-primary-900' : ''}`}
-                    >
-                      {cta.label}
-                    </Button>
-                  </Link>
-                </motion.div>
-              ))}
+                  Contact us
+                </Button>
+              </Link>
+              <Link to="/services">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-white text-white hover:bg-white hover:text-primary-900 px-8 py-3 rounded-md font-medium min-w-[200px]"
+                >
+                  View All Services
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* More Services Section */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
@@ -469,15 +600,20 @@ const ServiceDetail = () => {
             transition={{ duration: getDuration(0.5) }}
             className="text-center mb-12"
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-2">
               Explore More Services
             </h2>
+            <div className="flex justify-center mb-4">
+              <svg width="80" height="8" viewBox="0 0 80 8" fill="none" className="text-primary-900">
+                <path d="M2 4C2 4 6 1 10 4C14 7 18 4 18 4C18 4 22 1 26 4C30 7 34 4 34 4C34 4 38 1 42 4C46 7 50 4 50 4C50 4 54 1 58 4C62 7 66 4 66 4C66 4 70 1 74 4C78 7 78 4 78 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </div>
             <p className="text-lg text-neutral-600">
               Discover other ways we can help your business
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-8">
             {otherServices.map((otherService, index) => (
               <motion.div
                 key={otherService.id}
@@ -488,25 +624,35 @@ const ServiceDetail = () => {
               >
                 <Link
                   to={`/services/${otherService.id}`}
-                  className="block bg-neutral-50 rounded-xl p-6 hover:shadow-lg transition-all duration-300 h-full border border-neutral-200 hover:border-accent-300"
+                  className="block bg-neutral-50 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 h-full border border-neutral-200 hover:border-accent-300 group"
                 >
-                  <div className="w-12 h-12 bg-accent-100 rounded-xl flex items-center justify-center mb-4">
-                    <ServiceIcon serviceId={otherService.id} className="w-6 h-6 text-accent-600" />
+                  <div className="h-48 overflow-hidden">
+                    <img
+                      src={serviceImages[otherService.id]}
+                      alt={otherService.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
-                  <h3 className="font-bold text-primary-900 text-lg mb-2">{otherService.name}</h3>
-                  <p className="text-neutral-600 text-sm mb-4 line-clamp-2">{otherService.tagline}</p>
-                  <span className="text-accent-600 font-medium text-sm inline-flex items-center gap-1">
-                    Learn More
-                    <Icons.ArrowRight className="w-4 h-4" />
-                  </span>
+                  <div className="p-6">
+                    <h3 className="font-bold text-primary-900 text-lg mb-2">{otherService.name}</h3>
+                    <p className="text-neutral-600 text-sm mb-4 line-clamp-2">{otherService.tagline}</p>
+                    <span className="text-accent-600 font-medium text-sm inline-flex items-center gap-1">
+                      Learn More
+                      <Icons.ArrowRight className="w-4 h-4" />
+                    </span>
+                  </div>
                 </Link>
               </motion.div>
             ))}
           </div>
 
-          <div className="text-center mt-10">
+          <div className="text-center mt-12">
             <Link to="/services">
-              <Button variant="outline" size="lg">
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="border-primary-900 text-primary-900 hover:bg-primary-900 hover:text-white"
+              >
                 View All Services
               </Button>
             </Link>

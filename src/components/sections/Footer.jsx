@@ -1,28 +1,58 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import {
+  HiOutlineMail,
+  HiOutlinePhone,
+  HiOutlineLocationMarker,
+} from 'react-icons/hi';
+
+// Social Media Icons as SVG components
+const LinkedInIcon = ({ className }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+  </svg>
+);
+
+const FacebookIcon = ({ className }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+  </svg>
+);
+
+const InstagramIcon = ({ className }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+  </svg>
+);
+
+const TwitterIcon = ({ className }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { label: 'Services', href: '/#services-overview' },
-    { label: 'How It Works', href: '/#how-it-works' },
-    { label: 'About Us', href: '/#why-choose-us' },
-    { label: 'Contact', href: '/#lead-form' }
+    { label: 'Home', to: '/' },
+    { label: 'About Us', to: '/about' },
+    { label: 'Our Services', to: '/services' },
+    { label: 'Contact Us', to: '/contact' },
   ];
 
   const services = [
-    { label: 'Marketing & Outreach', href: '/services/marketing-outreach' },
-    { label: 'Strategy & Consulting', href: '/services/strategy-consulting' },
-    { label: 'Technology & AI', href: '/services/technology-ai' },
-    { label: 'Branding Solutions', href: '/services/branding-solutions' }
+    { label: 'Revenue-Generating Advertising', to: '/services/revenue-generating-advertising' },
+    { label: 'Branding, Banners & Signs', to: '/services/branding-banners-signs' },
+    { label: 'Mobile Advertising', to: '/services/mobile-advertising' },
+    { label: 'Website Design', to: '/services/website-design' },
   ];
 
   const socialLinks = [
-    { label: 'LinkedIn', href: '#', icon: 'LinkedIn' },
-    { label: 'Twitter', href: '#', icon: 'Twitter' },
-    { label: 'Facebook', href: '#', icon: 'Facebook' },
-    { label: 'Instagram', href: '#', icon: 'Instagram' }
+    { label: 'LinkedIn', href: '#', Icon: LinkedInIcon },
+    { label: 'Facebook', href: '#', Icon: FacebookIcon },
+    { label: 'Instagram', href: '#', Icon: InstagramIcon },
+    { label: 'Twitter', href: '#', Icon: TwitterIcon },
   ];
 
   return (
@@ -30,144 +60,162 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main footer content */}
         <div className="py-16">
-          <div className="grid lg:grid-cols-4 gap-8">
-            {/* Company info */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="lg:col-span-1"
-            >
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="w-10 h-10 bg-accent-500 rounded-lg flex items-center justify-center">
-                  <span className="text-xl font-bold text-white">SG</span>
+          <div className="grid lg:grid-cols-4 gap-12">
+            {/* Company info with Logo */}
+            <div className="lg:col-span-1">
+              <Link to="/" className="flex items-center space-x-3 mb-6">
+                <img
+                  src="https://sangabrielconsulting.com/wp-content/uploads/2025/04/SG-logo-1-removebg-preview.png"
+                  alt="San Gabriel Solutions"
+                  className="h-12 w-auto bg-white rounded-lg p-1"
+                />
+                <div className="flex flex-col">
+                  <span className="text-lg font-bold text-white leading-tight">
+                    SAN GABRIEL
+                  </span>
+                  <span className="text-xs text-gray-400 tracking-wider">
+                    SOLUTIONS
+                  </span>
                 </div>
-                <span className="text-xl font-bold">San Gabriel</span>
-              </div>
-              
+              </Link>
+
               <p className="text-gray-300 mb-6 leading-relaxed">
-                Transforming businesses through expert consulting in marketing, strategy, technology, and branding.
+                Transforming businesses through expert solutions in advertising,
+                strategy, technology, and branding.
               </p>
-              
-              {/* Contact info */}
-              <div className="space-y-2 text-gray-300">
+
+              {/* Contact info with icons */}
+              <div className="space-y-3 text-gray-300">
                 <div className="flex items-center space-x-3">
-                  <span>📧</span>
-                  <span>hello@sangabrielconsulting.com</span>
+                  <HiOutlineMail className="w-5 h-5 text-accent-500" />
+                  <a
+                    href="mailto:hello@sangabrielsolutions.com"
+                    className="hover:text-accent-500 transition-colors"
+                  >
+                    hello@sangabrielsolutions.com
+                  </a>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <span>📞</span>
-                  <span>(555) 123-4567</span>
+                  <HiOutlinePhone className="w-5 h-5 text-accent-500" />
+                  <a
+                    href="tel:+15551234567"
+                    className="hover:text-accent-500 transition-colors"
+                  >
+                    (555) 123-4567
+                  </a>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <HiOutlineLocationMarker className="w-5 h-5 text-accent-500 flex-shrink-0 mt-0.5" />
+                  <span>San Gabriel, California</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Quick Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
+            <div>
               <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
               <ul className="space-y-3">
                 {quickLinks.map((link) => (
                   <li key={link.label}>
-                    <a 
-                      href={link.href}
+                    <Link
+                      to={link.to}
                       className="text-gray-300 hover:text-accent-500 transition-colors"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
 
             {/* Services */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-lg font-semibold mb-6">Services</h3>
+            <div>
+              <h3 className="text-lg font-semibold mb-6">Our Services</h3>
               <ul className="space-y-3">
                 {services.map((service) => (
                   <li key={service.label}>
-                    <a 
-                      href={service.href}
+                    <Link
+                      to={service.to}
                       className="text-gray-300 hover:text-accent-500 transition-colors"
                     >
                       {service.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
 
-            {/* Social & Newsletter */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
+            {/* Social & Connect */}
+            <div>
               <h3 className="text-lg font-semibold mb-6">Connect With Us</h3>
-              
+
               {/* Social links */}
-              <div className="flex space-x-4 mb-6">
+              <div className="flex space-x-3 mb-6">
                 {socialLinks.map((social) => (
                   <a
                     key={social.label}
                     href={social.href}
-                    className="w-10 h-10 bg-primary-600 hover:bg-accent-500 rounded-lg flex items-center justify-center transition-colors"
+                    className="w-10 h-10 bg-primary-700 hover:bg-accent-500 rounded-lg flex items-center justify-center transition-colors"
                     aria-label={social.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <span className="text-sm font-semibold">
-                      {social.icon.charAt(0)}
-                    </span>
+                    <social.Icon className="w-5 h-5" />
                   </a>
                 ))}
               </div>
-              
+
               <p className="text-gray-300 text-sm mb-4">
                 Stay updated with our latest insights and offers
               </p>
-              
-              {/* Newsletter signup placeholder */}
+
+              {/* Newsletter signup */}
               <div className="flex">
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   placeholder="Your email"
-                  className="flex-1 px-4 py-2 bg-primary-600 border border-primary-500 rounded-l-lg text-white placeholder-gray-400 focus:outline-none focus:border-accent-500"
+                  className="flex-1 px-4 py-2.5 bg-primary-700 border border-primary-600 rounded-l-lg text-white placeholder-gray-400 focus:outline-none focus:border-accent-500"
                 />
-                <button className="px-4 py-2 bg-accent-500 hover:bg-accent-600 rounded-r-lg transition-colors">
-                  →
+                <button className="px-4 py-2.5 bg-accent-500 hover:bg-accent-600 rounded-r-lg transition-colors">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    />
+                  </svg>
                 </button>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-primary-600 py-6">
+        <div className="border-t border-primary-700 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-300 text-sm">
-              © {currentYear} San Gabriel Consulting. All rights reserved.
+            <p className="text-gray-400 text-sm">
+              © {currentYear} San Gabriel Solutions. All rights reserved.
             </p>
-            
+
             <div className="flex space-x-6 text-sm">
-              <button className="text-gray-300 hover:text-accent-500 transition-colors">
+              <Link
+                to="/privacy"
+                className="text-gray-400 hover:text-accent-500 transition-colors"
+              >
                 Privacy Policy
-              </button>
-              <button className="text-gray-300 hover:text-accent-500 transition-colors">
+              </Link>
+              <Link
+                to="/terms"
+                className="text-gray-400 hover:text-accent-500 transition-colors"
+              >
                 Terms of Service
-              </button>
-              <button className="text-gray-300 hover:text-accent-500 transition-colors">
-                Cookie Policy
-              </button>
+              </Link>
             </div>
           </div>
         </div>

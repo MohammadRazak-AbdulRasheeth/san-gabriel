@@ -1,45 +1,17 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { howItWorksSteps } from '../../data/content';
 import useReducedMotion from '../../hooks/useReducedMotion';
 
 /**
- * HowItWorks Section with Advanced Animations
- * Features:
- * - 3D card perspective on hover
- * - Staggered fade-in animations
- * - Animated connection lines
- * - Glass morphism effects
+ * HowItWorks Section - Clean, professional design
  */
 const HowItWorks = () => {
-  const sectionRef = useRef(null);
   const prefersReducedMotion = useReducedMotion();
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
-  // Animated line progress
-  const lineProgress = useTransform(scrollYProgress, [0.2, 0.6], [0, 1]);
-
   return (
-    <section ref={sectionRef} className="py-20 bg-white relative overflow-hidden">
-      {/* Subtle background pattern */}
-      {!prefersReducedMotion && (
-        <div className="absolute inset-0 opacity-5">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
-              backgroundSize: '40px 40px',
-            }}
-          />
-        </div>
-      )}
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section header with 3D text effect */}
+    <section className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,135 +19,69 @@ const HowItWorks = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <motion.h2
-            className="text-3xl md:text-4xl font-bold text-primary-900 mb-4"
-            whileHover={
-              prefersReducedMotion
-                ? {}
-                : {
-                    scale: 1.02,
-                    transition: { duration: 0.3 },
-                  }
-            }
-          >
+          <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-2">
             How It Works
-          </motion.h2>
+          </h2>
+          {/* Decorative Wavy Line */}
+          <div className="flex justify-center mb-4">
+            <svg
+              width="100"
+              height="10"
+              viewBox="0 0 100 10"
+              fill="none"
+              className="text-primary-900"
+            >
+              <path
+                d="M2 5C2 5 7 2 12 5C17 8 22 5 22 5C22 5 27 2 32 5C37 8 42 5 42 5C42 5 47 2 52 5C57 8 62 5 62 5C62 5 67 2 72 5C77 8 82 5 82 5C82 5 87 2 92 5C97 8 98 5 98 5"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-            Our proven three-step process ensures you get exactly what you need to grow your business
+            Our proven three-step process ensures you get exactly what you need
+            to grow your business
           </p>
         </motion.div>
 
-        {/* Steps with animated connection line */}
-        <div className="relative">
-          {/* Animated connection line (desktop only) */}
-          {!prefersReducedMotion && (
-            <div className="hidden md:block absolute top-24 left-1/6 right-1/6 h-1 bg-neutral-200 rounded-full overflow-hidden">
-              <motion.div
-                className="h-full bg-gradient-to-r from-accent-500 via-blue-500 to-green-500"
-                style={{ scaleX: lineProgress, transformOrigin: 'left' }}
-              />
-            </div>
-          )}
+        {/* Steps */}
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+          {howItWorksSteps.map((step, index) => (
+            <motion.div
+              key={step.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: prefersReducedMotion ? 0.01 : 0.6,
+                delay: prefersReducedMotion ? 0 : index * 0.15,
+              }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <div className="bg-neutral-50 rounded-xl p-8 h-full hover:shadow-lg transition-shadow border border-neutral-100">
+                {/* Step number badge */}
+                <div className="w-14 h-14 bg-accent-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-6 shadow-md">
+                  {step.stepNumber}
+                </div>
 
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
-            {howItWorksSteps.map((step, index) => (
-              <motion.div
-                key={step.id}
-                initial={{ opacity: 0, y: 50, rotateX: -10 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{
-                  duration: prefersReducedMotion ? 0.01 : 0.7,
-                  delay: prefersReducedMotion ? 0 : index * 0.2,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                }}
-                viewport={{ once: true }}
-                className="relative text-center perspective-1000"
-              >
-                {/* Step card with 3D hover effect */}
-                <motion.div
-                  className="bg-white rounded-xl p-8 shadow-lg border border-neutral-100 h-full relative overflow-hidden group"
-                  whileHover={
-                    prefersReducedMotion
-                      ? {}
-                      : {
-                          y: -10,
-                          rotateY: 5,
-                          rotateX: 5,
-                          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-                          borderColor: 'rgba(249, 115, 22, 0.3)',
-                          transition: { duration: 0.4 },
-                        }
-                  }
-                >
-                  {/* Animated background gradient on hover */}
-                  {!prefersReducedMotion && (
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-accent-50/50 to-blue-50/50 opacity-0 group-hover:opacity-100"
-                      transition={{ duration: 0.4 }}
-                    />
-                  )}
+                {/* Icon */}
+                <div className="w-16 h-16 bg-primary-900 rounded-full flex items-center justify-center mx-auto mb-6">
+                  {step.icon && <step.icon className="w-8 h-8 text-white" />}
+                </div>
 
-                  {/* Step number badge */}
-                  <motion.div
-                    className="absolute -top-3 -right-3 w-12 h-12 bg-accent-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg z-10"
-                    whileHover={
-                      prefersReducedMotion
-                        ? {}
-                        : {
-                            scale: 1.2,
-                            rotate: 10,
-                            transition: { duration: 0.3 },
-                          }
-                    }
-                  >
-                    {step.stepNumber}
-                  </motion.div>
+                {/* Title */}
+                <h3 className="text-xl font-bold text-primary-900 mb-4">
+                  {step.title}
+                </h3>
 
-                  {/* Icon with magnetic effect */}
-                  <motion.div
-                    className="w-16 h-16 bg-accent-500 rounded-full flex items-center justify-center mx-auto mb-6 relative z-10"
-                    whileHover={
-                      prefersReducedMotion
-                        ? {}
-                        : {
-                            scale: 1.15,
-                            boxShadow: '0 0 30px rgba(249, 115, 22, 0.5)',
-                            transition: { duration: 0.3 },
-                          }
-                    }
-                  >
-                    {step.icon && <step.icon className="w-8 h-8 text-white" />}
-                  </motion.div>
-
-                  {/* Title */}
-                  <motion.h3
-                    className="text-xl font-bold text-primary-900 mb-4 relative z-10"
-                    whileHover={
-                      prefersReducedMotion
-                        ? {}
-                        : {
-                            color: '#f97316',
-                            transition: { duration: 0.2 },
-                          }
-                    }
-                  >
-                    {step.title}
-                  </motion.h3>
-
-                  {/* Description */}
-                  <p className="text-neutral-600 leading-relaxed relative z-10">{step.description}</p>
-
-                  {/* Decorative corner accent */}
-                  {!prefersReducedMotion && (
-                    <motion.div
-                      className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-accent-100 to-transparent rounded-tr-full opacity-0 group-hover:opacity-100"
-                      transition={{ duration: 0.4 }}
-                    />
-                  )}
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
+                {/* Description */}
+                <p className="text-neutral-600 leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

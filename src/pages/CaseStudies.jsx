@@ -6,7 +6,6 @@ import SEO from '../components/SEO';
 import { pageSEOConfig } from '../utils/seo';
 import useReducedMotion from '../hooks/useReducedMotion';
 import useViewportSize from '../hooks/useViewportSize';
-import SectionDivider from '../components/ui/SectionDivider';
 
 /**
  * Case Studies Page

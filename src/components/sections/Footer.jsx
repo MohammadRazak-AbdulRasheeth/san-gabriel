@@ -38,22 +38,26 @@ const Footer = () => {
     { label: 'Home', to: '/' },
     { label: 'About Us', to: '/about' },
     { label: 'Our Services', to: '/services' },
+    { label: 'Industries', to: '/industries' },
+    { label: 'Case Studies', to: '/case-studies' },
     { label: 'Insights', to: '/insights' },
+    { label: 'Careers', to: '/careers' },
     { label: 'Contact Us', to: '/contact' },
   ];
 
   const services = [
-    { label: 'Revenue-Generating Advertising', to: '/services/revenue-generating-advertising' },
-    { label: 'Branding, Banners & Signs', to: '/services/branding-banners-signs' },
-    { label: 'Mobile Advertising', to: '/services/mobile-advertising' },
-    { label: 'Website Design', to: '/services/website-design' },
+    { label: 'Marketing Strategy & Planning', to: '/services/marketing-strategy-planning' },
+    { label: 'Brand Development & Positioning', to: '/services/brand-development-positioning' },
+    { label: 'Advertising & Campaign Management', to: '/services/advertising-campaign-management' },
+    { label: 'Digital Presence & Growth', to: '/services/digital-presence-growth' },
+    { label: 'Business & Marketing Consulting', to: '/services/business-marketing-consulting' },
   ];
 
   const socialLinks = [
-    { label: 'LinkedIn', href: '#', Icon: LinkedInIcon },
-    { label: 'Facebook', href: '#', Icon: FacebookIcon },
-    { label: 'Instagram', href: '#', Icon: InstagramIcon },
-    { label: 'Twitter', href: '#', Icon: TwitterIcon },
+    { label: 'LinkedIn', href: 'https://linkedin.com/company/sangabrielsolutions', Icon: LinkedInIcon },
+    { label: 'Facebook', href: 'https://facebook.com/sangabrielsolutions', Icon: FacebookIcon },
+    { label: 'Instagram', href: 'https://instagram.com/sangabrielsolutions', Icon: InstagramIcon },
+    { label: 'Twitter', href: 'https://twitter.com/sangabrielsol', Icon: TwitterIcon },
   ];
 
   return (

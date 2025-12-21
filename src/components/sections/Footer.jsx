@@ -38,6 +38,7 @@ const Footer = () => {
     { label: 'Home', to: '/' },
     { label: 'About Us', to: '/about' },
     { label: 'Our Services', to: '/services' },
+    { label: 'Insights', to: '/insights' },
     { label: 'Contact Us', to: '/contact' },
   ];
 

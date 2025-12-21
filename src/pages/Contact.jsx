@@ -14,15 +14,12 @@ const Contact = () => {
   const preselectedService = preselectedServiceId ? getServiceById(preselectedServiceId) : null;
   
   const [formData, setFormData] = useState({
-    fullName: '',
-    companyName: '',
+    name: '',
     email: '',
+    company: '',
     phone: '',
     serviceInterest: preselectedService ? preselectedService.name : '',
-    budgetRange: '',
-    timeline: '',
-    contactMethod: 'email',
-    description: ''
+    message: ''
   });
 
   // Update service interest when URL parameter changes
@@ -35,31 +32,17 @@ const Contact = () => {
     }
   }, [preselectedService]);
 
-  const budgetRanges = [
-    '$5K - $10K',
-    '$10K - $25K',
-    '$25K - $50K',
-    '$50K - $100K',
-    '$100K+'
-  ];
-
-  const timelines = [
-    'Immediately',
-    'Within 1 month',
-    'Within 2-3 months',
-    'Within 6 months',
-    'Just exploring options'
-  ];
-
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     setIsSubmitting(true);
     
     // Simulate form submission
@@ -232,52 +215,39 @@ const Contact = () => {
             <div className="bg-white border border-neutral-200 rounded-2xl p-8 shadow-xl">
               <div className="text-center mb-8">
                 <h2 className="text-2xl font-bold text-primary-900 mb-2">
-                  Get Your Free Consultation
+                  Schedule a Discovery Call
                 </h2>
                 <p className="text-neutral-600">
                   Tell us about your project and we'll provide a comprehensive consultation at no cost.
+                </p>
+                <p className="text-sm text-neutral-500 mt-2">
+                  Serving clients across Canada and North America
                 </p>
               </div>
 
               <form onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 gap-6">
-                  {/* Full Name */}
+                  {/* Name */}
                   <div>
-                    <label htmlFor="fullName" className="block text-sm font-semibold text-primary-900 mb-2">
-                      Full Name *
+                    <label htmlFor="name" className="block text-sm font-semibold text-primary-900 mb-2">
+                      Name *
                     </label>
                     <input
                       type="text"
-                      id="fullName"
-                      name="fullName"
-                      value={formData.fullName}
+                      id="name"
+                      name="name"
+                      value={formData.name}
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
-                      placeholder="Your full name"
-                    />
-                  </div>
-
-                  {/* Company Name */}
-                  <div>
-                    <label htmlFor="companyName" className="block text-sm font-semibold text-primary-900 mb-2">
-                      Company Name
-                    </label>
-                    <input
-                      type="text"
-                      id="companyName"
-                      name="companyName"
-                      value={formData.companyName}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
-                      placeholder="Your company name"
+                      placeholder="Your name"
                     />
                   </div>
 
                   {/* Email */}
                   <div>
                     <label htmlFor="email" className="block text-sm font-semibold text-primary-900 mb-2">
-                      Email Address *
+                      Email *
                     </label>
                     <input
                       type="email"
@@ -291,10 +261,26 @@ const Contact = () => {
                     />
                   </div>
 
+                  {/* Company */}
+                  <div>
+                    <label htmlFor="company" className="block text-sm font-semibold text-primary-900 mb-2">
+                      Company
+                    </label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+                      placeholder="Your company name"
+                    />
+                  </div>
+
                   {/* Phone */}
                   <div>
                     <label htmlFor="phone" className="block text-sm font-semibold text-primary-900 mb-2">
-                      Phone Number
+                      Phone
                     </label>
                     <input
                       type="tel"
@@ -308,7 +294,7 @@ const Contact = () => {
                   </div>
 
                   {/* Service Interest */}
-                  <div>
+                  <div className="md:col-span-2">
                     <label htmlFor="serviceInterest" className="block text-sm font-semibold text-primary-900 mb-2">
                       Service Interest *
                     </label>
@@ -328,86 +314,23 @@ const Contact = () => {
                       ))}
                     </select>
                   </div>
-
-                  {/* Budget Range */}
-                  <div>
-                    <label htmlFor="budgetRange" className="block text-sm font-semibold text-primary-900 mb-2">
-                      Budget Range
-                    </label>
-                    <select
-                      id="budgetRange"
-                      name="budgetRange"
-                      value={formData.budgetRange}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
-                    >
-                      <option value="">Select budget range</option>
-                      {budgetRanges.map(range => (
-                        <option key={range} value={range}>{range}</option>
-                      ))}
-                    </select>
-                  </div>
                 </div>
 
-                {/* Description */}
+                {/* Message */}
                 <div className="mt-6">
-                  <label htmlFor="description" className="block text-sm font-semibold text-primary-900 mb-2">
-                    Project Description *
+                  <label htmlFor="message" className="block text-sm font-semibold text-primary-900 mb-2">
+                    Message *
                   </label>
                   <textarea
-                    id="description"
-                    name="description"
-                    value={formData.description}
+                    id="message"
+                    name="message"
+                    value={formData.message}
                     onChange={handleChange}
                     required
                     rows={5}
                     className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
                     placeholder="Tell us about your project, goals, challenges, and what you hope to achieve..."
                   ></textarea>
-                </div>
-
-                {/* Bottom row */}
-                <div className="grid md:grid-cols-2 gap-6 mt-6">
-                  {/* Contact Method */}
-                  <div>
-                    <label className="block text-sm font-semibold text-primary-900 mb-2">
-                      Preferred Contact Method
-                    </label>
-                    <div className="flex gap-4">
-                      {['email', 'phone', 'whatsapp'].map(method => (
-                        <label key={method} className="flex items-center">
-                          <input
-                            type="radio"
-                            name="contactMethod"
-                            value={method}
-                            checked={formData.contactMethod === method}
-                            onChange={handleChange}
-                            className="mr-2 text-accent-500 focus:ring-accent-500"
-                          />
-                          <span className="capitalize text-neutral-700">{method}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Timeline */}
-                  <div>
-                    <label htmlFor="timeline" className="block text-sm font-semibold text-primary-900 mb-2">
-                      Timeline to Start
-                    </label>
-                    <select
-                      id="timeline"
-                      name="timeline"
-                      value={formData.timeline}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
-                    >
-                      <option value="">Select timeline</option>
-                      {timelines.map(timeline => (
-                        <option key={timeline} value={timeline}>{timeline}</option>
-                      ))}
-                    </select>
-                  </div>
                 </div>
 
                 {/* Submit button */}

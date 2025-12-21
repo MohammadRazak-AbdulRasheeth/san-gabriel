@@ -7,7 +7,13 @@ import useReducedMotion from '../../hooks/useReducedMotion';
  * Hero Section - Professional design matching San Gabriel Solutions branding
  * Clean, modern layout with background image and centered content
  */
-const Hero = () => {
+const Hero = ({ 
+  backgroundImage = '/heroimages/homeherosection1.jpeg',
+  title = 'Transform Your Business With Expert Solutions',
+  subtitle = 'San Gabriel Solutions delivers comprehensive business solutions across advertising, strategy, technology, and branding to help your company thrive.',
+  showButtons = true,
+  accentText = 'Expert Solutions'
+}) => {
   const prefersReducedMotion = useReducedMotion();
 
   const scrollToServices = () => {
@@ -24,7 +30,7 @@ const Hero = () => {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/11servicesimages/1.REVENUE-GENERATING ADVERTISING SOLUTIONS .png')`,
+          backgroundImage: `url('${backgroundImage}')`,
         }}
       />
 
@@ -40,8 +46,15 @@ const Hero = () => {
         >
           {/* Main Headline */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-            Transform Your Business With{' '}
-            <span className="text-accent-500">Expert Solutions</span>
+            {title.includes(accentText) ? (
+              <>
+                {title.split(accentText)[0]}
+                <span className="text-accent-500">{accentText}</span>
+                {title.split(accentText)[1]}
+              </>
+            ) : (
+              title
+            )}
           </h1>
 
           {/* Decorative Wavy Line */}
@@ -70,36 +83,36 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: getDuration(0.6), delay: 0.2 }}
           >
-            San Gabriel Solutions delivers comprehensive business solutions
-            across advertising, strategy, technology, and branding to help your
-            company thrive.
+            {subtitle}
           </motion.p>
 
           {/* CTA Buttons */}
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: getDuration(0.6), delay: 0.3 }}
-          >
-            <Link to="/contact">
-              <Button
-                variant="primary"
-                size="lg"
-                className="bg-accent-500 hover:bg-accent-600 text-white px-8 py-3 rounded-md font-medium min-w-[220px]"
-              >
-                Request Free Consultation
-              </Button>
-            </Link>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={scrollToServices}
-              className="border-white text-white hover:bg-white hover:text-primary-900 px-8 py-3 rounded-md font-medium min-w-[220px]"
+          {showButtons && (
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: getDuration(0.6), delay: 0.3 }}
             >
-              View Our Services
-            </Button>
-          </motion.div>
+              <Link to="/contact">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="bg-accent-500 hover:bg-accent-600 text-white px-8 py-3 rounded-md font-medium min-w-[220px]"
+                >
+                  Schedule a Consultation
+                </Button>
+              </Link>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={scrollToServices}
+                className="border-white text-white hover:bg-white hover:text-primary-900 px-8 py-3 rounded-md font-medium min-w-[220px]"
+              >
+                View Our Services
+              </Button>
+            </motion.div>
+          )}
         </motion.div>
       </div>
     </section>

@@ -280,7 +280,6 @@ const LeadForm = () => {
               </div>
             </div>
 
-            {/* Submit button */}
             <div className="mt-8 text-center">
               <Button 
                 type="submit"
@@ -289,7 +288,7 @@ const LeadForm = () => {
                 disabled={isSubmitting}
                 className="min-w-48"
               >
-                {isSubmitting ? 'Sending...' : 'Request Free Consultation'}
+                {isSubmitting ? 'Sending...' : 'Schedule a Consultation'}
               </Button>
             </div>
           </form>

@@ -28,9 +28,10 @@ const Header = () => {
 
   const navItems = [
     { label: 'Home', to: '/' },
-    { label: 'About Us', to: '/about' },
-    { label: 'Our Services', to: '/services' },
-    { label: 'Contact us', to: '/contact' },
+    { label: 'About', to: '/about' },
+    { label: 'Services', to: '/services' },
+    { label: 'Insights', to: '/insights' },
+    { label: 'Contact', to: '/contact' },
   ];
 
   const isActiveRoute = (path) => {
@@ -105,7 +106,7 @@ const Header = () => {
               to="/contact"
               className="inline-flex items-center justify-center px-6 py-2.5 bg-primary-900 text-white text-sm font-medium rounded-md hover:bg-primary-800 transition-colors"
             >
-              Contact Now
+              Schedule a Consultation
             </Link>
           </motion.div>
 
@@ -175,7 +176,7 @@ const Header = () => {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block w-full text-center px-6 py-3 bg-primary-900 text-white text-sm font-medium rounded-md hover:bg-primary-800 transition-colors"
                 >
-                  Contact Now
+                  Schedule a Consultation
                 </Link>
               </div>
             </div>

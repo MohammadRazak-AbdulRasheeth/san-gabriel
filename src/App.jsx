@@ -5,9 +5,13 @@ import './index.css';
 // Import pages
 import Home from './pages/Home';
 import ServiceDetail from './pages/ServiceDetail';
-import About from './pages/About';
+import AboutUs from './pages/AboutUs';
 import Contact from './pages/Contact';
 import Services from './pages/Services';
+import Insights from './pages/Insights';
+import InsightDetail from './pages/InsightDetail';
+import Industries from './pages/Industries';
+import CaseStudies from './pages/CaseStudies';
 
 // Import layout components
 import Header from './components/layout/Header';
@@ -30,16 +34,20 @@ const ScrollToTop = () => {
 
 function App() {
   return (
-    <Router>
+    <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
       <ScrollToTop />
       <div className="App min-h-screen flex flex-col">
         <Header />
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutUs />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/:category" element={<ServiceDetail />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/industries" element={<Industries />} />
+            <Route path="/case-studies" element={<CaseStudies />} />
+            <Route path="/insights" element={<Insights />} />
+            <Route path="/insights/:slug" element={<InsightDetail />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>

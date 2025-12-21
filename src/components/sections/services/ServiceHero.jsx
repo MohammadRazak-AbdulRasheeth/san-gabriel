@@ -17,7 +17,7 @@ const ServiceHero = () => {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/11servicesimages/1.REVENUE-GENERATING ADVERTISING SOLUTIONS .png')`,
+          backgroundImage: `url('/heroimages/servicesherosectionimage.jpeg')`,
         }}
       />
 

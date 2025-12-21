@@ -25,7 +25,7 @@ describe('Property 7: Responsive Layout Adaptation', () => {
   // Helper to render ServiceCard with router context
   const renderServiceCard = (service) => {
     return render(
-      <BrowserRouter>
+      <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
         <ServiceCard
           id={service.id}
           order={service.order}
@@ -224,7 +224,7 @@ describe('ServiceCard responsive behavior', () => {
 
   const renderServiceCard = (service) => {
     return render(
-      <BrowserRouter>
+      <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
         <ServiceCard
           id={service.id}
           order={service.order}

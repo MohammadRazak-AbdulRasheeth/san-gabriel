@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import ServiceGrid from '../components/sections/services/ServiceGrid';
+import ServiceAlternatingLayout from '../components/sections/services/ServiceAlternatingLayout';
 import Button from '../components/ui/Button';
 import useReducedMotion from '../hooks/useReducedMotion';
 import SEO from '../components/SEO';
@@ -29,6 +29,25 @@ const Services = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-br from-primary-900/70 via-primary-800/70 to-primary-900/70" />
         
+        {/* Animated Dot Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <motion.div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+              backgroundSize: '40px 40px'
+            }}
+            animate={prefersReducedMotion ? {} : {
+              backgroundPosition: ['0px 0px', '40px 40px'],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: 'linear'
+            }}
+          />
+        </div>
+        
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
@@ -53,15 +72,15 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Services Grid Section */}
-      <section className="py-16 md:py-24 bg-neutral-50">
+      {/* Services Alternating Layout Section */}
+      <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: prefersReducedMotion ? 0.01 : 0.5 }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-4">
               Our Services
@@ -72,7 +91,7 @@ const Services = () => {
             </p>
           </motion.div>
 
-          <ServiceGrid />
+          <ServiceAlternatingLayout />
         </div>
       </section>
 

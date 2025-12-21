@@ -1,9 +1,9 @@
 import * as fc from 'fast-check';
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import ServiceCard from './ServiceCard';
-import { services } from '../../../data/services';
+import { agencyServices } from '../../../data/agencyServices';
 
 // Mock framer-motion to avoid animation issues in tests
 jest.mock('framer-motion', () => ({
@@ -16,12 +16,12 @@ jest.mock('framer-motion', () => ({
 }));
 
 /**
- * Feature: san-gabriel-website, Property 7: Responsive Layout Adaptation
- * For any viewport width below 768px, service cards SHALL stack vertically
- * and all interactive elements SHALL have touch-friendly sizing (minimum 44px tap targets).
- * Validates: Requirements 14.1
+ * Feature: san-gabriel-agency-rebrand, Property 12: Responsive Layout Adaptation
+ * For any viewport width below 768px, all pages SHALL display responsive layouts
+ * with touch-friendly interactions.
+ * Validates: Requirements 16.1
  */
-describe('Property 7: Responsive Layout Adaptation', () => {
+describe('Property 12: Responsive Layout Adaptation', () => {
   // Helper to render ServiceCard with router context
   const renderServiceCard = (service) => {
     return render(
@@ -30,15 +30,9 @@ describe('Property 7: Responsive Layout Adaptation', () => {
           id={service.id}
           order={service.order}
           name={service.name}
-          tagline={service.tagline}
-          businessCase={service.businessCase}
-          services={service.services}
-          advantages={service.advantages}
-          pricing={service.pricing}
-          ctas={service.ctas}
-          portfolioProof={service.portfolioProof}
-          isCore={service.isCore}
-          isFoundational={service.isFoundational}
+          shortDescription={service.shortDescription}
+          offerings={service.offerings}
+          cta={service.cta}
         />
       </BrowserRouter>
     );

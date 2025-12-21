@@ -4,6 +4,7 @@ import { HiOutlineArrowLeft, HiOutlineCalendar } from 'react-icons/hi';
 import { getInsightBySlug, getRelatedInsights, getCategoryLabel } from '../data/insights';
 import InsightCard from '../components/sections/insights/InsightCard';
 import useReducedMotion from '../hooks/useReducedMotion';
+import SEO from '../components/SEO';
 
 /**
  * InsightDetail Page
@@ -78,6 +79,17 @@ const InsightDetail = () => {
 
   return (
     <div className="min-h-screen bg-neutral-50">
+      {/* SEO Meta Tags - Requirements: 19.1, 19.4 */}
+      {insight && (
+        <SEO
+          title={`${insight.title} | San Gabriel Solutions Insights`}
+          description={insight.excerpt}
+          keywords={`${getCategoryLabel(insight.category)}, marketing insights, ${insight.title}`}
+          ogImage={insight.imageUrl || '/sangabriel-hero-image.jpg'}
+          ogType="article"
+        />
+      )}
+      
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-12 md:py-20">
         <div className="container mx-auto px-4">

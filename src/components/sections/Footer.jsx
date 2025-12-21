@@ -156,7 +156,7 @@ const Footer = () => {
                   <a
                     key={social.label}
                     href={social.href}
-                    className="w-10 h-10 bg-primary-700 hover:bg-accent-500 rounded-lg flex items-center justify-center transition-colors"
+                    className="w-12 h-12 bg-primary-700 hover:bg-accent-500 active:bg-accent-600 rounded-lg flex items-center justify-center transition-colors touch-manipulation"
                     aria-label={social.label}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -175,9 +175,9 @@ const Footer = () => {
                 <input
                   type="email"
                   placeholder="Your email"
-                  className="flex-1 px-4 py-2.5 bg-primary-700 border border-primary-600 rounded-l-lg text-white placeholder-gray-400 focus:outline-none focus:border-accent-500"
+                  className="flex-1 px-4 py-2.5 bg-primary-700 border border-primary-600 rounded-l-lg text-white placeholder-gray-400 focus:outline-none focus:border-accent-500 touch-manipulation min-h-[44px]"
                 />
-                <button className="px-4 py-2.5 bg-accent-500 hover:bg-accent-600 rounded-r-lg transition-colors">
+                <button className="px-4 py-2.5 bg-accent-500 hover:bg-accent-600 active:bg-accent-700 rounded-r-lg transition-colors touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center">
                   <svg
                     className="w-5 h-5"
                     fill="none"

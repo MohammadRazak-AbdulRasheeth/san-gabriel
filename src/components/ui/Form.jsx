@@ -68,9 +68,12 @@ export const FormField = ({
   };
 
   const baseInputClasses = `
-    w-full px-4 py-3 border rounded-lg transition-colors duration-200
+    w-full px-4 py-3 border rounded-lg 
+    transition-all duration-300 ease-in-out
     focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent
-    ${error ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-gray-400'}
+    focus:shadow-lg focus:scale-[1.01]
+    touch-manipulation min-h-[44px]
+    ${error ? 'border-red-500 bg-red-50 focus:ring-red-500' : 'border-gray-300 hover:border-gray-400 focus:border-orange-500'}
     ${className}
   `;
 

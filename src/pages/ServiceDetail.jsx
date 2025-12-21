@@ -5,6 +5,8 @@ import { caseStudies } from '../data/caseStudies';
 import { insights } from '../data/insights';
 import ServiceDetailContent from '../components/sections/services/ServiceDetailContent';
 import useReducedMotion from '../hooks/useReducedMotion';
+import SEO from '../components/SEO';
+import { getServiceSEOConfig, getServiceStructuredData } from '../utils/seo';
 
 /**
  * ServiceDetail Page
@@ -30,8 +32,18 @@ const ServiceDetail = () => {
   // Get related insights (simple approach - get recent insights)
   const relatedInsights = insights.slice(0, 3);
 
+  // Generate SEO config and structured data for this service
+  const seoConfig = getServiceSEOConfig(service);
+  const structuredData = getServiceStructuredData(service);
+
   return (
     <div className="pt-20">
+      {/* SEO Meta Tags - Requirements: 19.1, 19.4 */}
+      <SEO 
+        {...seoConfig} 
+        structuredData={structuredData}
+        structuredDataId={`service-${service.id}-structured-data`}
+      />
       {/* Hero Section with Breadcrumb */}
       <section className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

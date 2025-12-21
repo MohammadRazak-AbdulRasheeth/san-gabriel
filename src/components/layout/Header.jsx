@@ -113,8 +113,9 @@ const Header = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-primary-900 hover:bg-neutral-100 transition-colors"
+            className="lg:hidden p-2 rounded-lg text-primary-900 hover:bg-neutral-100 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation"
             aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
           >
             <svg
               className="w-6 h-6"
@@ -161,10 +162,10 @@ const Header = () => {
                   key={item.label}
                   to={item.to}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block px-4 py-3 rounded-lg transition-colors text-sm font-medium ${
+                  className={`block px-4 py-3 rounded-lg transition-colors text-sm font-medium min-h-[44px] flex items-center touch-manipulation ${
                     isActiveRoute(item.to)
                       ? 'text-primary-900 bg-neutral-100'
-                      : 'text-neutral-600 hover:text-primary-900 hover:bg-neutral-50'
+                      : 'text-neutral-600 hover:text-primary-900 hover:bg-neutral-50 active:bg-neutral-100'
                   }`}
                 >
                   {item.label}
@@ -174,7 +175,7 @@ const Header = () => {
                 <Link
                   to="/contact"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full text-center px-6 py-3 bg-primary-900 text-white text-sm font-medium rounded-md hover:bg-primary-800 transition-colors"
+                  className="block w-full text-center px-6 py-3 bg-primary-900 text-white text-sm font-medium rounded-md hover:bg-primary-800 active:bg-primary-950 transition-colors min-h-[44px] flex items-center justify-center touch-manipulation"
                 >
                   Schedule a Consultation
                 </Link>

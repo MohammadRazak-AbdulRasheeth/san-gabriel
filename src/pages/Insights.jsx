@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import InsightGrid from '../components/sections/insights/InsightGrid';
 import CategoryFilter from '../components/sections/insights/CategoryFilter';
 import { getInsightsByDate, insightCategories } from '../data/insights';
 import useReducedMotion from '../hooks/useReducedMotion';
+import SEO from '../components/SEO';
+import { pageSEOConfig } from '../utils/seo';
 
 /**
  * Insights Page
@@ -27,6 +30,8 @@ const Insights = () => {
 
   return (
     <div className="min-h-screen bg-neutral-50">
+      {/* SEO Meta Tags - Requirements: 19.1, 19.4 */}
+      <SEO {...pageSEOConfig.insights} />
       {/* Hero Section */}
       <motion.section
         className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-16 md:py-24"
@@ -73,13 +78,13 @@ const Insights = () => {
             Let's discuss how San Gabriel Solutions can help you achieve your business goals 
             with strategic marketing and advertising solutions.
           </p>
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             className="inline-block bg-accent-600 text-white px-8 py-4 rounded-lg 
                        font-semibold hover:bg-accent-700 transition-colors min-h-[44px]"
           >
             Schedule a Consultation
-          </a>
+          </Link>
         </div>
       </section>
     </div>

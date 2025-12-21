@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import CaseStudyGrid from '../components/sections/case-studies/CaseStudyGrid';
+import SEO from '../components/SEO';
+import { pageSEOConfig } from '../utils/seo';
 
 /**
  * Case Studies Page
@@ -11,6 +13,8 @@ import CaseStudyGrid from '../components/sections/case-studies/CaseStudyGrid';
 const CaseStudies = () => {
   return (
     <div className="min-h-screen bg-white">
+      {/* SEO Meta Tags - Requirements: 19.1, 19.4 */}
+      <SEO {...pageSEOConfig.caseStudies} />
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-neutral-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

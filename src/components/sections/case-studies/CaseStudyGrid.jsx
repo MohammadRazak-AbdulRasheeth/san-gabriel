@@ -51,7 +51,7 @@ const CaseStudyGrid = () => {
               id="industry-filter"
               value={selectedIndustry}
               onChange={(e) => setSelectedIndustry(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all duration-200"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all duration-200 touch-manipulation min-h-[44px]"
             >
               <option value="all">All Industries</option>
               {industries.map((industry) => (
@@ -74,7 +74,7 @@ const CaseStudyGrid = () => {
               id="service-filter"
               value={selectedService}
               onChange={(e) => setSelectedService(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all duration-200"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all duration-200 touch-manipulation min-h-[44px]"
             >
               <option value="all">All Services</option>
               {agencyServices.map((service) => (
@@ -119,7 +119,7 @@ const CaseStudyGrid = () => {
               setSelectedIndustry('all');
               setSelectedService('all');
             }}
-            className="mt-4 text-blue-600 hover:text-blue-700 font-semibold"
+            className="mt-4 text-blue-600 hover:text-blue-700 active:text-blue-800 font-semibold touch-manipulation min-h-[44px] px-4"
           >
             Clear Filters
           </button>

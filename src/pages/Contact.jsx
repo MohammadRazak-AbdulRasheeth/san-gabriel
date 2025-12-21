@@ -2,16 +2,19 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
-import { services, getServiceById } from '../data/services';
+import { agencyServices, getAgencyServiceById } from '../data/agencyServices';
+import SEO from '../components/SEO';
+import { pageSEOConfig } from '../utils/seo';
 
 const Contact = () => {
   const [searchParams] = useSearchParams();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState({});
   
   // Get preselected service from URL parameter
   const preselectedServiceId = searchParams.get('service');
-  const preselectedService = preselectedServiceId ? getServiceById(preselectedServiceId) : null;
+  const preselectedService = preselectedServiceId ? getAgencyServiceById(preselectedServiceId) : null;
   
   const [formData, setFormData] = useState({
     name: '',
@@ -38,23 +41,93 @@ const Contact = () => {
       ...formData,
       [name]: value
     });
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: ''
+      });
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Name validation
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+
+    // Email validation
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    // Service interest validation
+    if (!formData.serviceInterest) {
+      newErrors.serviceInterest = 'Please select a service';
+    }
+
+    // Message validation
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = 'Please provide more details (at least 10 characters)';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    // Validate form
+    if (!validateForm()) {
+      return;
+    }
+
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitted(true);
-    setIsSubmitting(false);
+    try {
+      // Capture inquiry details for consultation scheduling
+      const inquiryData = {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        company: formData.company.trim(),
+        phone: formData.phone.trim(),
+        serviceInterest: formData.serviceInterest,
+        message: formData.message.trim(),
+        timestamp: new Date().toISOString(),
+        source: 'contact_form'
+      };
+
+      // Log inquiry data (in production, this would be sent to a backend API)
+      console.log('Consultation inquiry captured:', inquiryData);
+
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Show success state
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setErrors({
+        submit: 'There was an error submitting your request. Please try again or contact us directly.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
     return (
       <div className="pt-20">
+        {/* SEO Meta Tags - Requirements: 19.1, 19.4 */}
+        <SEO {...pageSEOConfig.contact} />
+        
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-900 to-primary-600 text-white">
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
@@ -84,6 +157,9 @@ const Contact = () => {
 
   return (
     <div className="pt-20">
+      {/* SEO Meta Tags - Requirements: 19.1, 19.4 */}
+      <SEO {...pageSEOConfig.contact} />
+      
       {/* Enhanced Hero Section with Morphing Background */}
       <section className="py-20 bg-gradient-to-br from-primary-900 via-primary-700 to-primary-600 text-white relative overflow-hidden">
         {/* Morphing Background Shapes */}
@@ -226,6 +302,12 @@ const Contact = () => {
               </div>
 
               <form onSubmit={handleSubmit}>
+                {errors.submit && (
+                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-red-600 text-sm">{errors.submit}</p>
+                  </div>
+                )}
+
                 <div className="grid md:grid-cols-2 gap-6">
                   {/* Name */}
                   <div>
@@ -239,9 +321,14 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors ${
+                        errors.name ? 'border-red-500' : 'border-neutral-300'
+                      }`}
                       placeholder="Your name"
                     />
+                    {errors.name && (
+                      <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+                    )}
                   </div>
 
                   {/* Email */}
@@ -256,9 +343,14 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors ${
+                        errors.email ? 'border-red-500' : 'border-neutral-300'
+                      }`}
                       placeholder="your@email.com"
                     />
+                    {errors.email && (
+                      <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                    )}
                   </div>
 
                   {/* Company */}
@@ -304,15 +396,20 @@ const Contact = () => {
                       value={formData.serviceInterest}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors ${
+                        errors.serviceInterest ? 'border-red-500' : 'border-neutral-300'
+                      }`}
                     >
                       <option value="">Select a service</option>
-                      {services.map(service => (
+                      {agencyServices.map(service => (
                         <option key={service.id} value={service.name}>
                           {service.name}
                         </option>
                       ))}
                     </select>
+                    {errors.serviceInterest && (
+                      <p className="mt-1 text-sm text-red-600">{errors.serviceInterest}</p>
+                    )}
                   </div>
                 </div>
 
@@ -328,9 +425,14 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors ${
+                      errors.message ? 'border-red-500' : 'border-neutral-300'
+                    }`}
                     placeholder="Tell us about your project, goals, challenges, and what you hope to achieve..."
                   ></textarea>
+                  {errors.message && (
+                    <p className="mt-1 text-sm text-red-600">{errors.message}</p>
+                  )}
                 </div>
 
                 {/* Submit button */}
@@ -351,7 +453,7 @@ const Contact = () => {
                         Sending...
                       </span>
                     ) : (
-                      'Request Free Consultation'
+                      'Schedule a Discovery Call'
                     )}
                   </Button>
                 </div>

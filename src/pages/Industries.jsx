@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import IndustryGrid from '../components/sections/industries/IndustryGrid';
 import Button from '../components/ui/Button';
 import useReducedMotion from '../hooks/useReducedMotion';
+import SEO from '../components/SEO';
+import { pageSEOConfig } from '../utils/seo';
 
 /**
  * Industries Page
@@ -15,6 +17,8 @@ const Industries = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* SEO Meta Tags - Requirements: 19.1, 19.4 */}
+      <SEO {...pageSEOConfig.industries} />
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-neutral-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

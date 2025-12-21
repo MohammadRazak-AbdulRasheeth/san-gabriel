@@ -3,6 +3,8 @@ import AgencyServicesOverview from '../components/sections/home/AgencyServicesOv
 import AgencyDifferentiators from '../components/sections/home/AgencyDifferentiators';
 import AgencyProofSection from '../components/sections/home/AgencyProofSection';
 import LeadForm from '../components/sections/LeadForm';
+import SEO from '../components/SEO';
+import { pageSEOConfig } from '../utils/seo';
 
 /**
  * Home Page - San Gabriel Solutions Agency Rebrand
@@ -12,6 +14,8 @@ import LeadForm from '../components/sections/LeadForm';
 export default function Home() {
   return (
     <div className="relative">
+      {/* SEO Meta Tags - Requirements: 19.1, 19.4 */}
+      <SEO {...pageSEOConfig.home} />
       {/* Hero Section - Value proposition and primary CTA */}
       {/* Requirements: 1.1, 1.2 */}
       <AgencyHero />

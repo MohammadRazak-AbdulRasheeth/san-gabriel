@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import ServiceGrid from '../components/sections/services/ServiceGrid';
 import Button from '../components/ui/Button';
 import useReducedMotion from '../hooks/useReducedMotion';
+import SEO from '../components/SEO';
+import { pageSEOConfig } from '../utils/seo';
 
 /**
  * Services Page
@@ -14,6 +16,8 @@ const Services = () => {
 
   return (
     <div className="pt-20">
+      {/* SEO Meta Tags - Requirements: 19.1, 19.4 */}
+      <SEO {...pageSEOConfig.services} />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,6 +64,90 @@ const Services = () => {
           </motion.div>
 
           <ServiceGrid />
+        </div>
+      </section>
+
+      {/* Trust Signals Section - Requirements: 19.3 */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: prefersReducedMotion ? 0.01 : 0.5 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-4">
+              Proven Results
+            </h2>
+            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+              See how our integrated services deliver measurable outcomes for businesses like yours
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Case Studies Link */}
+            <motion.div
+              initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: prefersReducedMotion ? 0.01 : 0.5 }}
+              className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow"
+            >
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center mr-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-primary-900">Success Stories</h3>
+              </div>
+              <p className="text-neutral-700 mb-6">
+                Explore real-world examples of how we've helped clients achieve strategic growth 
+                and measurable results across industries.
+              </p>
+              <Link
+                to="/case-studies"
+                className="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700"
+              >
+                View Case Studies
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </motion.div>
+
+            {/* Insights Link */}
+            <motion.div
+              initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: prefersReducedMotion ? 0.01 : 0.5 }}
+              className="bg-gradient-to-br from-accent-50 to-accent-100 rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow"
+            >
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-accent-600 rounded-lg flex items-center justify-center mr-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-primary-900">Expert Insights</h3>
+              </div>
+              <p className="text-neutral-700 mb-6">
+                Learn from our team's expertise with strategic insights on marketing, 
+                advertising, and business growth.
+              </p>
+              <Link
+                to="/insights"
+                className="inline-flex items-center text-accent-600 font-semibold hover:text-accent-700"
+              >
+                Read Insights
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </motion.div>
+          </div>
         </div>
       </section>
 

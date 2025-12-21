@@ -123,7 +123,7 @@ const LeadForm = () => {
                   value={formData.fullName}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors touch-manipulation min-h-[44px]"
                   placeholder="Your full name"
                 />
               </div>
@@ -139,7 +139,7 @@ const LeadForm = () => {
                   name="companyName"
                   value={formData.companyName}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors touch-manipulation min-h-[44px]"
                   placeholder="Your company name"
                 />
               </div>
@@ -156,7 +156,7 @@ const LeadForm = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors touch-manipulation min-h-[44px]"
                   placeholder="your@email.com"
                 />
               </div>
@@ -172,7 +172,7 @@ const LeadForm = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors touch-manipulation min-h-[44px]"
                   placeholder="(555) 123-4567"
                 />
               </div>
@@ -188,7 +188,7 @@ const LeadForm = () => {
                   value={formData.serviceInterest}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors touch-manipulation min-h-[44px]"
                 >
                   <option value="">Select a service</option>
                   {serviceCategories.map(category => (
@@ -209,7 +209,7 @@ const LeadForm = () => {
                   name="budgetRange"
                   value={formData.budgetRange}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors touch-manipulation min-h-[44px]"
                 >
                   <option value="">Select budget range</option>
                   {budgetRanges.map(range => (
@@ -231,7 +231,7 @@ const LeadForm = () => {
                 onChange={handleChange}
                 required
                 rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors touch-manipulation min-h-[120px]"
                 placeholder="Tell us about your project, goals, and challenges..."
               ></textarea>
             </div>
@@ -243,16 +243,16 @@ const LeadForm = () => {
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Preferred Contact Method
                 </label>
-                <div className="flex gap-4">
+                <div className="flex flex-wrap gap-4">
                   {['email', 'phone', 'whatsapp'].map(method => (
-                    <label key={method} className="flex items-center">
+                    <label key={method} className="flex items-center cursor-pointer touch-manipulation min-h-[44px]">
                       <input
                         type="radio"
                         name="contactMethod"
                         value={method}
                         checked={formData.contactMethod === method}
                         onChange={handleChange}
-                        className="mr-2 text-accent-500 focus:ring-accent-500"
+                        className="mr-2 text-accent-500 focus:ring-accent-500 w-5 h-5 cursor-pointer"
                       />
                       <span className="capitalize">{method}</span>
                     </label>
@@ -270,7 +270,7 @@ const LeadForm = () => {
                   name="timeline"
                   value={formData.timeline}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors touch-manipulation min-h-[44px]"
                 >
                   <option value="">Select timeline</option>
                   {timelines.map(timeline => (

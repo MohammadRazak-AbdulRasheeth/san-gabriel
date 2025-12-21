@@ -92,7 +92,7 @@ const AgencyHero = () => {
             <Button
               variant="primary"
               size="lg"
-              href="/contact"
+              to="/contact"
               className="shadow-lg hover:shadow-xl"
             >
               Schedule a Consultation
@@ -102,7 +102,7 @@ const AgencyHero = () => {
             <Button
               variant="secondary"
               size="lg"
-              href="/services"
+              to="/services"
               className="bg-white/10 border-white text-white hover:bg-white hover:text-blue-900"
             >
               Explore Services

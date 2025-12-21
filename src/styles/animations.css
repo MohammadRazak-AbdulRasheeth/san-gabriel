@@ -4,6 +4,7 @@
 /* ============================================
    REDUCED MOTION PREFERENCES
    Respects user's system preference for reduced motion
+   Requirements: Design document - Respect prefers-reduced-motion
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -15,11 +16,31 @@
     scroll-behavior: auto !important;
   }
   
+  /* Disable all decorative animations */
   .float-animation,
   .morphing-bg,
   .particle-animation,
-  .loading-dot {
+  .loading-dot,
+  .blob-morph,
+  .pulse-glow,
+  .float-slow,
+  .float-medium,
+  .float-fast {
     animation: none !important;
+  }
+
+  /* Disable transform animations but keep opacity for accessibility */
+  .hover\:scale-105:hover,
+  .hover\:scale-\[1\.02\]:hover,
+  .hover\:-translate-y-1:hover,
+  .hover\:-translate-y-0\.5:hover {
+    transform: none !important;
+  }
+
+  /* Keep focus indicators for accessibility */
+  *:focus {
+    outline: 2px solid currentColor !important;
+    outline-offset: 2px !important;
   }
 }
 

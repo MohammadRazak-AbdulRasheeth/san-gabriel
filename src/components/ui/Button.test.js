@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
 import Button from './Button';
 
@@ -14,6 +15,17 @@ describe('Button Component', () => {
     const link = screen.getByRole('link');
     expect(link).toHaveAttribute('href', '/test');
     expect(link).toHaveTextContent('Link Button');
+  });
+
+  test('renders as React Router Link when to prop is provided', () => {
+    render(
+      <BrowserRouter>
+        <Button to="/contact">Router Link Button</Button>
+      </BrowserRouter>
+    );
+    const link = screen.getByRole('link');
+    expect(link).toHaveAttribute('href', '/contact');
+    expect(link).toHaveTextContent('Router Link Button');
   });
 
   test('applies primary variant styles by default', () => {

@@ -99,14 +99,14 @@ describe('Card Component', () => {
     render(<Card title="Test Title" data-testid="test-card" />);
     
     const card = screen.getByTestId('test-card');
-    expect(card).toHaveClass('hover:border-orange-200');
+    expect(card).toHaveClass('hover:border-orange-300');
   });
 
   test('applies service variant styles', () => {
     render(<Card title="Test Title" variant="service" data-testid="test-card" />);
     
     const card = screen.getByTestId('test-card');
-    expect(card).toHaveClass('hover:border-blue-200');
+    expect(card).toHaveClass('hover:border-blue-300');
     expect(card).toHaveClass('hover:bg-blue-50/30');
   });
 
@@ -114,7 +114,7 @@ describe('Card Component', () => {
     render(<Card title="Test Title" variant="feature" data-testid="test-card" />);
     
     const card = screen.getByTestId('test-card');
-    expect(card).toHaveClass('hover:border-orange-200');
+    expect(card).toHaveClass('hover:border-orange-300');
     expect(card).toHaveClass('hover:bg-orange-50/30');
   });
 
@@ -137,7 +137,7 @@ describe('Card Component', () => {
     expect(card).toHaveClass('p-6');
     expect(card).toHaveClass('transition-all');
     expect(card).toHaveClass('duration-300');
-    expect(card).toHaveClass('hover:shadow-lg');
+    expect(card).toHaveClass('hover:shadow-xl');
     expect(card).toHaveClass('flex');
     expect(card).toHaveClass('flex-col');
     expect(card).toHaveClass('h-full');

@@ -29,8 +29,6 @@ const iconMap = {
  * Requirements: 4.1, 4.2, 4.3
  */
 const AgencyProofSection = () => {
-  const prefersReducedMotion = useReducedMotion();
-
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },

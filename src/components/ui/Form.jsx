@@ -30,8 +30,8 @@ export const FormField = ({
     }
 
     if (type === 'tel' && fieldValue) {
-      const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-      if (!phoneRegex.test(fieldValue.replace(/[\s\-\(\)]/g, ''))) {
+      const phoneRegex = /^[+]?[1-9][\d]{0,15}$/;
+      if (!phoneRegex.test(fieldValue.replace(/[\s\-()]/g, ''))) {
         return 'Please enter a valid phone number';
       }
     }

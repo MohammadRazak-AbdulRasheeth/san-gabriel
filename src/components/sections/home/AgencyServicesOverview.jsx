@@ -28,8 +28,6 @@ const iconMap = {
  * Requirements: 2.1, 2.2, 2.3
  */
 const AgencyServicesOverview = () => {
-  const prefersReducedMotion = useReducedMotion();
-
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },

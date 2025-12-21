@@ -26,8 +26,6 @@ const CaseStudyCard = ({ caseStudy, index = 0 }) => {
     id,
     title,
     client,
-    industry,
-    services,
     challenge,
     strategy,
     execution,

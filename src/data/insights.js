@@ -379,7 +379,7 @@ Marketing technology selection and implementation is complex. Working with exper
   },
   {
     id: 'digital-advertising-landscape-2025',
-    title: 'The Digital Advertising Landscape: What\'s Changing in 2025',
+    title: "The Digital Advertising Landscape: What's Changing in 2025",
     category: 'industry-trends',
     excerpt: 'Digital advertising continues to evolve with new platforms, privacy changes, and shifting consumer behavior. Stay ahead of the changes shaping digital marketing.',
     content: `The digital advertising landscape is in constant flux. Understanding emerging trends and adapting strategies accordingly is essential for maintaining competitive advantage.

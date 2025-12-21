@@ -39,12 +39,12 @@ const AgencyHero = () => {
     <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white overflow-hidden">
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50"
         style={{
           backgroundImage: `url('/heroimages/homeherosection1.jpeg')`,
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-blue-800/70 to-blue-900/70" />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/60 via-blue-800/60 to-blue-900/60" />
       
       {/* Subtle animated background pattern */}
       <div className="absolute inset-0 opacity-10">

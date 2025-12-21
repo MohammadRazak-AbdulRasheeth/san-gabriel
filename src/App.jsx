@@ -12,6 +12,7 @@ import Insights from './pages/Insights';
 import InsightDetail from './pages/InsightDetail';
 import Industries from './pages/Industries';
 import CaseStudies from './pages/CaseStudies';
+import CaseStudyDetail from './pages/CaseStudyDetail';
 import Careers from './pages/Careers';
 
 // Import layout components
@@ -47,6 +48,7 @@ function App() {
             <Route path="/services/:category" element={<ServiceDetail />} />
             <Route path="/industries" element={<Industries />} />
             <Route path="/case-studies" element={<CaseStudies />} />
+            <Route path="/case-studies/:id" element={<CaseStudyDetail />} />
             <Route path="/insights" element={<Insights />} />
             <Route path="/insights/:slug" element={<InsightDetail />} />
             <Route path="/careers" element={<Careers />} />

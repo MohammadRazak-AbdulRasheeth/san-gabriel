@@ -817,8 +817,8 @@ Scaling marketing operations is complex. Working with experienced marketing cons
     id: 'fractional-cmo-benefits',
     title: 'The Fractional CMO Advantage: Strategic Leadership Without Full-Time Costs',
     category: 'business-growth',
-    excerpt: 'Many growing businesses need senior marketing leadership but aren\'t ready for a full-time CMO. Discover how fractional CMO services provide strategic guidance at a fraction of the cost.',
-    content: `Growing businesses face a common challenge: they need senior marketing leadership but can\'t justify or afford a full-time Chief Marketing Officer. Fractional CMO services bridge this gap.
+    excerpt: "Many growing businesses need senior marketing leadership but aren't ready for a full-time CMO. Discover how fractional CMO services provide strategic guidance at a fraction of the cost.",
+    content: `Growing businesses face a common challenge: they need senior marketing leadership but can't justify or afford a full-time Chief Marketing Officer. Fractional CMO services bridge this gap.
 
 ## The Marketing Leadership Gap
 

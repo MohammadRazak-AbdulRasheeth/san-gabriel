@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { agencyServices } from '../../../data/agencyServices';
-import useReducedMotion from '../../../hooks/useReducedMotion';
 import {
   HiOutlineChartBar,
   HiOutlineSparkles,

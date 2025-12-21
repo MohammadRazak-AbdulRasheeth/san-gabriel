@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { industries } from '../../../data/industries';
-import useReducedMotion from '../../../hooks/useReducedMotion';
 import {
   HiOutlineBriefcase,
   HiOutlineBuildingOffice,

@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { industries } from '../../../data/industries';
@@ -9,6 +8,9 @@ import {
   HiOutlineShoppingBag,
   HiOutlineCpuChip
 } from 'react-icons/hi2';
+import AnimatedCounter from '../../ui/AnimatedCounter';
+import TiltCard from '../../ui/TiltCard';
+import useViewportSize from '../../../hooks/useViewportSize';
 
 /**
  * Icon mapping for industries
@@ -25,9 +27,11 @@ const iconMap = {
  * AgencyProofSection Component
  * Display metrics, outcomes, and industries served
  * Link to case studies for validation
- * Requirements: 4.1, 4.2, 4.3
+ * Requirements: 4.1, 4.2, 4.3, 3.2 (impressive-animations)
  */
 const AgencyProofSection = () => {
+  const { isMobile } = useViewportSize();
+
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -46,7 +50,7 @@ const AgencyProofSection = () => {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: 'easeOut'
+        ease: [0.25, 0.46, 0.45, 0.94]
       }
     }
   };
@@ -71,25 +75,33 @@ const AgencyProofSection = () => {
             </p>
           </div>
 
-          {/* Key metrics */}
+          {/* Key metrics with animated counters */}
           <motion.div
             className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12"
             variants={containerVariants}
           >
             <motion.div variants={itemVariants} className="text-center">
-              <div className="text-4xl sm:text-5xl font-bold text-blue-600 mb-2">15+</div>
+              <div className="text-4xl sm:text-5xl font-bold text-blue-600 mb-2">
+                <AnimatedCounter target={15} suffix="+" duration={2000} />
+              </div>
               <div className="text-gray-600 font-medium">Years Experience</div>
             </motion.div>
             <motion.div variants={itemVariants} className="text-center">
-              <div className="text-4xl sm:text-5xl font-bold text-blue-600 mb-2">200+</div>
+              <div className="text-4xl sm:text-5xl font-bold text-blue-600 mb-2">
+                <AnimatedCounter target={200} suffix="+" duration={2500} />
+              </div>
               <div className="text-gray-600 font-medium">Clients Served</div>
             </motion.div>
             <motion.div variants={itemVariants} className="text-center">
-              <div className="text-4xl sm:text-5xl font-bold text-blue-600 mb-2">$50M+</div>
+              <div className="text-4xl sm:text-5xl font-bold text-blue-600 mb-2">
+                <AnimatedCounter target={50} prefix="$" suffix="M+" duration={2200} />
+              </div>
               <div className="text-gray-600 font-medium">Revenue Generated</div>
             </motion.div>
             <motion.div variants={itemVariants} className="text-center">
-              <div className="text-4xl sm:text-5xl font-bold text-blue-600 mb-2">95%</div>
+              <div className="text-4xl sm:text-5xl font-bold text-blue-600 mb-2">
+                <AnimatedCounter target={95} suffix="%" duration={2000} />
+              </div>
               <div className="text-gray-600 font-medium">Client Retention</div>
             </motion.div>
           </motion.div>
@@ -111,17 +123,13 @@ const AgencyProofSection = () => {
             </p>
           </div>
 
-          {/* Industry cards */}
+          {/* Industry cards with tilt effect */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
             {industries.map((industry) => {
               const IconComponent = iconMap[industry.icon] || HiOutlineBriefcase;
               
-              return (
-                <motion.div
-                  key={industry.id}
-                  variants={itemVariants}
-                  className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300 text-center"
-                >
+              const cardContent = (
+                <div className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300 text-center h-full">
                   <div className="flex justify-center mb-4">
                     <div className="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
                       <IconComponent className="w-6 h-6" />
@@ -130,6 +138,21 @@ const AgencyProofSection = () => {
                   <h4 className="font-semibold text-gray-900 text-sm">
                     {industry.name}
                   </h4>
+                </div>
+              );
+              
+              return (
+                <motion.div
+                  key={industry.id}
+                  variants={itemVariants}
+                >
+                  {isMobile ? (
+                    cardContent
+                  ) : (
+                    <TiltCard maxTilt={10} scale={1.03}>
+                      {cardContent}
+                    </TiltCard>
+                  )}
                 </motion.div>
               );
             })}

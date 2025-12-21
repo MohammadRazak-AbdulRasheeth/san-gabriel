@@ -30,6 +30,8 @@ const Header = () => {
     { label: 'Home', to: '/' },
     { label: 'About', to: '/about' },
     { label: 'Services', to: '/services' },
+    { label: 'Industries', to: '/industries' },
+    { label: 'Case Studies', to: '/case-studies' },
     { label: 'Insights', to: '/insights' },
     { label: 'Careers', to: '/careers' },
     { label: 'Contact', to: '/contact' },
@@ -74,24 +76,34 @@ const Header = () => {
           </motion.div>
 
           {/* Desktop Navigation - Centered */}
-          <nav className="hidden lg:flex items-center space-x-10">
+          <nav className="hidden lg:flex items-center space-x-8">
             {navItems.map((item, index) => (
               <motion.div
                 key={item.label}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative"
               >
                 <Link
                   to={item.to}
-                  className={`text-sm font-medium transition-colors hover:text-primary-900 ${
+                  className={`text-sm font-medium transition-colors py-2 ${
                     isActiveRoute(item.to)
-                      ? 'text-primary-900'
-                      : 'text-neutral-600'
+                      ? 'text-primary-900 font-semibold'
+                      : 'text-neutral-600 hover:text-primary-900'
                   }`}
                 >
                   {item.label}
                 </Link>
+                {/* Active indicator underline */}
+                {isActiveRoute(item.to) && (
+                  <motion.div
+                    layoutId="activeNavIndicator"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent-500 rounded-full"
+                    initial={false}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  />
+                )}
               </motion.div>
             ))}
           </nav>
@@ -165,8 +177,8 @@ const Header = () => {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`block px-4 py-3 rounded-lg transition-colors text-sm font-medium min-h-[44px] flex items-center touch-manipulation ${
                     isActiveRoute(item.to)
-                      ? 'text-primary-900 bg-neutral-100'
-                      : 'text-neutral-600 hover:text-primary-900 hover:bg-neutral-50 active:bg-neutral-100'
+                      ? 'text-primary-900 bg-primary-50 border-l-4 border-accent-500 font-semibold'
+                      : 'text-neutral-600 hover:text-primary-900 hover:bg-neutral-50 active:bg-neutral-100 border-l-4 border-transparent'
                   }`}
                 >
                   {item.label}

@@ -1,3 +1,4 @@
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
 import { Link } from 'react-router-dom';
@@ -6,22 +7,73 @@ import ApproachSection from '../components/sections/about/ApproachSection';
 import ValuesSection from '../components/sections/about/ValuesSection';
 import SEO from '../components/SEO';
 import { pageSEOConfig } from '../utils/seo';
+import FloatingElement from '../components/ui/FloatingElement';
+import AnimatedCounter from '../components/ui/AnimatedCounter';
+import SectionDivider from '../components/ui/SectionDivider';
+import useReducedMotion from '../hooks/useReducedMotion';
+import useViewportSize from '../hooks/useViewportSize';
 
 const AboutUs = () => {
+  const prefersReducedMotion = useReducedMotion();
+  const { isMobile } = useViewportSize();
+  const heroRef = useRef(null);
+  const [parallaxOffset, setParallaxOffset] = useState(0);
+
+  // Parallax scroll handler
+  const handleScroll = useCallback(() => {
+    if (prefersReducedMotion || !heroRef.current) return;
+    
+    const rect = heroRef.current.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    
+    if (rect.bottom > 0 && rect.top < windowHeight) {
+      const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
+      const offset = (scrollProgress - 0.5) * rect.height * (isMobile ? 0.15 : 0.3);
+      setParallaxOffset(offset);
+    }
+  }, [prefersReducedMotion, isMobile]);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll, prefersReducedMotion]);
   return (
     <div className="pt-20">
       {/* SEO Meta Tags - Requirements: 19.1, 19.4 */}
       <SEO {...pageSEOConfig.about} />
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary-900 via-primary-700 to-primary-600 text-white relative overflow-hidden" aria-labelledby="about-hero-heading">
+      {/* Hero Section with Parallax */}
+      <section 
+        ref={heroRef}
+        className="py-20 bg-gradient-to-br from-primary-900 via-primary-700 to-primary-600 text-white relative overflow-hidden" 
+        aria-labelledby="about-hero-heading"
+      >
         <div className="absolute inset-0 z-0">
           <img 
             src="/heroimages/aboutsectionimage.jpeg" 
             alt="About San Gabriel Solutions" 
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover opacity-40 will-change-transform"
+            style={{
+              transform: prefersReducedMotion ? 'none' : `translateY(${parallaxOffset}px) scale(1.1)`,
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-primary-900/60 via-primary-700/60 to-primary-600/60"></div>
         </div>
+        
+        {/* Floating decorative elements */}
+        {!prefersReducedMotion && !isMobile && (
+          <>
+            <FloatingElement amplitude={18} duration={5} delay={0} className="absolute top-16 right-16 opacity-20">
+              <div className="w-24 h-24 rounded-full bg-white/20 blur-xl" />
+            </FloatingElement>
+            <FloatingElement amplitude={12} duration={6} delay={1.5} className="absolute bottom-32 left-12 opacity-15">
+              <div className="w-32 h-32 rounded-full bg-accent-400/20 blur-xl" />
+            </FloatingElement>
+          </>
+        )}
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div 
@@ -60,6 +112,9 @@ const AboutUs = () => {
       {/* Values Section */}
       <ValuesSection />
 
+      {/* Section Divider */}
+      <SectionDivider type="wave" fillColor="#f9fafb" height={50} />
+
       {/* Trust Signals Section - Requirements: 19.3 */}
       <section className="py-16 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,7 +134,7 @@ const AboutUs = () => {
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {/* Experience */}
+            {/* Experience with AnimatedCounter */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -87,14 +142,16 @@ const AboutUs = () => {
               viewport={{ once: true }}
               className="bg-white rounded-xl p-8 shadow-md text-center"
             >
-              <div className="text-5xl font-bold text-primary-600 mb-3">15+</div>
+              <div className="text-5xl font-bold text-primary-600 mb-3">
+                <AnimatedCounter target={15} suffix="+" duration={2000} />
+              </div>
               <h3 className="text-xl font-semibold text-primary-900 mb-2">Years of Experience</h3>
               <p className="text-neutral-600">
                 Over a decade of delivering strategic marketing solutions
               </p>
             </motion.div>
 
-            {/* Case Studies */}
+            {/* Case Studies with AnimatedCounter */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -102,7 +159,9 @@ const AboutUs = () => {
               viewport={{ once: true }}
               className="bg-white rounded-xl p-8 shadow-md text-center"
             >
-              <div className="text-5xl font-bold text-primary-600 mb-3">200+</div>
+              <div className="text-5xl font-bold text-primary-600 mb-3">
+                <AnimatedCounter target={200} suffix="+" duration={2500} />
+              </div>
               <h3 className="text-xl font-semibold text-primary-900 mb-2">Successful Projects</h3>
               <p className="text-neutral-600 mb-4">
                 Proven results across multiple industries
@@ -118,7 +177,7 @@ const AboutUs = () => {
               </Link>
             </motion.div>
 
-            {/* Insights */}
+            {/* Insights with AnimatedCounter */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -126,7 +185,9 @@ const AboutUs = () => {
               viewport={{ once: true }}
               className="bg-white rounded-xl p-8 shadow-md text-center"
             >
-              <div className="text-5xl font-bold text-primary-600 mb-3">50+</div>
+              <div className="text-5xl font-bold text-primary-600 mb-3">
+                <AnimatedCounter target={50} suffix="+" duration={2200} />
+              </div>
               <h3 className="text-xl font-semibold text-primary-900 mb-2">Published Insights</h3>
               <p className="text-neutral-600 mb-4">
                 Thought leadership on marketing strategy

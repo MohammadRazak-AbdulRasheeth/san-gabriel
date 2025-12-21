@@ -1,15 +1,42 @@
-import React from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import Button from '../../ui/Button';
 import useReducedMotion from '../../../hooks/useReducedMotion';
+import FloatingElement from '../../ui/FloatingElement';
+import AnimatedCounter from '../../ui/AnimatedCounter';
 
 /**
  * AgencyHero Component
- * Homepage hero section with value proposition and CTAs
- * Requirements: 1.1, 1.2
+ * Homepage hero section with value proposition, CTAs, and parallax effects
+ * Requirements: 1.1, 1.2, 3.1, 3.2 (impressive-animations)
  */
 const AgencyHero = () => {
   const prefersReducedMotion = useReducedMotion();
+  const sectionRef = useRef(null);
+  const [parallaxOffset, setParallaxOffset] = useState(0);
+
+  // Parallax scroll handler
+  const handleScroll = useCallback(() => {
+    if (prefersReducedMotion || !sectionRef.current) return;
+    
+    const rect = sectionRef.current.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    
+    if (rect.bottom > 0 && rect.top < windowHeight) {
+      const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
+      const offset = (scrollProgress - 0.5) * rect.height * 0.3;
+      setParallaxOffset(offset);
+    }
+  }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll, prefersReducedMotion]);
 
   // Animation variants
   const containerVariants = {
@@ -17,34 +44,55 @@ const AgencyHero = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1
+        staggerChildren: 0.15,
+        delayChildren: 0.2
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: 'easeOut'
+        duration: 0.7,
+        ease: [0.25, 0.46, 0.45, 0.94]
       }
     }
   };
 
   return (
-    <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white overflow-hidden">
-      {/* Background Image */}
+    <section 
+      ref={sectionRef}
+      className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white overflow-hidden min-h-[90vh] flex items-center"
+    >
+      {/* Parallax Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50 will-change-transform"
         style={{
           backgroundImage: `url('/heroimages/homeherosection1.jpeg')`,
+          transform: prefersReducedMotion ? 'none' : `translateY(${parallaxOffset}px) scale(1.1)`,
+          top: '-5%',
+          height: '110%',
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/60 via-blue-800/60 to-blue-900/60" />
+      
+      {/* Floating decorative elements */}
+      {!prefersReducedMotion && (
+        <>
+          <FloatingElement amplitude={20} duration={6} delay={0} className="absolute top-20 right-10 opacity-20 hidden lg:block">
+            <div className="w-32 h-32 rounded-full bg-orange-400/30 blur-xl" />
+          </FloatingElement>
+          <FloatingElement amplitude={15} duration={5} delay={1} className="absolute bottom-40 left-10 opacity-20 hidden lg:block">
+            <div className="w-24 h-24 rounded-full bg-blue-300/30 blur-xl" />
+          </FloatingElement>
+          <FloatingElement amplitude={12} duration={7} delay={2} className="absolute top-1/3 right-1/4 opacity-10 hidden lg:block">
+            <div className="w-16 h-16 rounded-full bg-white/20 blur-lg" />
+          </FloatingElement>
+        </>
+      )}
       
       {/* Subtle animated background pattern */}
       <div className="absolute inset-0 opacity-10">
@@ -118,22 +166,28 @@ const AgencyHero = () => {
             </Button>
           </motion.div>
 
-          {/* Trust indicators */}
+          {/* Trust indicators with animated counters */}
           <motion.div
             className="mt-12 pt-8 border-t border-blue-700/50"
             variants={itemVariants}
           >
             <div className="flex flex-wrap gap-8 text-sm text-blue-200">
               <div>
-                <div className="text-2xl font-bold text-white">15+</div>
+                <div className="text-2xl font-bold text-white">
+                  <AnimatedCounter target={15} suffix="+" duration={2000} />
+                </div>
                 <div>Years Experience</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-white">200+</div>
+                <div className="text-2xl font-bold text-white">
+                  <AnimatedCounter target={200} suffix="+" duration={2500} />
+                </div>
                 <div>Clients Served</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-white">5</div>
+                <div className="text-2xl font-bold text-white">
+                  <AnimatedCounter target={5} duration={1500} />
+                </div>
                 <div>Core Services</div>
               </div>
             </div>

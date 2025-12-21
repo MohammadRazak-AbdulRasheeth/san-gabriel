@@ -1,3 +1,4 @@
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import ServiceAlternatingLayout from '../components/sections/services/ServiceAlternatingLayout';
@@ -5,26 +6,59 @@ import Button from '../components/ui/Button';
 import useReducedMotion from '../hooks/useReducedMotion';
 import SEO from '../components/SEO';
 import { pageSEOConfig } from '../utils/seo';
+import SectionDivider from '../components/ui/SectionDivider';
+import TiltCard from '../components/ui/TiltCard';
+import useViewportSize from '../hooks/useViewportSize';
 
 /**
  * Services Page
  * Displays all 5 agency services with introduction emphasizing integrated services
  * Requirements: 6.1, 6.2, 6.3 (san-gabriel-agency-rebrand)
+ * Requirements: 1.1, 2.2 (impressive-animations)
  */
 const Services = () => {
   const prefersReducedMotion = useReducedMotion();
+  const { isMobile } = useViewportSize();
+  const heroRef = useRef(null);
+  const [parallaxOffset, setParallaxOffset] = useState(0);
+
+  // Parallax scroll handler
+  const handleScroll = useCallback(() => {
+    if (prefersReducedMotion || !heroRef.current) return;
+    
+    const rect = heroRef.current.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    
+    if (rect.bottom > 0 && rect.top < windowHeight) {
+      const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
+      const offset = (scrollProgress - 0.5) * rect.height * (isMobile ? 0.15 : 0.3);
+      setParallaxOffset(offset);
+    }
+  }, [prefersReducedMotion, isMobile]);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll, prefersReducedMotion]);
 
   return (
     <div className="pt-20">
       {/* SEO Meta Tags - Requirements: 19.1, 19.4 */}
       <SEO {...pageSEOConfig.services} />
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-20 md:py-28 overflow-hidden">
-        {/* Background Image */}
+      {/* Hero Section with Parallax */}
+      <section ref={heroRef} className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-20 md:py-28 overflow-hidden">
+        {/* Parallax Background Image */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 will-change-transform"
           style={{
             backgroundImage: `url('/heroimages/servicesherosectionimage.jpeg')`,
+            transform: prefersReducedMotion ? 'none' : `translateY(${parallaxOffset}px) scale(1.1)`,
+            top: '-5%',
+            height: '110%',
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-primary-900/70 via-primary-800/70 to-primary-900/70" />
@@ -114,70 +148,131 @@ const Services = () => {
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Case Studies Link */}
+            {/* Case Studies Link with TiltCard */}
             <motion.div
               initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: prefersReducedMotion ? 0.01 : 0.5 }}
-              className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow"
             >
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center mr-4">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+              {isMobile ? (
+                <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center mr-4">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-primary-900">Success Stories</h3>
+                  </div>
+                  <p className="text-neutral-700 mb-6">
+                    Explore real-world examples of how we've helped clients achieve strategic growth 
+                    and measurable results across industries.
+                  </p>
+                  <Link
+                    to="/case-studies"
+                    className="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700"
+                  >
+                    View Case Studies
+                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
                 </div>
-                <h3 className="text-2xl font-bold text-primary-900">Success Stories</h3>
-              </div>
-              <p className="text-neutral-700 mb-6">
-                Explore real-world examples of how we've helped clients achieve strategic growth 
-                and measurable results across industries.
-              </p>
-              <Link
-                to="/case-studies"
-                className="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700"
-              >
-                View Case Studies
-                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
+              ) : (
+                <TiltCard maxTilt={8} scale={1.02}>
+                  <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow h-full">
+                    <div className="flex items-center mb-4">
+                      <div className="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center mr-4">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-primary-900">Success Stories</h3>
+                    </div>
+                    <p className="text-neutral-700 mb-6">
+                      Explore real-world examples of how we've helped clients achieve strategic growth 
+                      and measurable results across industries.
+                    </p>
+                    <Link
+                      to="/case-studies"
+                      className="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700"
+                    >
+                      View Case Studies
+                      <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
+                </TiltCard>
+              )}
             </motion.div>
 
-            {/* Insights Link */}
+            {/* Insights Link with TiltCard */}
             <motion.div
               initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: prefersReducedMotion ? 0.01 : 0.5 }}
-              className="bg-gradient-to-br from-accent-50 to-accent-100 rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow"
             >
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-accent-600 rounded-lg flex items-center justify-center mr-4">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
+              {isMobile ? (
+                <div className="bg-gradient-to-br from-accent-50 to-accent-100 rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-accent-600 rounded-lg flex items-center justify-center mr-4">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-primary-900">Expert Insights</h3>
+                  </div>
+                  <p className="text-neutral-700 mb-6">
+                    Learn from our team's expertise with strategic insights on marketing, 
+                    advertising, and business growth.
+                  </p>
+                  <Link
+                    to="/insights"
+                    className="inline-flex items-center text-accent-600 font-semibold hover:text-accent-700"
+                  >
+                    Read Insights
+                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
                 </div>
-                <h3 className="text-2xl font-bold text-primary-900">Expert Insights</h3>
-              </div>
-              <p className="text-neutral-700 mb-6">
-                Learn from our team's expertise with strategic insights on marketing, 
-                advertising, and business growth.
-              </p>
-              <Link
-                to="/insights"
-                className="inline-flex items-center text-accent-600 font-semibold hover:text-accent-700"
-              >
-                Read Insights
-                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
+              ) : (
+                <TiltCard maxTilt={8} scale={1.02}>
+                  <div className="bg-gradient-to-br from-accent-50 to-accent-100 rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow h-full">
+                    <div className="flex items-center mb-4">
+                      <div className="w-12 h-12 bg-accent-600 rounded-lg flex items-center justify-center mr-4">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-primary-900">Expert Insights</h3>
+                    </div>
+                    <p className="text-neutral-700 mb-6">
+                      Learn from our team's expertise with strategic insights on marketing, 
+                      advertising, and business growth.
+                    </p>
+                    <Link
+                      to="/insights"
+                      className="inline-flex items-center text-accent-600 font-semibold hover:text-accent-700"
+                    >
+                      Read Insights
+                      <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
+                </TiltCard>
+              )}
             </motion.div>
           </div>
         </div>
       </section>
+
+      {/* Section Divider */}
+      <SectionDivider type="curve" fillColor="#1e3a5f" bgColor="white" height={60} />
 
       {/* Consultation CTA Section */}
       <section className="py-16 md:py-24 bg-primary-900 text-white">

@@ -12,7 +12,7 @@ import { pageSEOConfig } from '../utils/seo';
  */
 export default function Careers() {
   return (
-    <div className="relative">
+    <div className="relative pt-20">
       {/* SEO Meta Tags - Requirements: 6.5 */}
       <SEO {...pageSEOConfig.careers} />
       

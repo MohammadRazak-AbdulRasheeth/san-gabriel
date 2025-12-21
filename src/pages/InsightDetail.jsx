@@ -1,6 +1,6 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { HiOutlineArrowLeft, HiOutlineCalendar } from 'react-icons/hi';
+import { HiOutlineArrowLeft, HiOutlineCalendar, HiOutlineClock, HiOutlineUser } from 'react-icons/hi';
 import { getInsightBySlug, getRelatedInsights, getCategoryLabel } from '../data/insights';
 import InsightCard from '../components/sections/insights/InsightCard';
 import useReducedMotion from '../hooks/useReducedMotion';
@@ -8,7 +8,7 @@ import SEO from '../components/SEO';
 
 /**
  * InsightDetail Page
- * Full article view for individual insights
+ * Full article view for individual insights with improved typography
  * Requirements: 5.4 - Navigate to full article view
  */
 const InsightDetail = () => {
@@ -39,24 +39,118 @@ const InsightDetail = () => {
     });
   };
 
+  // Estimate reading time
+  const getReadingTime = (content) => {
+    if (!content) return '5 min';
+    const words = content.split(/\s+/).length;
+    const minutes = Math.ceil(words / 200);
+    return `${minutes} min read`;
+  };
+
   // Category color mapping
   const getCategoryColor = (cat) => {
     switch (cat) {
       case 'marketing-strategy':
-        return 'bg-blue-100 text-blue-700';
+        return 'bg-blue-600 text-white';
       case 'industry-trends':
-        return 'bg-green-100 text-green-700';
+        return 'bg-emerald-600 text-white';
       case 'business-growth':
-        return 'bg-purple-100 text-purple-700';
+        return 'bg-purple-600 text-white';
       default:
-        return 'bg-gray-100 text-gray-700';
+        return 'bg-gray-600 text-white';
     }
+  };
+
+  // Parse and render content with proper formatting
+  const renderContent = (content) => {
+    if (!content) return null;
+    
+    // Split content into sections
+    const sections = content.split(/(?=## )/);
+    
+    return sections.map((section, index) => {
+      // Check if section starts with heading
+      const headingMatch = section.match(/^## (.+)\n/);
+      
+      if (headingMatch) {
+        const heading = headingMatch[1];
+        const body = section.replace(/^## .+\n/, '');
+        
+        return (
+          <div key={index} className="mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-6 
+                          border-l-4 border-accent-500 pl-4">
+              {heading}
+            </h2>
+            {renderParagraphs(body)}
+          </div>
+        );
+      }
+      
+      return <div key={index}>{renderParagraphs(section)}</div>;
+    });
+  };
+
+  // Render paragraphs with proper styling
+  const renderParagraphs = (text) => {
+    if (!text) return null;
+    
+    const paragraphs = text.split('\n\n').filter(p => p.trim());
+    
+    return paragraphs.map((para, idx) => {
+      // Check for numbered lists
+      if (/^\d+\.\s/.test(para.trim())) {
+        const items = para.split(/\n/).filter(item => item.trim());
+        return (
+          <ol key={idx} className="list-none space-y-4 mb-8">
+            {items.map((item, itemIdx) => {
+              const match = item.match(/^(\d+)\.\s*\*\*(.+?)\*\*\s*(.*)$/);
+              if (match) {
+                return (
+                  <li key={itemIdx} className="flex gap-4">
+                    <span className="flex-shrink-0 w-8 h-8 bg-accent-500 text-white 
+                                   rounded-full flex items-center justify-center font-bold text-sm">
+                      {match[1]}
+                    </span>
+                    <div>
+                      <span className="font-semibold text-primary-900">{match[2]}</span>
+                      <span className="text-neutral-700"> {match[3]}</span>
+                    </div>
+                  </li>
+                );
+              }
+              return (
+                <li key={itemIdx} className="flex gap-4">
+                  <span className="flex-shrink-0 w-8 h-8 bg-accent-500 text-white 
+                                 rounded-full flex items-center justify-center font-bold text-sm">
+                    {itemIdx + 1}
+                  </span>
+                  <span className="text-neutral-700">{item.replace(/^\d+\.\s*/, '')}</span>
+                </li>
+              );
+            })}
+          </ol>
+        );
+      }
+      
+      // Regular paragraph with bold text support
+      const formattedPara = para
+        .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-primary-900">$1</strong>');
+      
+      return (
+        <p 
+          key={idx} 
+          className="text-lg leading-relaxed text-neutral-700 mb-6"
+          dangerouslySetInnerHTML={{ __html: formattedPara }}
+        />
+      );
+    });
   };
 
   // Handle 404 - insight not found
   if (!insight) {
     return (
-      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
+      <div className="min-h-screen bg-neutral-50 pt-20 flex items-center justify-center">
         <div className="text-center px-4">
           <h1 className="text-4xl font-bold text-primary-900 mb-4">
             Article Not Found
@@ -78,8 +172,8 @@ const InsightDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50">
-      {/* SEO Meta Tags - Requirements: 19.1, 19.4 */}
+    <div className="min-h-screen bg-white pt-20">
+      {/* SEO Meta Tags */}
       {insight && (
         <SEO
           title={`${insight.title} | San Gabriel Solutions Insights`}
@@ -91,16 +185,27 @@ const InsightDetail = () => {
       )}
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-12 md:py-20">
-        <div className="container mx-auto px-4">
+      <section className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white">
+        {/* Background pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div 
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+              backgroundSize: '32px 32px'
+            }}
+          />
+        </div>
+        
+        <div className="relative container mx-auto px-4 py-16 md:py-24">
           {/* Back Navigation */}
           <button
             onClick={() => navigate('/insights')}
             className="inline-flex items-center gap-2 text-primary-200 hover:text-white 
-                       transition-colors mb-8 min-h-[44px]"
+                       transition-colors mb-8 min-h-[44px] group"
           >
-            <HiOutlineArrowLeft className="w-5 h-5" />
-            Back to Insights
+            <HiOutlineArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+            <span>Back to Insights</span>
           </button>
 
           <motion.div
@@ -110,25 +215,31 @@ const InsightDetail = () => {
             className="max-w-4xl"
           >
             {/* Category Badge */}
-            <span className={`inline-block px-4 py-1 rounded-full text-sm font-semibold mb-4 ${getCategoryColor(insight.category)}`}>
+            <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold mb-6 ${getCategoryColor(insight.category)}`}>
               {getCategoryLabel(insight.category)}
             </span>
 
             {/* Title */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 leading-tight tracking-tight">
               {insight.title}
             </h1>
 
             {/* Meta Info */}
-            <div className="flex flex-wrap items-center gap-4 text-primary-200">
+            <div className="flex flex-wrap items-center gap-6 text-primary-200">
+              <div className="flex items-center gap-2">
+                <HiOutlineUser className="w-5 h-5" />
+                <span className="font-medium">{insight.author}</span>
+              </div>
               <div className="flex items-center gap-2">
                 <HiOutlineCalendar className="w-5 h-5" />
                 <time dateTime={insight.publishedDate}>
                   {formatDate(insight.publishedDate)}
                 </time>
               </div>
-              <span>•</span>
-              <span>{insight.author}</span>
+              <div className="flex items-center gap-2">
+                <HiOutlineClock className="w-5 h-5" />
+                <span>{getReadingTime(insight.content)}</span>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -136,7 +247,7 @@ const InsightDetail = () => {
 
       {/* Article Content */}
       <motion.article
-        className="py-12 md:py-16"
+        className="py-12 md:py-20"
         variants={contentVariants}
         initial="hidden"
         animate="visible"
@@ -144,53 +255,60 @@ const InsightDetail = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             {/* Featured Image */}
-            <div className="mb-8 rounded-xl overflow-hidden shadow-lg">
-              <img
-                src={insight.imageUrl || '/sangabriel-hero-image.jpg'}
-                alt={insight.title}
-                className="w-full h-64 md:h-96 object-cover"
-                onError={(e) => {
-                  e.target.src = '/sangabriel-hero-image.jpg';
-                }}
-              />
+            <div className="mb-12 -mt-16 relative z-10">
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src={insight.imageUrl || '/sangabriel-hero-image.jpg'}
+                  alt={insight.title}
+                  className="w-full h-64 md:h-[400px] object-cover"
+                  onError={(e) => {
+                    e.target.src = '/sangabriel-hero-image.jpg';
+                  }}
+                />
+              </div>
             </div>
 
-            {/* Excerpt */}
-            <p className="text-xl text-neutral-700 leading-relaxed mb-8 font-medium">
-              {insight.excerpt}
-            </p>
+            {/* Excerpt / Lead paragraph */}
+            <div className="mb-12 pb-8 border-b border-neutral-200">
+              <p className="text-xl md:text-2xl text-neutral-800 leading-relaxed font-medium">
+                {insight.excerpt}
+              </p>
+            </div>
 
             {/* Main Content */}
-            <div 
-              className="prose prose-lg max-w-none prose-headings:text-primary-900 
-                         prose-p:text-neutral-700 prose-a:text-accent-600 
-                         prose-strong:text-primary-800 prose-ul:text-neutral-700
-                         prose-li:marker:text-accent-500"
-              dangerouslySetInnerHTML={{ 
-                __html: insight.content
-                  .replace(/## /g, '<h2 class="text-2xl font-bold mt-8 mb-4">')
-                  .replace(/\n\n/g, '</p><p class="mb-4">')
-                  .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                  .replace(/\n(\d+)\. /g, '</p><p class="mb-2 pl-4">$1. ')
-              }}
-            />
+            <div className="article-content">
+              {renderContent(insight.content)}
+            </div>
+
+            {/* Tags / Share section */}
+            <div className="mt-12 pt-8 border-t border-neutral-200">
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="text-neutral-500 text-sm">Category:</span>
+                  <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getCategoryColor(insight.category)}`}>
+                    {getCategoryLabel(insight.category)}
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </motion.article>
 
       {/* CTA Section */}
-      <section className="bg-primary-50 py-12 md:py-16">
+      <section className="bg-gradient-to-br from-primary-900 to-primary-800 py-16 md:py-20">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-4">
-            Want to Learn More?
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+            Ready to Apply These Insights?
           </h2>
-          <p className="text-neutral-600 mb-8 max-w-2xl mx-auto">
-            Schedule a consultation to discuss how these insights can be applied to your business.
+          <p className="text-primary-200 mb-8 max-w-2xl mx-auto text-lg">
+            Let's discuss how these strategies can drive growth for your business.
           </p>
           <Link
             to="/contact"
-            className="inline-block bg-accent-600 text-white px-8 py-4 rounded-lg 
-                       font-semibold hover:bg-accent-700 transition-colors min-h-[44px]"
+            className="inline-block bg-accent-500 text-white px-8 py-4 rounded-lg 
+                       font-semibold hover:bg-accent-600 transition-colors min-h-[44px]
+                       shadow-lg hover:shadow-xl"
           >
             Schedule a Consultation
           </Link>
@@ -199,12 +317,12 @@ const InsightDetail = () => {
 
       {/* Related Articles */}
       {relatedInsights.length > 0 && (
-        <section className="py-12 md:py-16 bg-white">
+        <section className="py-16 md:py-20 bg-neutral-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-8 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-10 text-center">
               Related Insights
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {relatedInsights.map((related, index) => (
                 <InsightCard
                   key={related.id}

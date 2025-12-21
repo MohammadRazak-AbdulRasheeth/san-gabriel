@@ -38,9 +38,9 @@ function App() {
   return (
     <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
       <ScrollToTop />
-      <div className="App min-h-screen flex flex-col">
+      <div className="App min-h-screen flex flex-col overflow-x-hidden">
         <Header />
-        <main className="flex-grow">
+        <main className="flex-grow overflow-x-hidden">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<AboutUs />} />

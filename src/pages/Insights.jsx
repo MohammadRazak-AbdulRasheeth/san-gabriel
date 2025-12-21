@@ -34,12 +34,21 @@ const Insights = () => {
       <SEO {...pageSEOConfig.insights} />
       {/* Hero Section */}
       <motion.section
-        className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-16 md:py-24"
+        className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-16 md:py-24 overflow-hidden"
         variants={heroVariants}
         initial="hidden"
         animate="visible"
       >
-        <div className="container mx-auto px-4 text-center">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
+          style={{
+            backgroundImage: `url('/heroimages/homeherosection1.jpeg')`,
+          }}
+        />
+        <div className="absolute inset-0 bg-primary-900/70" />
+        
+        <div className="container mx-auto px-4 text-center relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Insights & Perspectives
           </h1>

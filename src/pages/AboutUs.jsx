@@ -18,9 +18,9 @@ const AboutUs = () => {
           <img 
             src="/heroimages/aboutsectionimage.jpeg" 
             alt="About San Gabriel Solutions" 
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-40"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-900/80 via-primary-700/80 to-primary-600/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-900/60 via-primary-700/60 to-primary-600/60"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

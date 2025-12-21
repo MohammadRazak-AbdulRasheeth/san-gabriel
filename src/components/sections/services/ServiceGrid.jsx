@@ -40,6 +40,7 @@ const ServiceGrid = () => {
           shortDescription={service.shortDescription}
           offerings={service.offerings}
           cta={service.cta}
+          heroImage={service.heroImage}
         />
       ))}
     </motion.div>

@@ -20,8 +20,17 @@ const Industries = () => {
       {/* SEO Meta Tags - Requirements: 19.1, 19.4 */}
       <SEO {...pageSEOConfig.industries} />
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-neutral-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative pt-32 pb-16 bg-gradient-to-br from-neutral-50 to-white overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+          style={{
+            backgroundImage: `url('/heroimages/aboutsectionimage.jpeg')`,
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/80 to-neutral-50/80" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}

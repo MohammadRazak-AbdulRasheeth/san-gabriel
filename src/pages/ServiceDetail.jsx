@@ -45,8 +45,22 @@ const ServiceDetail = () => {
         structuredDataId={`service-${service.id}-structured-data`}
       />
       {/* Hero Section with Breadcrumb */}
-      <section className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-16 md:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-16 md:py-20 overflow-hidden">
+        {/* Background Image */}
+        {service.heroImage && (
+          <>
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
+              style={{
+                backgroundImage: `url('${service.heroImage}')`,
+              }}
+            />
+            {/* Dark Overlay */}
+            <div className="absolute inset-0 bg-primary-900/70" />
+          </>
+        )}
+        
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
             animate={{ opacity: 1, y: 0 }}

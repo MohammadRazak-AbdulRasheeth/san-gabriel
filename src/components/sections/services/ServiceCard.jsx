@@ -16,7 +16,8 @@ const ServiceCard = ({
   name,
   shortDescription,
   offerings,
-  cta
+  cta,
+  heroImage
 }) => {
   // Respect reduced motion preferences
   const prefersReducedMotion = useReducedMotion();
@@ -37,17 +38,33 @@ const ServiceCard = ({
   return (
     <motion.div
       id={`service-${id}`}
-      className="rounded-xl border-2 border-neutral-200 bg-white p-6 md:p-8 shadow-lg hover:shadow-xl hover:border-primary-500 transition-all duration-300"
+      className="rounded-xl border-2 border-neutral-200 bg-white overflow-hidden shadow-lg hover:shadow-xl hover:border-primary-500 transition-all duration-300"
       variants={cardVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
       whileHover={prefersReducedMotion ? {} : { y: -4 }}
     >
-      {/* Service Name */}
-      <h3 className="text-2xl md:text-3xl font-bold text-primary-900 mb-3">
-        {name}
-      </h3>
+      {/* Service Image */}
+      {heroImage && (
+        <div className="relative h-48 overflow-hidden">
+          <img
+            src={heroImage}
+            alt={name}
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.target.style.display = 'none';
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+        </div>
+      )}
+      
+      <div className="p-6 md:p-8">
+        {/* Service Name */}
+        <h3 className="text-2xl md:text-3xl font-bold text-primary-900 mb-3">
+          {name}
+        </h3>
 
       {/* Short Description */}
       <p className="text-lg text-neutral-700 mb-6 leading-relaxed">
@@ -72,22 +89,23 @@ const ServiceCard = ({
         </div>
       )}
 
-      {/* CTA Button - Links to Service Detail Page */}
-      <div className="flex gap-3 mt-6">
-        <Link
-          to={`/services/${id}`}
-          className="w-full"
-        >
-          <Button
-            variant="primary"
-            size="md"
-            className="w-full min-h-[44px] bg-primary-900 hover:bg-primary-800 text-white"
+        {/* CTA Button - Links to Service Detail Page */}
+        <div className="flex gap-3 mt-6">
+          <Link
+            to={`/services/${id}`}
+            className="w-full"
           >
-            <span className="flex items-center justify-center gap-2">
-              {cta} <HiOutlineArrowRight className="w-4 h-4" />
-            </span>
-          </Button>
-        </Link>
+            <Button
+              variant="primary"
+              size="md"
+              className="w-full min-h-[44px] bg-primary-900 hover:bg-primary-800 text-white"
+            >
+              <span className="flex items-center justify-center gap-2">
+                {cta} <HiOutlineArrowRight className="w-4 h-4" />
+              </span>
+            </Button>
+          </Link>
+        </div>
       </div>
     </motion.div>
   );

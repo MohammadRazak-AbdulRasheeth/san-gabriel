@@ -12,6 +12,7 @@ export const services = [
     order: 1,
     name: 'Revenue-Generating Advertising Solutions',
     tagline: 'Turn existing traffic into new income streams',
+    heroImage: '/11servicesimages/1.REVENUE-GENERATING ADVERTISING SOLUTIONS .png',
     shortDescription: 'San Gabriel Solutions turns existing traffic—foot traffic, vehicle traffic, delivery routes, and digital attention—into new income streams.',
     fullDescription: `San Gabriel Solutions exists to identify high-traffic physical and digital environments and convert them into revenue-generating assets for vulnerable businesses, trucking companies, property owners, small businesses, and nonprofit organizations.
 
@@ -59,6 +60,7 @@ Our approach is simple but powerful: we find where attention already exists and 
     order: 2,
     name: 'Branding, Banners & Signs',
     tagline: 'Banners, signs, and visual branding are not decoration — they are revenue-producing infrastructure',
+    heroImage: '/11servicesimages/2.BRANDING, BANNERS & SIGNS (HIGH-YIELD .png',
     shortDescription: 'Professional banners, signs, and visual branding designed to maximize visibility and drive action.',
     fullDescription: `Banners, signs, and visual branding are not decoration — they are revenue-producing infrastructure. Every piece of signage we create is designed with one goal: to convert visibility into action.
 
@@ -113,6 +115,7 @@ From roll-up banners for trade shows to large-format storefront graphics, we han
     order: 3,
     name: 'Mobile Advertising – Trucking Fleets',
     tagline: 'Short-haul and LTL trucks are moving billboards operating daily on high-traffic routes',
+    heroImage: '/11servicesimages/3.MOBILE ADVERTISING – TRUCKING FLEETS .png',
     shortDescription: 'Transform your trucking fleet into moving billboards and earn $300-$500 per truck while driving your regular routes.',
     fullDescription: `Short-haul and LTL trucks are moving billboards operating daily on high-traffic routes. Every mile you drive is an opportunity to generate additional revenue.
 
@@ -163,6 +166,7 @@ Our advertising formats are designed to work with your operations, not against t
     order: 4,
     name: 'Monetize Your Location',
     tagline: 'Businesses and property owners can earn advertising income from windows, storefronts, and high-traffic frontage they already have',
+    heroImage: '/11servicesimages/4.MONETIZE YOUR LOCATION.png',
     shortDescription: 'Turn your windows, storefronts, and high-traffic frontage into passive income streams earning $200+ per window.',
     fullDescription: `Businesses and property owners can earn advertising income from windows, storefronts, and high-traffic frontage they already have. If people walk or drive past your location, you have an asset that can generate revenue.
 
@@ -212,6 +216,7 @@ We handle everything: finding advertisers, designing the ads, installing the mat
     order: 5,
     name: 'Advertise With Us',
     tagline: 'We provide affordable, physical and digital advertising for organizations priced out of traditional media',
+    heroImage: '/11servicesimages/5.ADVERTISE WITH US (SMBs & NONPROFITS) .png',
     shortDescription: 'Affordable physical and digital advertising solutions for small businesses and nonprofits priced out of traditional media.',
     fullDescription: `We provide affordable, physical and digital advertising for organizations priced out of traditional media. If you're a small business, nonprofit, or community organization looking to reach local audiences, we have options that fit your budget.
 
@@ -259,6 +264,7 @@ Our network of windows, storefronts, trucks, and event spaces gives you access t
     order: 6,
     name: 'Social Media & Digital Advertising',
     tagline: 'We help businesses extend physical visibility into digital reach, supporting campaigns with social media and online presence',
+    heroImage: '/11servicesimages/6.SOCIAL MEDIA & DIGITAL ADVERTISING SERVICES.png',
     shortDescription: 'Extend your physical advertising into digital reach with social media management and online presence support.',
     fullDescription: `We help businesses extend physical visibility into digital reach, supporting campaigns with social media and online presence. Physical and digital advertising work best together.
 
@@ -309,6 +315,7 @@ Our services range from basic account setup to full social media management, dep
     order: 7,
     name: 'Website Design & Development',
     tagline: 'We build conversion-focused websites that support advertising, credibility, and lead generation',
+    heroImage: '/11servicesimages/7.WEBSITE DESIGN & DEVELOPMENT.png',
     shortDescription: 'Conversion-focused websites that support your advertising efforts and turn traffic into leads.',
     fullDescription: `We build conversion-focused websites that support advertising, credibility, and lead generation. Your website is the foundation of your digital presence—if it's weak, your advertising dollars leak leads.
 
@@ -361,6 +368,7 @@ We build websites designed to convert. Mobile-optimized, SEO-ready, and focused 
     order: 8,
     name: 'Events & Community Advertising',
     tagline: 'We support events by providing advertising inventory, sponsor visibility, and execution',
+    heroImage: '/11servicesimages/8.EVENTS & COMMUNITY ADVERTISING.png',
     shortDescription: 'Complete event branding and advertising support including banners, sponsor walls, and on-site layouts.',
     fullDescription: `We support events by providing advertising inventory, sponsor visibility, and execution. Whether you're organizing a community event, conference, or fundraiser, we help you look professional and deliver value to your sponsors.
 
@@ -406,6 +414,7 @@ We also help you think beyond the event itself. Post-event materials can be reus
     order: 9,
     name: 'Incorporation & Not-for-Profit Services',
     tagline: 'We help organizations set up properly so they can operate, advertise, and partner legally',
+    heroImage: '/11servicesimages/9.INCORPORATION & NOT-FOR-PROFIT SERVICES .png',
     shortDescription: 'Business incorporation, NUANS® searches, and not-for-profit setup to establish your organization properly.',
     fullDescription: `We help organizations set up properly so they can operate, advertise, and partner legally. Before you can monetize traffic or run advertising campaigns, you need a proper legal structure.
 
@@ -452,6 +461,7 @@ This service supports the ecosystem—it's the foundation that enables everythin
     order: 10,
     name: 'Strategy, Technology & AI',
     tagline: 'We help clients scale, automate, and optimize operations and campaigns',
+    heroImage: '/11servicesimages/10.STRATEGY, TECHNOLOGY & AI.png',
     shortDescription: 'Strategic planning, automation, and AI-powered tools to scale your operations and optimize campaigns.',
     fullDescription: `We help clients scale, automate, and optimize operations and campaigns. As your advertising and monetization efforts grow, you need systems that can keep up.
 

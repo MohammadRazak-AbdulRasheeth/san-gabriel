@@ -81,13 +81,12 @@ Businesses with documented marketing strategies are 313% more likely to report s
 
 Building a strategic marketing framework requires expertise in market analysis, competitive positioning, and performance measurement. Working with experienced marketing strategists can accelerate the process and ensure your framework is built on proven methodologies.`,
     publishedDate: '2024-12-15',
-    imageUrl: '/insights/strategic-planning.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
     slug: 'strategic-marketing-planning-framework',
     author: 'San Gabriel Solutions'
   },
   {
     id: 'brand-positioning-competitive-markets',
-    title: 'Brand Positioning in Competitive Markets: A Strategic Guide',
     title: 'Brand Positioning in Competitive Markets: A Strategic Guide',
     category: 'marketing-strategy',
     excerpt: 'Strong brand positioning is essential for standing out in crowded markets. Discover how to develop a positioning strategy that differentiates your business and resonates with your target audience.',
@@ -162,13 +161,12 @@ Track these indicators:
 
 Strong brand positioning creates sustainable competitive advantage. It guides marketing decisions, supports premium pricing, and builds customer loyalty over time.`,
     publishedDate: '2024-12-10',
-    imageUrl: '/insights/brand-positioning.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80',
     slug: 'brand-positioning-competitive-markets',
     author: 'San Gabriel Solutions'
   },
   {
     id: 'integrated-campaign-management',
-    title: 'Integrated Campaign Management: Orchestrating Multi-Channel Success',
     title: 'Integrated Campaign Management: Orchestrating Multi-Channel Success',
     category: 'marketing-strategy',
     excerpt: 'Modern marketing campaigns require coordination across multiple channels. Learn how to manage integrated campaigns that deliver consistent messaging and measurable results.',
@@ -270,7 +268,7 @@ Integrated campaign management requires expertise in strategy, creative developm
 4. Continuous optimization improves results
 5. Professional management maximizes ROI`,
     publishedDate: '2024-12-05',
-    imageUrl: '/insights/integrated-campaigns.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
     slug: 'integrated-campaign-management',
     author: 'San Gabriel Solutions'
   },
@@ -278,7 +276,6 @@ Integrated campaign management requires expertise in strategy, creative developm
   // Industry Trends Articles
   {
     id: 'marketing-technology-trends-2025',
-    title: 'Marketing Technology Trends Shaping 2025',
     title: 'Marketing Technology Trends Shaping 2025',
     category: 'industry-trends',
     excerpt: 'The marketing technology landscape continues to evolve rapidly. Explore the key trends that will define marketing effectiveness in 2025 and beyond.',
@@ -376,7 +373,7 @@ Marketing technology selection and implementation is complex. Working with exper
 - Optimize ongoing performance
 - Avoid costly mistakes`,
     publishedDate: '2024-12-08',
-    imageUrl: '/insights/martech-trends.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
     slug: 'marketing-technology-trends-2025',
     author: 'San Gabriel Solutions'
   },
@@ -493,7 +490,7 @@ The digital advertising landscape will continue evolving. Successful businesses:
 - Focus on sustainable, long-term approaches
 - Partner with experts who navigate change effectively`,
     publishedDate: '2024-12-01',
-    imageUrl: '/insights/digital-advertising.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80',
     slug: 'digital-advertising-landscape-2025',
     author: 'San Gabriel Solutions'
   },
@@ -639,7 +636,7 @@ Content marketing is a long-term investment. Benefits compound over time:
 
 Businesses should evaluate content marketing ROI over quarters and years, not weeks and months.`,
     publishedDate: '2024-11-28',
-    imageUrl: '/insights/content-roi.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&q=80',
     slug: 'content-marketing-roi',
     author: 'San Gabriel Solutions'
   },
@@ -812,7 +809,7 @@ Scaling marketing operations is complex. Working with experienced marketing cons
 5. Consider hybrid build/partner approaches
 6. Maintain culture through growth`,
     publishedDate: '2024-11-25',
-    imageUrl: '/insights/scaling-marketing.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
     slug: 'scaling-marketing-operations',
     author: 'San Gabriel Solutions'
   },
@@ -911,7 +908,7 @@ A fractional CMO is an experienced marketing executive who works with your busin
 5. Can transition to full-time or maintain long-term
 6. ROI comes from strategic direction and execution excellence`,
     publishedDate: '2024-11-20',
-    imageUrl: '/insights/fractional-cmo.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80',
     slug: 'fractional-cmo-benefits',
     author: 'San Gabriel Solutions'
   },
@@ -1005,7 +1002,7 @@ Improve efficiency before reducing spend:
 5. Build optimization into regular processes
 6. Seek expert guidance for complex optimization challenges`,
     publishedDate: '2024-11-15',
-    imageUrl: '/insights/budget-optimization.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80',
     slug: 'marketing-budget-optimization',
     author: 'San Gabriel Solutions'
   }

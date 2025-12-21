@@ -219,6 +219,13 @@ export const pageSEOConfig = {
     keywords: 'contact marketing agency, schedule consultation, discovery call, marketing inquiry, advertising consultation',
     ogImage: '/sangabriel-hero-image.jpg',
     ogType: 'website'
+  },
+  careers: {
+    title: 'Careers - Join Our Sales Team | San Gabriel Solutions',
+    description: 'Join San Gabriel Solutions as a commission-based sales partner. Earn 10-15% on revenue with no cap. Two sales paths: inventory acquisition or advertising sales.',
+    keywords: 'sales jobs, commission sales, advertising sales, inventory acquisition, sales partner, entrepreneurial opportunities',
+    ogImage: '/sangabriel-hero-image.jpg',
+    ogType: 'website'
   }
 };
 

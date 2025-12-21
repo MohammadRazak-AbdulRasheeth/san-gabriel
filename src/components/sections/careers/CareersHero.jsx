@@ -1,17 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Button from '../../ui/Button';
+import ScrollReveal from '../../ui/ScrollReveal';
 import useReducedMotion from '../../../hooks/useReducedMotion';
 
 /**
- * AgencyHero Component
- * Homepage hero section with value proposition and CTAs
- * Requirements: 1.1, 1.2
+ * CareersHero Component
+ * Hero section for careers page with entrepreneurial messaging
+ * Requirements: 5.1, 5.2, 5.3, 6.1, 6.3
  */
-const AgencyHero = () => {
+const CareersHero = () => {
   const prefersReducedMotion = useReducedMotion();
 
-  // Animation variants
+  // Animation variants for staggered content
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -29,7 +29,7 @@ const AgencyHero = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: prefersReducedMotion ? 0.01 : 0.6,
         ease: 'easeOut'
       }
     }
@@ -41,7 +41,7 @@ const AgencyHero = () => {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
         style={{
-          backgroundImage: `url('/heroimages/homeherosection1.jpeg')`,
+          backgroundImage: `url('/heroimages/servicesherosectionimage.jpeg')`,
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-blue-800/70 to-blue-900/70" />
@@ -73,69 +73,47 @@ const AgencyHero = () => {
           initial="hidden"
           animate="visible"
         >
-          {/* Headline - Value proposition */}
+          {/* Headline - Entrepreneurial and performance-based */}
           <motion.h1
             className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6"
             variants={itemVariants}
           >
-            Strategic Marketing Partner.{' '}
-            <span className="text-orange-400">Measurable Results.</span>
+            Join Our Sales Team.{' '}
+            <span className="text-orange-400">Earn What You Close.</span>
           </motion.h1>
 
-          {/* Subheadline - Authority and results-driven messaging */}
+          {/* Subheadline - Performance-based messaging */}
           <motion.p
             className="text-xl sm:text-2xl text-blue-100 mb-10 leading-relaxed max-w-3xl"
             variants={itemVariants}
           >
-            We transform marketing from cost center to growth engine through 
-            strategy-first thinking, ethical execution, and data-driven optimization. 
-            Your success is our only metric.
+            Commission-based opportunities with no cap on earnings. 
+            Build your own success with flexible, local sales partnerships 
+            in location-based advertising.
           </motion.p>
 
-          {/* CTAs */}
+          {/* Key highlights - Entrepreneurial benefits */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-wrap gap-6 text-sm sm:text-base"
             variants={itemVariants}
           >
-            {/* Primary CTA */}
-            <Button
-              variant="primary"
-              size="lg"
-              to="/contact"
-              className="shadow-lg hover:shadow-xl"
-            >
-              Schedule a Consultation
-            </Button>
-
-            {/* Secondary CTA */}
-            <Button
-              variant="secondary"
-              size="lg"
-              to="/services"
-              className="bg-white/10 border-white text-white hover:bg-white hover:text-blue-900"
-            >
-              Explore Services
-            </Button>
-          </motion.div>
-
-          {/* Trust indicators */}
-          <motion.div
-            className="mt-12 pt-8 border-t border-blue-700/50"
-            variants={itemVariants}
-          >
-            <div className="flex flex-wrap gap-8 text-sm text-blue-200">
-              <div>
-                <div className="text-2xl font-bold text-white">15+</div>
-                <div>Years Experience</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-white">200+</div>
-                <div>Clients Served</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-white">5</div>
-                <div>Core Services</div>
-              </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span className="text-blue-100">10-15% Commission on Revenue</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span className="text-blue-100">No Cap on Earnings</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span className="text-blue-100">Flexible Local Opportunities</span>
             </div>
           </motion.div>
         </motion.div>
@@ -147,4 +125,4 @@ const AgencyHero = () => {
   );
 };
 
-export default AgencyHero;
+export default CareersHero;

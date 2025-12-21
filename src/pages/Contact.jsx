@@ -162,6 +162,14 @@ const Contact = () => {
       
       {/* Enhanced Hero Section with Morphing Background */}
       <section className="py-20 bg-gradient-to-br from-primary-900 via-primary-700 to-primary-600 text-white relative overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+          style={{
+            backgroundImage: `url('/heroimages/homeherosection1.jpeg')`,
+          }}
+        />
+        
         {/* Morphing Background Shapes */}
         <motion.div className="absolute inset-0">
           <motion.div

@@ -58,7 +58,7 @@ const Header = () => {
           >
             <Link to="/">
               <img
-                src="/san-gabriel-solution-logo.png"
+                src="/SGS-LOGO.png"
                 alt="San Gabriel Solutions"
                 className="h-14 w-auto"
               />

@@ -28,12 +28,10 @@ const Header = () => {
 
   const navItems = [
     { label: 'Home', to: '/' },
-    { label: 'About', to: '/about' },
+    { label: 'Advertise', to: '/advertising' },
     { label: 'Services', to: '/services' },
-    { label: 'Industries', to: '/industries' },
-    { label: 'Case Studies', to: '/case-studies' },
-    { label: 'Insights', to: '/insights' },
-    { label: 'Careers', to: '/careers' },
+    { label: 'Vehicle Partner', to: '/vehicle-partner' },
+    { label: 'About', to: '/about' },
     { label: 'Contact', to: '/contact' },
   ];
 
@@ -58,20 +56,12 @@ const Header = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Link to="/" className="flex items-center space-x-2">
+            <Link to="/">
               <img
-                src="https://sangabrielconsulting.com/wp-content/uploads/2025/04/SG-logo-1-removebg-preview.png"
-                alt="San Gabriel Consulting"
-                className="h-12 w-auto"
+                src="/san-gabriel-solution-logo.png"
+                alt="San Gabriel Solutions"
+                className="h-14 w-auto"
               />
-              <div className="flex flex-col">
-                <span className="text-lg font-bold text-primary-900 leading-tight">
-                  SAN GABRIEL
-                </span>
-                <span className="text-xs text-neutral-500 tracking-wider">
-                  SOLUTIONS
-                </span>
-              </div>
             </Link>
           </motion.div>
 
@@ -157,7 +147,7 @@ const Header = () => {
       </div>
 
       {/* Bottom border line */}
-      <div className="h-[3px] bg-gradient-to-r from-primary-900 via-primary-700 to-primary-900" />
+      <div className="h-[3px] bg-gradient-to-r from-[#1e3a5f] via-[#3b6ea5] to-[#1e3a5f]" />
 
       {/* Mobile Navigation */}
       <AnimatePresence>

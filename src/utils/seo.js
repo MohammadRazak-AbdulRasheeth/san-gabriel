@@ -86,20 +86,22 @@ export const getOrganizationStructuredData = () => {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "San Gabriel Solutions",
-    "description": "Strategic marketing and advertising agency providing integrated services for business growth",
+    "description": "Affordable advertising platform and professional signage provider. Vehicle-based advertising network for cars, vans, and trucks.",
     "url": window.location.origin,
     "logo": `${window.location.origin}/logo512.png`,
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+1-555-123-4567",
+      "telephone": "+1-437-344-3563",
       "contactType": "Customer Service",
-      "areaServed": ["CA", "US"],
+      "areaServed": ["CA"],
       "availableLanguage": "English"
     },
     "address": {
       "@type": "PostalAddress",
-      "addressCountry": "CA",
-      "addressRegion": "North America"
+      "streetAddress": "2967 Dundas Street West",
+      "addressLocality": "Toronto",
+      "addressRegion": "ON",
+      "addressCountry": "CA"
     },
     "sameAs": []
   };
@@ -172,58 +174,72 @@ export const injectStructuredData = (structuredData, id = 'structured-data') => 
  */
 export const pageSEOConfig = {
   home: {
-    title: 'San Gabriel Solutions | Strategic Marketing & Advertising Agency',
-    description: 'Professional marketing and advertising agency delivering strategic planning, brand development, campaign management, and digital growth services. Partner with us for measurable results.',
-    keywords: 'marketing agency, advertising agency, strategic marketing, brand development, digital marketing, campaign management, business consulting, marketing strategy',
+    title: 'San Gabriel Solutions | Affordable Advertising & High-Impact Signage',
+    description: 'Affordable advertising from $1/sq.ft/month. Professional signage provider. Vehicle-based advertising network for cars, vans, and trucks. Toronto, Canada.',
+    keywords: 'affordable advertising, signage, vehicle advertising, storefront signs, window decals, truck advertising, Toronto advertising',
     ogImage: '/sangabriel-hero-image.jpg',
     ogType: 'website'
   },
   about: {
-    title: 'About Us | San Gabriel Solutions Marketing Agency',
-    description: 'Learn about San Gabriel Solutions\' strategy-first approach to marketing and advertising. We deliver ethical, data-driven results through long-term partnerships.',
-    keywords: 'about san gabriel solutions, marketing agency philosophy, strategy-first marketing, ethical marketing, data-driven advertising',
+    title: 'About Us | San Gabriel Solutions',
+    description: 'San Gabriel Solutions is a professional signage provider and affordable advertising platform. We help businesses advertise on store signs and vehicles.',
+    keywords: 'about san gabriel solutions, signage company, advertising platform, Toronto signage',
     ogImage: '/heroimages/aboutsectionimage.jpeg',
     ogType: 'website'
   },
   services: {
-    title: 'Marketing & Advertising Services | San Gabriel Solutions',
-    description: 'Integrated marketing and advertising services: strategic planning, brand development, campaign management, digital presence, and business consulting. Aligned with your business goals.',
-    keywords: 'marketing services, advertising services, strategic planning, brand development, campaign management, digital marketing, business consulting',
+    title: 'Signage & Advertising Services | San Gabriel Solutions',
+    description: 'Storefront signs, window decals, vehicle wraps, and advertising services. Design, print, and professional installation. Starting from $1/sq.ft/month.',
+    keywords: 'signage services, storefront signs, window decals, vehicle wraps, advertising services, sign installation',
     ogImage: '/heroimages/servicesherosectionimage.jpeg',
+    ogType: 'website'
+  },
+  advertising: {
+    title: 'Advertise on Our Signs | San Gabriel Solutions',
+    description: 'Affordable advertising from $1/sq.ft/month. Advertise on store signs and vehicles with flexible monthly pricing. Real-world visibility without digital ad fatigue.',
+    keywords: 'affordable advertising, sign advertising, vehicle advertising, local advertising, monthly advertising',
+    ogImage: '/sangabriel-hero-image.jpg',
+    ogType: 'website'
+  },
+  vehiclePartner: {
+    title: 'Vehicle Partner Program | San Gabriel Solutions',
+    description: 'Earn money with your vehicle. Turn your daily commute into income with San Gabriel Solutions vehicle advertising program. No installation or removal costs.',
+    keywords: 'vehicle advertising, earn with car, driver income, vehicle partner, car advertising program',
+    ogImage: '/sangabriel-hero-image.jpg',
     ogType: 'website'
   },
   industries: {
     title: 'Industries We Serve | San Gabriel Solutions',
-    description: 'Strategic marketing expertise across professional services, real estate, healthcare, retail, and technology sectors. Proven results across diverse business industries.',
-    keywords: 'marketing for professional services, real estate marketing, healthcare marketing, retail marketing, technology marketing, industry expertise',
+    description: 'Signage and advertising solutions for retail, restaurants, real estate, and local businesses. Professional design and installation.',
+    keywords: 'retail signage, restaurant signs, real estate signs, local business advertising',
     ogImage: '/sangabriel-hero-image.jpg',
     ogType: 'website'
   },
   caseStudies: {
     title: 'Case Studies & Success Stories | San Gabriel Solutions',
-    description: 'Real-world marketing and advertising success stories with measurable outcomes. See how we help businesses achieve strategic growth and results.',
-    keywords: 'marketing case studies, advertising success stories, client results, marketing roi, business growth examples',
+    description: 'See how businesses have grown with our affordable advertising and signage solutions. Real results from real clients.',
+    keywords: 'advertising case studies, signage success stories, client results',
     ogImage: '/sangabriel-hero-image.jpg',
     ogType: 'website'
   },
   insights: {
-    title: 'Marketing Insights & Perspectives | San Gabriel Solutions',
-    description: 'Strategic insights on marketing, advertising, and business growth. Expert perspectives and practical guidance for informed marketing decisions.',
-    keywords: 'marketing insights, advertising trends, business growth strategies, marketing blog, industry perspectives',
+    title: 'Insights & Tips | San Gabriel Solutions',
+    description: 'Tips and insights on signage, advertising, and growing your business visibility. Expert advice from San Gabriel Solutions.',
+    keywords: 'signage tips, advertising insights, business visibility, marketing advice',
     ogImage: '/sangabriel-hero-image.jpg',
     ogType: 'website'
   },
   contact: {
-    title: 'Contact Us | Schedule a Consultation | San Gabriel Solutions',
-    description: 'Ready to transform your marketing? Contact San Gabriel Solutions to schedule a discovery call. Serving clients across Canada and North America.',
-    keywords: 'contact marketing agency, schedule consultation, discovery call, marketing inquiry, advertising consultation',
+    title: 'Contact Us | San Gabriel Solutions',
+    description: 'Get a free quote for signage or advertising. Contact San Gabriel Solutions at 437-344-3563 or visit us at 2967 Dundas Street West, Toronto.',
+    keywords: 'contact san gabriel, signage quote, advertising inquiry, Toronto signage company',
     ogImage: '/sangabriel-hero-image.jpg',
     ogType: 'website'
   },
   careers: {
-    title: 'Careers - Join Our Sales Team | San Gabriel Solutions',
-    description: 'Join San Gabriel Solutions as a commission-based sales partner. Earn 10-15% on revenue with no cap. Two sales paths: inventory acquisition or advertising sales.',
-    keywords: 'sales jobs, commission sales, advertising sales, inventory acquisition, sales partner, entrepreneurial opportunities',
+    title: 'Careers - Join Our Team | San Gabriel Solutions',
+    description: 'Join San Gabriel Solutions as a sales partner. Earn commission on advertising and signage sales. Flexible, entrepreneurial opportunities.',
+    keywords: 'sales jobs, advertising sales, signage sales, commission sales, Toronto jobs',
     ogImage: '/sangabriel-hero-image.jpg',
     ogType: 'website'
   }

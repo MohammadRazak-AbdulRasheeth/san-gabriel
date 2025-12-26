@@ -36,21 +36,19 @@ const Footer = () => {
 
   const quickLinks = [
     { label: 'Home', to: '/' },
-    { label: 'About Us', to: '/about' },
+    { label: 'Advertise With Us', to: '/advertising' },
     { label: 'Our Services', to: '/services' },
-    { label: 'Industries', to: '/industries' },
-    { label: 'Case Studies', to: '/case-studies' },
-    { label: 'Insights', to: '/insights' },
-    { label: 'Careers', to: '/careers' },
+    { label: 'Vehicle Partner', to: '/vehicle-partner' },
+    { label: 'About Us', to: '/about' },
     { label: 'Contact Us', to: '/contact' },
   ];
 
   const services = [
-    { label: 'Marketing Strategy & Planning', to: '/services/marketing-strategy-planning' },
-    { label: 'Brand Development & Positioning', to: '/services/brand-development-positioning' },
-    { label: 'Advertising & Campaign Management', to: '/services/advertising-campaign-management' },
-    { label: 'Digital Presence & Growth', to: '/services/digital-presence-growth' },
-    { label: 'Business & Marketing Consulting', to: '/services/business-marketing-consulting' },
+    { label: 'Advertise on Our Signs', to: '/advertising' },
+    { label: 'Signs at Stores', to: '/services/branding-banners-signs' },
+    { label: 'Signs on Vehicles', to: '/services/mobile-advertising' },
+    { label: 'Website Design', to: '/services/website-design' },
+    { label: 'Social Media & Digital', to: '/services/social-media-digital' },
   ];
 
   const socialLinks = [
@@ -68,25 +66,17 @@ const Footer = () => {
           <div className="grid lg:grid-cols-4 gap-12">
             {/* Company info with Logo */}
             <div className="lg:col-span-1">
-              <Link to="/" className="flex items-center space-x-3 mb-6">
+              <Link to="/" className="mb-6 inline-block">
                 <img
-                  src="https://sangabrielconsulting.com/wp-content/uploads/2025/04/SG-logo-1-removebg-preview.png"
+                  src="/san-gabriel-solution-logo.png"
                   alt="San Gabriel Solutions"
-                  className="h-12 w-auto bg-white rounded-lg p-1"
+                  className="h-14 w-auto"
                 />
-                <div className="flex flex-col">
-                  <span className="text-lg font-bold text-white leading-tight">
-                    SAN GABRIEL
-                  </span>
-                  <span className="text-xs text-gray-400 tracking-wider">
-                    SOLUTIONS
-                  </span>
-                </div>
               </Link>
 
               <p className="text-gray-300 mb-6 leading-relaxed">
-                Transforming businesses through expert solutions in advertising,
-                strategy, technology, and branding.
+                Affordable advertising from $1/sq.ft/month. Professional signage provider. 
+                Vehicle-based advertising network for cars, vans, and trucks.
               </p>
 
               {/* Contact info with icons */}
@@ -94,24 +84,24 @@ const Footer = () => {
                 <div className="flex items-center space-x-3">
                   <HiOutlineMail className="w-5 h-5 text-accent-500" />
                   <a
-                    href="mailto:hello@sangabrielsolutions.com"
+                    href="mailto:contact@sangabrielsolutions.com"
                     className="hover:text-accent-500 transition-colors"
                   >
-                    hello@sangabrielsolutions.com
+                    contact@sangabrielsolutions.com
                   </a>
                 </div>
                 <div className="flex items-center space-x-3">
                   <HiOutlinePhone className="w-5 h-5 text-accent-500" />
                   <a
-                    href="tel:+15551234567"
+                    href="tel:437-344-3563"
                     className="hover:text-accent-500 transition-colors"
                   >
-                    (555) 123-4567
+                    (437) 344-3563
                   </a>
                 </div>
                 <div className="flex items-start space-x-3">
                   <HiOutlineLocationMarker className="w-5 h-5 text-accent-500 flex-shrink-0 mt-0.5" />
-                  <span>San Gabriel, California</span>
+                  <span>2967 Dundas Street West<br />Toronto, ON, Canada</span>
                 </div>
               </div>
             </div>

@@ -8,6 +8,8 @@ import ServiceDetail from './pages/ServiceDetail';
 import AboutUs from './pages/AboutUs';
 import Contact from './pages/Contact';
 import Services from './pages/Services';
+import Advertising from './pages/Advertising';
+import VehiclePartner from './pages/VehiclePartner';
 import Insights from './pages/Insights';
 import InsightDetail from './pages/InsightDetail';
 import Industries from './pages/Industries';
@@ -46,6 +48,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<AboutUs />} />
+            <Route path="/advertising" element={<Advertising />} />
+            <Route path="/vehicle-partner" element={<VehiclePartner />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/:category" element={<ServiceDetail />} />
             <Route path="/industries" element={<Industries />} />

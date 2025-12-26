@@ -17,70 +17,70 @@ const TermsOfService = () => {
       title: 'Acceptance of Terms',
       content: `By accessing and using the San Gabriel Solutions website and services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our website or services.
 
-These terms apply to all visitors, users, and others who access or use our services. We reserve the right to update or modify these terms at any time without prior notice. Your continued use of the website following any changes constitutes acceptance of those changes.`
+These terms apply to all visitors, users, advertisers, vehicle partners, and others who access or use our services. We reserve the right to update or modify these terms at any time without prior notice. Your continued use of the website following any changes constitutes acceptance of those changes.`
     },
     {
       id: 'services',
       icon: HiOutlineDocumentText,
       title: 'Our Services',
-      content: `San Gabriel Solutions provides marketing, advertising, branding, and strategic consulting services. Our services include but are not limited to:
+      content: `San Gabriel Solutions provides affordable advertising and professional signage services. Our services include but are not limited to:
 
-• Strategic marketing planning and execution
-• Brand development and identity design
-• Digital advertising and campaign management
-• Website design and development
-• Content creation and marketing
-• Market research and analysis
+• Advertising on store signs and vehicles (from $1/sq.ft/month)
+• Storefront signs, window decals, indoor signage
+• Vehicle decals, wraps, and trailer signage
+• Design, print, and professional installation
+• Vehicle partner advertising program
 
-All services are provided on a project or retainer basis as agreed upon in separate service agreements. The specific terms, deliverables, timelines, and pricing for each engagement will be outlined in individual contracts or statements of work.`
+All services are provided as agreed upon in separate service agreements. The specific terms, deliverables, timelines, and pricing for each engagement will be outlined in individual contracts.`
     },
     {
-      id: 'intellectual-property',
+      id: 'advertising-terms',
       icon: HiOutlineScale,
-      title: 'Intellectual Property',
-      content: `All content on this website, including text, graphics, logos, images, and software, is the property of San Gabriel Solutions or its content suppliers and is protected by United States and international copyright laws.
+      title: 'Advertising Terms',
+      content: `For advertisers using our platform:
 
-Client Work: Unless otherwise specified in a service agreement, upon full payment, clients receive ownership of final deliverables created specifically for their projects. San Gabriel Solutions retains the right to display work in portfolios and case studies unless otherwise agreed.
-
-Website Content: You may not reproduce, distribute, modify, create derivative works of, publicly display, or exploit any content from our website without our express written permission.
-
-Trademarks: San Gabriel Solutions, our logo, and other marks are trademarks of San Gabriel Solutions. You may not use these marks without our prior written consent.`
+• San Gabriel Solutions owns all advertising materials placed on partner locations and vehicles
+• No permanent alterations will be made to vehicles or properties
+• Advertiser approval is required before campaign launch
+• All ads are time-based with clear campaign durations
+• Ads are removed immediately after campaign end
+• San Gabriel schedules and manages all installation and removal
+• Flexible monthly pricing with no long-term commitments required`
     },
     {
-      id: 'user-conduct',
+      id: 'vehicle-partner-terms',
       icon: HiOutlineBan,
-      title: 'Prohibited Conduct',
-      content: `When using our website and services, you agree not to:
+      title: 'Vehicle Partner Terms',
+      content: `For drivers participating in our vehicle advertising program:
 
-• Use our services for any unlawful purpose or in violation of any applicable laws
-• Attempt to gain unauthorized access to our systems or networks
-• Interfere with or disrupt the integrity or performance of our website
-• Transmit any viruses, malware, or other malicious code
-• Collect or harvest any information from our website without permission
-• Impersonate any person or entity or misrepresent your affiliation
-• Use our services to send unsolicited communications (spam)
-• Engage in any activity that could damage our reputation or business
-
-We reserve the right to terminate your access to our services for any violation of these terms.`
+• San Gabriel Solutions owns all advertising materials
+• No permanent vehicle alterations will be made
+• Drivers must maintain vehicle in good condition
+• No unauthorized third-party ads permitted on enrolled vehicles
+• All ads are time-based with clear end dates
+• Ads removed immediately after campaign end
+• San Gabriel schedules and manages all removal
+• Vehicles restored professionally at no cost to driver
+• Drivers agree to vehicle inspection before and after campaigns`
     }
   ];
 
   const additionalTerms = [
     {
-      title: 'Limitation of Liability',
-      content: 'San Gabriel Solutions shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use our services. Our total liability shall not exceed the amount paid by you for the specific services giving rise to the claim.'
+      title: 'Ad Material Ownership',
+      content: 'San Gabriel Solutions owns all advertising materials including designs, prints, decals, and wraps. Materials remain our property throughout and after campaigns. Advertisers license the use of their brand assets for campaign duration only.'
     },
     {
-      title: 'Indemnification',
-      content: 'You agree to indemnify and hold harmless San Gabriel Solutions, its officers, directors, employees, and agents from any claims, damages, losses, or expenses arising from your use of our services or violation of these terms.'
+      title: 'Ad Removal Policy',
+      content: 'All advertisements are time-based with clear end dates. Ads are removed immediately after campaign completion. San Gabriel schedules and manages all removal. Vehicles and properties are restored professionally at no additional cost.'
+    },
+    {
+      title: 'Limitation of Liability',
+      content: 'San Gabriel Solutions shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of our services. Our total liability shall not exceed the amount paid for the specific services giving rise to the claim.'
     },
     {
       title: 'Governing Law',
-      content: 'These Terms of Service shall be governed by and construed in accordance with the laws of the State of California, without regard to its conflict of law provisions. Any disputes shall be resolved in the courts of Los Angeles County, California.'
-    },
-    {
-      title: 'Severability',
-      content: 'If any provision of these terms is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary, and the remaining provisions shall remain in full force and effect.'
+      content: 'These Terms of Service shall be governed by and construed in accordance with the laws of Ontario, Canada. Any disputes shall be resolved in the courts of Toronto, Ontario.'
     }
   ];
 
@@ -174,10 +174,10 @@ We reserve the right to terminate your access to our services for any violation 
                 Contact Us
               </Link>
               <a
-                href="mailto:legal@sangabrielsolutions.com"
+                href="mailto:contact@sangabrielsolutions.com"
                 className="inline-flex items-center px-6 py-3 border-2 border-primary-900 text-primary-900 font-semibold rounded-lg hover:bg-primary-900 hover:text-white transition-colors"
               >
-                legal@sangabrielsolutions.com
+                contact@sangabrielsolutions.com
               </a>
             </div>
           </motion.div>

@@ -147,7 +147,7 @@ const Contact = () => {
               We've received your consultation request and will be in touch within 24 hours.
             </p>
             <p className="text-lg text-gray-300">
-              In the meantime, feel free to explore our services or call us directly at (555) 123-4567
+              In the meantime, feel free to explore our services or call us directly at (437) 344-3563
             </p>
           </motion.div>
         </div>
@@ -488,7 +488,7 @@ const Contact = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-primary-900 mb-2">Email Us</h3>
-              <p className="text-neutral-600">hello@sangabrielconsulting.com</p>
+              <p className="text-neutral-600">contact@sangabrielsolutions.com</p>
             </motion.div>
 
             <motion.div
@@ -504,7 +504,7 @@ const Contact = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-primary-900 mb-2">Call Us</h3>
-              <p className="text-neutral-600">(555) 123-4567</p>
+              <p className="text-neutral-600">(437) 344-3563</p>
             </motion.div>
 
             <motion.div
@@ -516,11 +516,12 @@ const Contact = () => {
             >
               <div className="w-16 h-16 bg-accent-500 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-primary-900 mb-2">Response Time</h3>
-              <p className="text-neutral-600">Within 24 hours</p>
+              <h3 className="text-xl font-bold text-primary-900 mb-2">Visit Us</h3>
+              <p className="text-neutral-600">2967 Dundas Street West<br />Toronto, ON, Canada</p>
             </motion.div>
           </div>
         </div>

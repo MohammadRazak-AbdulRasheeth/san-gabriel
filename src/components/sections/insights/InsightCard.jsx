@@ -73,13 +73,13 @@ const InsightCard = ({
       {/* Image Section with lazy loading */}
       <div className="relative h-48 overflow-hidden bg-neutral-100">
         <img
-          src={imageUrl || '/insights/default-insight.jpg'}
+          src={imageUrl || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80'}
           alt={title}
           loading="lazy"
           className="w-full h-full object-cover transition-transform duration-500 
                      group-hover:scale-105"
           onError={(e) => {
-            e.target.src = '/sangabriel-hero-image.jpg';
+            e.target.src = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80';
           }}
         />
         {/* Category Badge */}

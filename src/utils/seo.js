@@ -174,12 +174,62 @@ export const injectStructuredData = (structuredData, id = 'structured-data') => 
  */
 export const pageSEOConfig = {
   home: {
-    title: 'San Gabriel Solutions | Affordable Advertising & High-Impact Signage',
-    description: 'Affordable advertising from $1/sq.ft/month. Professional signage provider. Vehicle-based advertising network for cars, vans, and trucks. Toronto, Canada.',
-    keywords: 'affordable advertising, signage, vehicle advertising, storefront signs, window decals, truck advertising, Toronto advertising',
+    title: 'San Gabriel Solutions | Turn Vehicles Into Billboards — Or Brand Your Own Fleet',
+    description: 'Advertising starts at $1/sq ft/month. Turnkey branding packages from $249. Vehicle-based advertising network for cars, vans, trucks, and trailers.',
+    keywords: 'vehicle advertising, fleet branding, mobile advertising, vehicle wraps, truck advertising, Toronto advertising',
     ogImage: '/sangabriel-hero-image.jpg',
     ogType: 'website'
   },
+  advertise: {
+    title: 'Advertise on Our Network | $1/sq ft/month | San Gabriel Solutions',
+    description: 'Outcome-driven mobile advertising at $1 per square foot per month. Place your ads on vehicles across our network. Media space only - flexible monthly terms.',
+    keywords: 'vehicle advertising, mobile advertising, affordable advertising, monthly advertising, Toronto advertising',
+    ogImage: '/sangabriel-hero-image.jpg',
+    ogType: 'website'
+  },
+  signageWraps: {
+    title: 'Signage & Wraps | Vehicle Branding Packages | San Gabriel Solutions',
+    description: 'Professional vehicle and fleet branding. Turnkey packages including design, premium materials, and professional installation. Cars from $249, trucks from $1,500.',
+    keywords: 'vehicle wraps, fleet branding, truck wraps, car wraps, vehicle signage, professional installation',
+    ogImage: '/sangabriel-hero-image.jpg',
+    ogType: 'website'
+  },
+  pricing: {
+    title: 'Pricing | Advertising & Branding Packages | San Gabriel Solutions',
+    description: 'Transparent pricing for vehicle advertising and branding. Advertising from $1/sq ft/month. Branding packages from $249. Driver earnings $50-$500+/month.',
+    keywords: 'advertising pricing, vehicle wrap pricing, fleet branding cost, driver earnings',
+    ogImage: '/sangabriel-hero-image.jpg',
+    ogType: 'website'
+  },
+  revenuePerVehicle: {
+    title: 'Revenue Per Vehicle | How the Network Works | San Gabriel Solutions',
+    description: 'Understand the unit economics of vehicle advertising. See revenue potential by vehicle type and how earnings are shared between drivers and network operations.',
+    keywords: 'vehicle advertising revenue, driver earnings, advertising network, unit economics',
+    ogImage: '/sangabriel-hero-image.jpg',
+    ogType: 'website'
+  },
+  vehiclePartner: {
+    title: 'Vehicle Partner Program | Earn $50-$500+/month | San Gabriel Solutions',
+    description: 'Earn money with your vehicle. Cars earn $50-$150/month, trucks $150-$300/month, trailers $250-$500+/month. Flexible verification options.',
+    keywords: 'vehicle advertising, earn with car, driver income, vehicle partner, car advertising program',
+    ogImage: '/sangabriel-hero-image.jpg',
+    ogType: 'website'
+  },
+  caseStudies: {
+    title: 'Case Studies & Success Stories | San Gabriel Solutions',
+    description: 'See how businesses have grown with our vehicle advertising and branding solutions. Real results from real clients.',
+    keywords: 'advertising case studies, vehicle wrap success stories, client results',
+    ogImage: '/sangabriel-hero-image.jpg',
+    ogType: 'website'
+  },
+  contact: {
+    title: 'Contact Us | Book a Consultation | San Gabriel Solutions',
+    description: 'Get a quote for advertising or vehicle branding. Contact San Gabriel Solutions at 437-344-3563 or visit us at 2967 Dundas Street West, Toronto.',
+    keywords: 'contact san gabriel, advertising quote, vehicle wrap inquiry, Toronto advertising company',
+    ogImage: '/sangabriel-hero-image.jpg',
+    ogType: 'website'
+  },
+  // Legacy pages
   about: {
     title: 'About Us | San Gabriel Solutions',
     description: 'San Gabriel Solutions is a professional signage provider and affordable advertising platform. We help businesses advertise on store signs and vehicles.',
@@ -201,13 +251,6 @@ export const pageSEOConfig = {
     ogImage: '/sangabriel-hero-image.jpg',
     ogType: 'website'
   },
-  vehiclePartner: {
-    title: 'Vehicle Partner Program | San Gabriel Solutions',
-    description: 'Earn money with your vehicle. Turn your daily commute into income with San Gabriel Solutions vehicle advertising program. No installation or removal costs.',
-    keywords: 'vehicle advertising, earn with car, driver income, vehicle partner, car advertising program',
-    ogImage: '/sangabriel-hero-image.jpg',
-    ogType: 'website'
-  },
   industries: {
     title: 'Industries We Serve | San Gabriel Solutions',
     description: 'Signage and advertising solutions for retail, restaurants, real estate, and local businesses. Professional design and installation.',
@@ -215,24 +258,10 @@ export const pageSEOConfig = {
     ogImage: '/sangabriel-hero-image.jpg',
     ogType: 'website'
   },
-  caseStudies: {
-    title: 'Case Studies & Success Stories | San Gabriel Solutions',
-    description: 'See how businesses have grown with our affordable advertising and signage solutions. Real results from real clients.',
-    keywords: 'advertising case studies, signage success stories, client results',
-    ogImage: '/sangabriel-hero-image.jpg',
-    ogType: 'website'
-  },
   insights: {
     title: 'Insights & Tips | San Gabriel Solutions',
     description: 'Tips and insights on signage, advertising, and growing your business visibility. Expert advice from San Gabriel Solutions.',
     keywords: 'signage tips, advertising insights, business visibility, marketing advice',
-    ogImage: '/sangabriel-hero-image.jpg',
-    ogType: 'website'
-  },
-  contact: {
-    title: 'Contact Us | San Gabriel Solutions',
-    description: 'Get a free quote for signage or advertising. Contact San Gabriel Solutions at 437-344-3563 or visit us at 2967 Dundas Street West, Toronto.',
-    keywords: 'contact san gabriel, signage quote, advertising inquiry, Toronto signage company',
     ogImage: '/sangabriel-hero-image.jpg',
     ogType: 'website'
   },

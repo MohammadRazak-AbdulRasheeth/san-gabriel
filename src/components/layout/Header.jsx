@@ -28,10 +28,12 @@ const Header = () => {
 
   const navItems = [
     { label: 'Home', to: '/' },
-    { label: 'Advertise', to: '/advertising' },
-    { label: 'Services', to: '/services' },
+    { label: 'Advertise', to: '/advertise' },
+    { label: 'Signage & Wraps', to: '/signage-wraps' },
+    { label: 'Pricing', to: '/pricing' },
+    { label: 'Revenue Per Vehicle', to: '/revenue-per-vehicle' },
     { label: 'Vehicle Partner', to: '/vehicle-partner' },
-    { label: 'About', to: '/about' },
+    { label: 'Case Studies', to: '/case-studies' },
     { label: 'Contact', to: '/contact' },
   ];
 

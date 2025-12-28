@@ -1,10 +1,10 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   HiOutlineMail,
   HiOutlinePhone,
   HiOutlineLocationMarker,
 } from 'react-icons/hi';
+import { footerDisclaimers } from '../../data/pricingConfig';
 
 // Social Media Icons as SVG components
 const LinkedInIcon = ({ className }) => (
@@ -36,19 +36,27 @@ const Footer = () => {
 
   const quickLinks = [
     { label: 'Home', to: '/' },
-    { label: 'Advertise With Us', to: '/advertising' },
-    { label: 'Our Services', to: '/services' },
+    { label: 'Advertise (Monthly Media)', to: '/advertise' },
+    { label: 'Signage & Wraps', to: '/signage-wraps' },
+    { label: 'Pricing', to: '/pricing' },
+    { label: 'Revenue Per Vehicle', to: '/revenue-per-vehicle' },
     { label: 'Vehicle Partner', to: '/vehicle-partner' },
-    { label: 'About Us', to: '/about' },
+    { label: 'Case Studies', to: '/case-studies' },
     { label: 'Contact Us', to: '/contact' },
   ];
 
+  const legalLinks = [
+    { label: 'Privacy Policy', to: '/privacy' },
+    { label: 'Terms of Service', to: '/terms' },
+    { label: 'Driver Terms', to: '/driver-terms' },
+    { label: 'Advertiser Terms', to: '/advertiser-terms' },
+  ];
+
   const services = [
-    { label: 'Advertise on Our Signs', to: '/advertising' },
+    { label: 'Advertise on Our Network', to: '/advertise' },
+    { label: 'Vehicle & Fleet Branding', to: '/signage-wraps' },
     { label: 'Signs at Stores', to: '/services/branding-banners-signs' },
     { label: 'Signs on Vehicles', to: '/services/mobile-advertising' },
-    { label: 'Website Design', to: '/services/website-design' },
-    { label: 'Social Media & Digital', to: '/services/social-media-digital' },
   ];
 
   const socialLinks = [
@@ -193,24 +201,28 @@ const Footer = () => {
 
         {/* Bottom bar */}
         <div className="border-t border-primary-700 py-6">
+          {/* Mandatory Disclaimers */}
+          <div className="mb-6 space-y-2 text-xs text-gray-400">
+            <p>{footerDisclaimers.pricingSeparation}</p>
+            <p>{footerDisclaimers.driverEarnings}</p>
+            <p>{footerDisclaimers.trackingDisclaimer}</p>
+          </div>
+          
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
               © {currentYear} San Gabriel Solutions. All rights reserved.
             </p>
 
-            <div className="flex space-x-6 text-sm">
-              <Link
-                to="/privacy"
-                className="text-gray-400 hover:text-accent-500 transition-colors"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                to="/terms"
-                className="text-gray-400 hover:text-accent-500 transition-colors"
-              >
-                Terms of Service
-              </Link>
+            <div className="flex flex-wrap gap-4 text-sm">
+              {legalLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  className="text-gray-400 hover:text-accent-500 transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

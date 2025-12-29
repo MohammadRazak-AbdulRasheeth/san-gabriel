@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { HiOutlineCurrencyDollar, HiOutlineShieldCheck, HiOutlineLightningBolt, HiOutlineSupport } from 'react-icons/hi';
+import { HiOutlineCurrencyDollar, HiOutlineShieldCheck, HiOutlineLightningBolt, HiOutlineUserGroup } from 'react-icons/hi';
 import useReducedMotion from '../../../hooks/useReducedMotion';
 
 /**
@@ -25,7 +25,7 @@ const WhyChooseUsSection = () => {
       description: 'Quick design-to-installation process. Get your campaign live in days, not weeks.'
     },
     {
-      icon: HiOutlineSupport,
+      icon: HiOutlineUserGroup,
       title: 'Dedicated Support',
       description: 'Personal account management and ongoing campaign optimization.'
     }

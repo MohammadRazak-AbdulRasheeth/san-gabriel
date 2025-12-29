@@ -263,7 +263,7 @@ const About = () => {
               Why Choose San Gabriel?
             </h2>
             <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-              We're not just another consulting firm. Here's what sets us apart from the competition.
+              We're not just another advertising company. Here's what sets us apart from the competition.
             </p>
           </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">

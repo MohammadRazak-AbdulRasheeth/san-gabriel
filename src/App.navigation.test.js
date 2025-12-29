@@ -11,6 +11,12 @@ import Insights from './pages/Insights';
 import InsightDetail from './pages/InsightDetail';
 import Contact from './pages/Contact';
 import Careers from './pages/Careers';
+import Advertise from './pages/Advertise';
+import SignageWraps from './pages/SignageWraps';
+import Pricing from './pages/Pricing';
+import RevenuePerVehicle from './pages/RevenuePerVehicle';
+import VehiclePartner from './pages/VehiclePartner';
+import Portfolio from './pages/Portfolio';
 import Header from './components/layout/Header';
 import Footer from './components/sections/Footer';
 
@@ -64,6 +70,68 @@ jest.mock('react-icons/hi', () => ({
   HiOutlineStar: () => <span>Star</span>,
   HiMenu: () => <span>Menu</span>,
   HiX: () => <span>X</span>,
+  HiOutlineTruck: () => <span>Truck</span>,
+  HiOutlineCheck: () => <span>Check</span>,
+  HiOutlineCash: () => <span>Cash</span>,
+  HiOutlineShieldCheck: () => <span>ShieldCheck</span>,
+  HiOutlineUpload: () => <span>Upload</span>,
+  HiOutlineCurrencyDollar: () => <span>CurrencyDollar</span>,
+  HiOutlineX: () => <span>X</span>,
+  HiOutlineEye: () => <span>Eye</span>,
+  HiOutlineColorSwatch: () => <span>ColorSwatch</span>,
+  HiOutlineTemplate: () => <span>Template</span>,
+  HiOutlineDocumentText: () => <span>DocumentText</span>,
+  HiOutlineLightningBolt: () => <span>LightningBolt</span>,
+  HiOutlineExclamation: () => <span>Exclamation</span>,
+  HiOutlineClipboardList: () => <span>ClipboardList</span>,
+  HiOutlineDesktopComputer: () => <span>DesktopComputer</span>,
+  HiOutlinePresentationChartLine: () => <span>PresentationChartLine</span>,
+  HiOutlineAcademicCap: () => <span>AcademicCap</span>,
+  HiOutlineScale: () => <span>Scale</span>,
+  HiOutlineHome: () => <span>Home</span>,
+  HiOutlineShoppingCart: () => <span>ShoppingCart</span>,
+  HiOutlineCog: () => <span>Cog</span>,
+  HiOutlineBeaker: () => <span>Beaker</span>,
+  HiOutlineFilm: () => <span>Film</span>,
+  HiOutlinePhotograph: () => <span>Photograph</span>,
+  HiOutlinePlay: () => <span>Play</span>,
+  HiOutlineTag: () => <span>Tag</span>,
+  HiOutlineUsers: () => <span>Users</span>,
+  HiOutlineCollection: () => <span>Collection</span>,
+  HiOutlineNewspaper: () => <span>Newspaper</span>,
+  HiOutlineAnnotation: () => <span>Annotation</span>,
+  HiOutlinePencil: () => <span>Pencil</span>,
+  HiOutlineBookOpen: () => <span>BookOpen</span>,
+  HiOutlineQuestionMarkCircle: () => <span>QuestionMarkCircle</span>,
+  HiOutlineInformationCircle: () => <span>InformationCircle</span>,
+  HiOutlineExternalLink: () => <span>ExternalLink</span>,
+  HiOutlineLink: () => <span>Link</span>,
+  HiOutlineClipboard: () => <span>Clipboard</span>,
+  HiOutlineDocumentDuplicate: () => <span>DocumentDuplicate</span>,
+  HiOutlineDownload: () => <span>Download</span>,
+  HiOutlineShare: () => <span>Share</span>,
+  HiOutlinePrinter: () => <span>Printer</span>,
+  HiOutlineSearch: () => <span>Search</span>,
+  HiOutlineFilter: () => <span>Filter</span>,
+  HiOutlineAdjustments: () => <span>Adjustments</span>,
+  HiOutlineRefresh: () => <span>Refresh</span>,
+  HiOutlinePlus: () => <span>Plus</span>,
+  HiOutlineMinus: () => <span>Minus</span>,
+  HiOutlineChevronDown: () => <span>ChevronDown</span>,
+  HiOutlineChevronUp: () => <span>ChevronUp</span>,
+  HiOutlineChevronLeft: () => <span>ChevronLeft</span>,
+  HiOutlineChevronRight: () => <span>ChevronRight</span>,
+  HiOutlineClock: () => <span>Clock</span>,
+  HiOutlineBadgeCheck: () => <span>BadgeCheck</span>,
+  HiOutlineThumbUp: () => <span>ThumbUp</span>,
+  HiOutlineThumbDown: () => <span>ThumbDown</span>,
+  HiOutlineChat: () => <span>Chat</span>,
+  HiOutlineChatAlt: () => <span>ChatAlt</span>,
+  HiOutlineChatAlt2: () => <span>ChatAlt2</span>,
+  HiOutlineBell: () => <span>Bell</span>,
+  HiOutlineMenuAlt3: () => <span>MenuAlt3</span>,
+  HiOutlineDotsVertical: () => <span>DotsVertical</span>,
+  HiOutlineDotsHorizontal: () => <span>DotsHorizontal</span>,
 }));
 
 // Helper to render with router
@@ -74,16 +142,25 @@ const renderWithRouter = (initialRoute = '/') => {
         <Header />
         <main className="flex-grow">
           <Routes>
+            {/* Primary Routes (New Navigation) */}
             <Route path="/" element={<Home />} />
+            <Route path="/advertise" element={<Advertise />} />
+            <Route path="/signage-wraps" element={<SignageWraps />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/revenue-per-vehicle" element={<RevenuePerVehicle />} />
+            <Route path="/vehicle-partner" element={<VehiclePartner />} />
+            <Route path="/case-studies" element={<CaseStudies />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/contact" element={<Contact />} />
+            
+            {/* Legacy Routes (Backward Compatibility) */}
             <Route path="/about" element={<AboutUs />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/:category" element={<ServiceDetail />} />
             <Route path="/industries" element={<Industries />} />
-            <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/insights" element={<Insights />} />
             <Route path="/insights/:slug" element={<InsightDetail />} />
             <Route path="/careers" element={<Careers />} />
-            <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
         <Footer />
@@ -98,7 +175,7 @@ describe('Navigation Flow Tests - Task 15.1', () => {
       renderWithRouter('/');
 
       await waitFor(() => {
-        expect(screen.getByText(/Strategic Marketing/i)).toBeInTheDocument();
+        expect(screen.getByText(/Advertise While You/i)).toBeInTheDocument();
       });
     });
 
@@ -134,7 +211,9 @@ describe('Navigation Flow Tests - Task 15.1', () => {
       renderWithRouter('/case-studies');
 
       await waitFor(() => {
-        expect(screen.getByText(/Case Studies/i)).toBeInTheDocument();
+        // Use getAllByText since "Case Studies" appears in multiple places
+        const caseStudiesElements = screen.getAllByText(/Case Studies/i);
+        expect(caseStudiesElements.length).toBeGreaterThan(0);
       });
     });
 
@@ -173,11 +252,11 @@ describe('Navigation Flow Tests - Task 15.1', () => {
     test('Header contains all required navigation links', () => {
       renderWithRouter('/');
 
-      // Check for navigation items using getAllByText since they appear in header and footer
+      // Check for navigation items - updated for vehicle advertising rebrand
       expect(screen.getAllByText('Home').length).toBeGreaterThan(0);
-      expect(screen.getAllByText('About').length).toBeGreaterThan(0);
-      expect(screen.getAllByText('Services').length).toBeGreaterThan(0);
-      expect(screen.getAllByText('Insights').length).toBeGreaterThan(0);
+      expect(screen.getAllByText('Advertise').length).toBeGreaterThan(0);
+      expect(screen.getAllByText(/Signage/i).length).toBeGreaterThan(0);
+      expect(screen.getAllByText('Pricing').length).toBeGreaterThan(0);
       expect(screen.getAllByText('Contact').length).toBeGreaterThan(0);
     });
 
@@ -192,11 +271,10 @@ describe('Navigation Flow Tests - Task 15.1', () => {
   describe('Footer is present on all pages', () => {
     const pages = [
       { path: '/', name: 'Home' },
-      { path: '/about', name: 'About' },
-      { path: '/services', name: 'Services' },
-      { path: '/industries', name: 'Industries' },
+      { path: '/advertise', name: 'Advertise' },
+      { path: '/signage-wraps', name: 'Signage & Wraps' },
+      { path: '/pricing', name: 'Pricing' },
       { path: '/case-studies', name: 'Case Studies' },
-      { path: '/insights', name: 'Insights' },
       { path: '/contact', name: 'Contact' },
     ];
 

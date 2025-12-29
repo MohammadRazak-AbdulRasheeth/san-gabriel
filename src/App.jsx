@@ -26,6 +26,7 @@ import Insights from './pages/Insights';
 import InsightDetail from './pages/InsightDetail';
 import Industries from './pages/Industries';
 import Careers from './pages/Careers';
+import Portfolio from './pages/Portfolio';
 
 // Import layout components
 import Header from './components/layout/Header';
@@ -63,6 +64,7 @@ function App() {
             <Route path="/vehicle-partner" element={<VehiclePartner />} />
             <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/case-studies/:id" element={<CaseStudyDetail />} />
+            <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/contact" element={<Contact />} />
             
             {/* Legal Pages */}

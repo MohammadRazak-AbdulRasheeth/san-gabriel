@@ -117,12 +117,12 @@ const Footer = () => {
             {/* Quick Links */}
             <div>
               <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
-              <ul className="space-y-3">
+              <ul className="space-y-1 sm:space-y-3">
                 {quickLinks.map((link) => (
                   <li key={link.label}>
                     <Link
                       to={link.to}
-                      className="text-gray-300 hover:text-accent-500 transition-colors"
+                      className="text-gray-300 hover:text-accent-500 transition-colors py-2 block min-h-[44px] flex items-center touch-manipulation"
                     >
                       {link.label}
                     </Link>
@@ -134,12 +134,12 @@ const Footer = () => {
             {/* Services */}
             <div>
               <h3 className="text-lg font-semibold mb-6">Our Services</h3>
-              <ul className="space-y-3">
+              <ul className="space-y-1 sm:space-y-3">
                 {services.map((service) => (
                   <li key={service.label}>
                     <Link
                       to={service.to}
-                      className="text-gray-300 hover:text-accent-500 transition-colors"
+                      className="text-gray-300 hover:text-accent-500 transition-colors py-2 block min-h-[44px] flex items-center touch-manipulation"
                     >
                       {service.label}
                     </Link>
@@ -218,7 +218,7 @@ const Footer = () => {
                 <Link
                   key={link.label}
                   to={link.to}
-                  className="text-gray-400 hover:text-accent-500 transition-colors"
+                  className="text-gray-400 hover:text-accent-500 transition-colors py-2 min-h-[44px] flex items-center touch-manipulation"
                 >
                   {link.label}
                 </Link>

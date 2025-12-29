@@ -20,12 +20,12 @@ const renderWithRouter = (ui) => {
  * Validates: Requirements 6.2
  */
 describe('Property 2: Footer Presence Consistency', () => {
-  // Required footer elements
+  // Required footer elements - updated to match current footer structure
   const requiredNavLinks = [
     { label: /home/i, href: '/' },
-    { label: /about/i, href: '/about' },
-    { label: /services/i, href: '/services' },
-    { label: /insights/i, href: '/insights' },
+    { label: /advertise/i, href: '/advertise' },
+    { label: /signage & wraps/i, href: '/signage-wraps' },
+    { label: /pricing/i, href: '/pricing' },
     { label: /contact/i, href: '/contact' }
   ];
 
@@ -61,12 +61,11 @@ describe('Property 2: Footer Presence Consistency', () => {
         () => {
           const { unmount } = renderWithRouter(<Footer />);
 
-          // Company name should be present
-          expect(screen.getByText('SAN GABRIEL')).toBeInTheDocument();
-          expect(screen.getByText('SOLUTIONS')).toBeInTheDocument();
+          // Company logo should be present
+          expect(screen.getByAltText('San Gabriel Solutions')).toBeInTheDocument();
 
           // Contact information should be present
-          expect(screen.getByText(/hello@sangabrielsolutions.com/i)).toBeInTheDocument();
+          expect(screen.getByText(/contact@sangabrielsolutions.com/i)).toBeInTheDocument();
 
           // Copyright should be present
           expect(screen.getByText(/San Gabriel Solutions. All rights reserved/i)).toBeInTheDocument();
@@ -94,8 +93,8 @@ describe('Property 2: Footer Presence Consistency', () => {
 
     // Services section should have links
     expect(screen.getAllByText('Our Services').length).toBeGreaterThan(0);
-    expect(screen.getByRole('link', { name: /revenue-generating advertising/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /branding, banners & signs/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /advertise on our network/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /vehicle & fleet branding/i })).toBeInTheDocument();
   });
 
   test('footer has newsletter signup', () => {

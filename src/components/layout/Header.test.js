@@ -14,18 +14,18 @@ const renderWithRouter = (ui) => {
 };
 
 /**
- * Feature: san-gabriel-pages, Property 1: Navigation Link Consistency
+ * Feature: vehicle-advertising-rebrand, Property 1: Navigation Link Consistency
  * For any page rendered in the application, the header SHALL contain navigation links 
- * to all required pages: Home, About, Services, Insights, Contact.
- * Validates: Requirements 6.1
+ * to all required pages for the vehicle advertising website.
+ * Validates: Requirements 8.1, 8.3
  */
 describe('Property 1: Navigation Link Consistency', () => {
-  // Required navigation links
+  // Required navigation links for vehicle advertising rebrand
   const requiredNavLinks = [
     { label: /home/i, href: '/' },
-    { label: /about/i, href: '/about' },
-    { label: /services/i, href: '/services' },
-    { label: /insights/i, href: '/insights' },
+    { label: /advertise/i, href: '/advertise' },
+    { label: /signage/i, href: '/signage-wraps' },
+    { label: /pricing/i, href: '/pricing' },
     { label: /contact/i, href: '/contact' }
   ];
 
@@ -55,7 +55,7 @@ describe('Property 1: Navigation Link Consistency', () => {
     );
   });
 
-  test('navigation links are in correct order: Home, About, Services, Insights, Contact', () => {
+  test('navigation links are in correct order: Home, Advertise, Signage & Wraps, Pricing, Contact', () => {
     renderWithRouter(<Header />);
 
     // Get all navigation links in the desktop nav
@@ -64,17 +64,17 @@ describe('Property 1: Navigation Link Consistency', () => {
 
     // Find indices of each required link
     const homeIndex = navLabels.findIndex(label => label.includes('home'));
-    const aboutIndex = navLabels.findIndex(label => label.includes('about'));
-    const servicesIndex = navLabels.findIndex(label => label.includes('services'));
-    const insightsIndex = navLabels.findIndex(label => label.includes('insights'));
+    const advertiseIndex = navLabels.findIndex(label => label.includes('advertise'));
+    const signageIndex = navLabels.findIndex(label => label.includes('signage'));
+    const pricingIndex = navLabels.findIndex(label => label.includes('pricing'));
     const contactIndex = navLabels.findIndex(label => label.includes('contact'));
 
-    // Verify order (Home < About < Services < Insights < Contact)
-    expect(homeIndex).toBeLessThan(aboutIndex);
-    expect(aboutIndex).toBeLessThan(servicesIndex);
-    expect(servicesIndex).toBeLessThan(insightsIndex);
-    // Contact appears multiple times (nav + CTA button), so we check it exists after insights
-    expect(insightsIndex).toBeGreaterThan(-1);
+    // Verify order (Home < Advertise < Signage < Pricing)
+    expect(homeIndex).toBeLessThan(advertiseIndex);
+    expect(advertiseIndex).toBeLessThan(signageIndex);
+    expect(signageIndex).toBeLessThan(pricingIndex);
+    // Contact appears multiple times (nav + CTA button), so we check it exists
+    expect(contactIndex).toBeGreaterThan(-1);
   });
 
   test('header has mobile menu button', () => {
@@ -95,11 +95,12 @@ describe('Property 1: Navigation Link Consistency', () => {
 
 // Additional unit tests for Header
 describe('Header unit tests', () => {
-  test('renders header component', () => {
+  test('renders header component with logo', () => {
     renderWithRouter(<Header />);
     
-    expect(screen.getByText('SAN GABRIEL')).toBeInTheDocument();
-    expect(screen.getByText('SOLUTIONS')).toBeInTheDocument();
+    // Header now uses logo image instead of text
+    const logo = screen.getByAltText('San Gabriel Solutions');
+    expect(logo).toBeInTheDocument();
   });
 
   test('renders Schedule a Consultation CTA button', () => {

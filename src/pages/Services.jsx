@@ -1,7 +1,8 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import ServiceAlternatingLayout from '../components/sections/services/ServiceAlternatingLayout';
+import VehicleServices from '../components/sections/services/VehicleServices';
+import SecondaryServices from '../components/sections/services/SecondaryServices';
 import Button from '../components/ui/Button';
 import useReducedMotion from '../hooks/useReducedMotion';
 import SEO from '../components/SEO';
@@ -12,9 +13,11 @@ import useViewportSize from '../hooks/useViewportSize';
 
 /**
  * Services Page
- * Displays all 5 agency services with introduction emphasizing integrated services
- * Requirements: 6.1, 6.2, 6.3 (san-gabriel-agency-rebrand)
- * Requirements: 1.1, 2.2 (impressive-animations)
+ * Vehicle Advertising Rebrand:
+ * - VehicleServices as first and dominant section
+ * - SecondaryServices below with de-emphasized styling
+ * 
+ * Requirements: 3.1, 3.2, 3.3 (vehicle-advertising-rebrand)
  */
 const Services = () => {
   const prefersReducedMotion = useReducedMotion();
@@ -47,8 +50,9 @@ const Services = () => {
 
   return (
     <div className="pt-20">
-      {/* SEO Meta Tags - Requirements: 19.1, 19.4 */}
+      {/* SEO Meta Tags */}
       <SEO {...pageSEOConfig.services} />
+      
       {/* Hero Section with Parallax */}
       <section ref={heroRef} className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-20 md:py-28 overflow-hidden">
         {/* Parallax Background Image */}
@@ -90,7 +94,7 @@ const Services = () => {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Integrated Marketing & Advertising Services
+              Vehicle Advertising & Mobile Visibility Solutions
             </h1>
             <div className="flex justify-center mb-6">
               <svg width="120" height="12" viewBox="0 0 120 12" fill="none" className="text-accent-400">
@@ -98,38 +102,20 @@ const Services = () => {
               </svg>
             </div>
             <p className="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto leading-relaxed">
-              Strategic marketing and advertising services aligned with your business goals, 
-              professional execution, and measurable results. We don't just deliver tactics—we 
-              build integrated strategies that drive sustainable growth.
+              Turn your vehicle into a 24/7 moving billboard. Professional installation, 
+              premium materials, and Ontario safety compliant solutions.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Services Alternating Layout Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: prefersReducedMotion ? 0.01 : 0.5 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-4">
-              Our Services
-            </h2>
-            <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
-              From strategic planning to execution and optimization, we provide comprehensive 
-              marketing and advertising services that work together to achieve your business objectives.
-            </p>
-          </motion.div>
+      {/* Vehicle Services - Primary/Dominant Section (Requirements: 3.1, 3.2, 3.4) */}
+      <VehicleServices />
 
-          <ServiceAlternatingLayout />
-        </div>
-      </section>
+      {/* Secondary Services - De-emphasized (Requirements: 3.3, 3.5) */}
+      <SecondaryServices />
 
-      {/* Trust Signals Section - Requirements: 19.3 */}
+      {/* Trust Signals Section */}
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -143,7 +129,7 @@ const Services = () => {
               Proven Results
             </h2>
             <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-              See how our integrated services deliver measurable outcomes for businesses like yours
+              See how our vehicle advertising solutions deliver measurable outcomes for businesses like yours
             </p>
           </motion.div>
 
@@ -166,8 +152,8 @@ const Services = () => {
                     <h3 className="text-2xl font-bold text-primary-900">Success Stories</h3>
                   </div>
                   <p className="text-neutral-700 mb-6">
-                    Explore real-world examples of how we've helped clients achieve strategic growth 
-                    and measurable results across industries.
+                    Explore real-world examples of how we've helped clients achieve visibility 
+                    and measurable results with vehicle advertising.
                   </p>
                   <Link
                     to="/case-studies"
@@ -191,8 +177,8 @@ const Services = () => {
                       <h3 className="text-2xl font-bold text-primary-900">Success Stories</h3>
                     </div>
                     <p className="text-neutral-700 mb-6">
-                      Explore real-world examples of how we've helped clients achieve strategic growth 
-                      and measurable results across industries.
+                      Explore real-world examples of how we've helped clients achieve visibility 
+                      and measurable results with vehicle advertising.
                     </p>
                     <Link
                       to="/case-studies"
@@ -208,7 +194,7 @@ const Services = () => {
               )}
             </motion.div>
 
-            {/* Insights Link with TiltCard */}
+            {/* Portfolio Link with TiltCard */}
             <motion.div
               initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -220,20 +206,20 @@ const Services = () => {
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 bg-accent-600 rounded-lg flex items-center justify-center mr-4">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
                     </div>
-                    <h3 className="text-2xl font-bold text-primary-900">Expert Insights</h3>
+                    <h3 className="text-2xl font-bold text-primary-900">Our Work</h3>
                   </div>
                   <p className="text-neutral-700 mb-6">
-                    Learn from our team's expertise with strategic insights on marketing, 
-                    advertising, and business growth.
+                    Browse our portfolio of vehicle wraps, rear window ads, and fleet branding 
+                    projects across the GTA.
                   </p>
                   <Link
-                    to="/insights"
+                    to="/portfolio"
                     className="inline-flex items-center text-accent-600 font-semibold hover:text-accent-700"
                   >
-                    Read Insights
+                    View Portfolio
                     <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
@@ -245,20 +231,20 @@ const Services = () => {
                     <div className="flex items-center mb-4">
                       <div className="w-12 h-12 bg-accent-600 rounded-lg flex items-center justify-center mr-4">
                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
                       </div>
-                      <h3 className="text-2xl font-bold text-primary-900">Expert Insights</h3>
+                      <h3 className="text-2xl font-bold text-primary-900">Our Work</h3>
                     </div>
                     <p className="text-neutral-700 mb-6">
-                      Learn from our team's expertise with strategic insights on marketing, 
-                      advertising, and business growth.
+                      Browse our portfolio of vehicle wraps, rear window ads, and fleet branding 
+                      projects across the GTA.
                     </p>
                     <Link
-                      to="/insights"
+                      to="/portfolio"
                       className="inline-flex items-center text-accent-600 font-semibold hover:text-accent-700"
                     >
-                      Read Insights
+                      View Portfolio
                       <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
@@ -284,7 +270,7 @@ const Services = () => {
             transition={{ duration: prefersReducedMotion ? 0.01 : 0.5 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Transform Your Marketing?
+              Ready to Advertise While You Drive?
             </h2>
             <div className="flex justify-center mb-6">
               <svg width="120" height="12" viewBox="0 0 120 12" fill="none" className="text-accent-400">
@@ -292,8 +278,8 @@ const Services = () => {
               </svg>
             </div>
             <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-              Let's discuss how our integrated marketing and advertising services can help 
-              you achieve your business goals. Schedule a consultation to get started.
+              Get a free quote for your vehicle advertising project. Professional design 
+              and installation included with every service.
             </p>
             
             <div className="flex flex-wrap gap-4 justify-center">
@@ -303,16 +289,16 @@ const Services = () => {
                   size="lg"
                   className="bg-accent-500 hover:bg-accent-600 text-white px-8 py-3 rounded-md font-medium min-w-[200px]"
                 >
-                  Schedule a Consultation
+                  Get My Vehicle Wrapped
                 </Button>
               </Link>
-              <Link to="/about">
+              <Link to="/pricing">
                 <Button
                   variant="outline"
                   size="lg"
                   className="border-white text-white hover:bg-white hover:text-primary-900 px-8 py-3 rounded-md font-medium min-w-[200px]"
                 >
-                  Learn About Us
+                  View Pricing
                 </Button>
               </Link>
             </div>

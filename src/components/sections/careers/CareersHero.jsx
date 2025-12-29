@@ -4,8 +4,8 @@ import useReducedMotion from '../../../hooks/useReducedMotion';
 
 /**
  * CareersHero Component
- * Hero section for careers page with entrepreneurial messaging
- * Requirements: 5.1, 5.2, 5.3, 6.1, 6.3
+ * Hero section for careers page with commission-only sales-focused messaging
+ * Requirements: 7.1, 7.3, 7.4 - Commission-only positioning, sales-focused recruitment, earning potential emphasis
  */
 const CareersHero = () => {
   const prefersReducedMotion = useReducedMotion();
@@ -72,48 +72,70 @@ const CareersHero = () => {
           initial="hidden"
           animate="visible"
         >
-          {/* Headline - Entrepreneurial and performance-based */}
+          {/* Badge - Commission-only emphasis */}
+          <motion.div
+            className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-400/30 rounded-full px-4 py-2 mb-6"
+            variants={itemVariants}
+          >
+            <span className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" />
+            <span className="text-orange-300 font-medium text-sm">Commission-Only Sales Opportunities</span>
+          </motion.div>
+
+          {/* Headline - Sales-focused and earning potential emphasis */}
           <motion.h1
             className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6"
             variants={itemVariants}
           >
-            Join Our Sales Team.{' '}
-            <span className="text-orange-400">Earn What You Close.</span>
+            Sell Vehicle Advertising.{' '}
+            <span className="text-orange-400">Earn Unlimited Commissions.</span>
           </motion.h1>
 
-          {/* Subheadline - Performance-based messaging */}
+          {/* Subheadline - Commission-based messaging with earning potential */}
           <motion.p
             className="text-xl sm:text-2xl text-blue-100 mb-10 leading-relaxed max-w-3xl"
             variants={itemVariants}
           >
-            Commission-based opportunities with no cap on earnings. 
-            Build your own success with flexible, local sales partnerships 
-            in location-based advertising.
+            Join our sales team and earn 10-15% commission on every vehicle wrap you sell. 
+            No cap on earnings. No limits on your success. 
+            Turn your sales skills into real income with our growing vehicle advertising business.
           </motion.p>
 
-          {/* Key highlights - Entrepreneurial benefits */}
+          {/* Key highlights - Commission and earning potential focus */}
           <motion.div
             className="flex flex-wrap gap-6 text-sm sm:text-base"
             variants={itemVariants}
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 bg-green-500/20 rounded-full px-4 py-2">
               <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span className="text-blue-100">10-15% Commission on Revenue</span>
+              <span className="text-green-100 font-medium">10-15% Commission Per Sale</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 bg-green-500/20 rounded-full px-4 py-2">
               <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span className="text-blue-100">No Cap on Earnings</span>
+              <span className="text-green-100 font-medium">Unlimited Earning Potential</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 bg-green-500/20 rounded-full px-4 py-2">
               <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span className="text-blue-100">Flexible Local Opportunities</span>
+              <span className="text-green-100 font-medium">Flexible Sales Partnership</span>
             </div>
+          </motion.div>
+
+          {/* Earning example - Emphasize commission potential */}
+          <motion.div
+            className="mt-10 p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20"
+            variants={itemVariants}
+          >
+            <p className="text-blue-100 text-lg">
+              <span className="text-white font-semibold">Example:</span> Sell a $999 Professional Vehicle Package and earn{' '}
+              <span className="text-orange-400 font-bold">$100-$150 commission</span>. 
+              Close 10 deals a month and you're earning{' '}
+              <span className="text-orange-400 font-bold">$1,000-$1,500+</span> in commissions.
+            </p>
           </motion.div>
         </motion.div>
       </div>

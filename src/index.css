@@ -58,6 +58,31 @@
   .service-description {
     @apply text-sm md:text-base lg:text-lg;
   }
+  
+  /* Mobile-optimized pricing card - compact for less scrolling */
+  .pricing-card-mobile {
+    @apply p-4 sm:p-6;
+  }
+  
+  /* Mobile hero CTA container - stacked and prominent */
+  .hero-cta-mobile {
+    @apply flex flex-col gap-3 w-full sm:flex-row sm:gap-4 sm:justify-center;
+  }
+  
+  /* Mobile hero CTA button - full width on mobile */
+  .hero-cta-button {
+    @apply w-full sm:w-auto min-h-[48px] text-base font-semibold;
+  }
+  
+  /* Mobile-optimized section padding - reduced for less scrolling */
+  .section-mobile {
+    @apply py-12 sm:py-16 md:py-20 lg:py-24;
+  }
+  
+  /* Mobile pricing grid - single column with compact cards */
+  .pricing-grid-mobile {
+    @apply grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-8;
+  }
 }
 
 @layer utilities {

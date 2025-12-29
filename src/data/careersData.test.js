@@ -33,10 +33,9 @@ describe('Careers Data Structure', () => {
       expect(careersData.compensation.flexibility).toContain('case-by-case');
     });
 
-    test('disclaimer states commission-based only with no salary (Requirement 1.5)', () => {
-      expect(careersData.compensation.disclaimer).toContain('commission-based only');
-      expect(careersData.compensation.disclaimer).toContain('no salary');
-      expect(careersData.compensation.disclaimer).toContain('guaranteed income');
+    test('disclaimer states commission-only with no guaranteed income (Requirement 1.5)', () => {
+      expect(careersData.compensation.disclaimer).toContain('commission-only');
+      expect(careersData.compensation.disclaimer).toContain('no guaranteed income');
     });
   });
 

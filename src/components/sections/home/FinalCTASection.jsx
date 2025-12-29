@@ -1,9 +1,13 @@
 import { motion } from 'framer-motion';
 import Button from '../../ui/Button';
 import useReducedMotion from '../../../hooks/useReducedMotion';
+import { PRIMARY_CTAS, SECONDARY_CTAS } from '../../../data/ctaConfig';
 
 /**
  * Final CTA Block with Book/Quote
+ * Uses approved CTAs from ctaConfig
+ * 
+ * Requirements: 8.1, 8.2
  */
 const FinalCTASection = () => {
   const prefersReducedMotion = useReducedMotion();
@@ -28,18 +32,18 @@ const FinalCTASection = () => {
             <Button 
               variant="primary" 
               size="lg" 
-              to="/contact"
+              to={PRIMARY_CTAS.getWrapped.href}
               className="bg-accent-500 hover:bg-accent-600"
             >
-              Book a Consultation
+              {PRIMARY_CTAS.getWrapped.text}
             </Button>
             <Button 
               variant="secondary" 
               size="lg" 
-              to="/pricing"
+              to={SECONDARY_CTAS.viewPricing.href}
               className="bg-white/10 border-white text-white hover:bg-white hover:text-primary-900"
             >
-              View Pricing
+              {SECONDARY_CTAS.viewPricing.text}
             </Button>
           </div>
 

@@ -13,14 +13,14 @@ const renderContact = () => {
 };
 
 /**
- * Feature: san-gabriel-pages, Property 3: Contact Form Field Completeness
- * Validates: Requirements 4.2
+ * Feature: vehicle-advertising-rebrand, Property 6: Quote Form Data Capture
+ * Validates: Requirements 6.1, 6.2, 6.3, 6.4, 6.5, 6.6
  * 
- * For any rendering of the Contact page inquiry form, the form SHALL contain 
- * all required fields: name, email, company, phone, service interest, and message.
+ * For any rendering of the Contact page quote form, the form SHALL contain 
+ * all required fields: name, email, phone, vehicleType, location, and industry.
  */
-describe('Property 3: Contact Form Field Completeness', () => {
-  test('contact form contains all required fields across multiple renders', () => {
+describe('Property 6: Quote Form Field Completeness', () => {
+  test('quote form contains all required fields across multiple renders', () => {
     fc.assert(
       fc.property(
         fc.integer({ min: 1, max: 100 }), // Number of times to render
@@ -28,28 +28,29 @@ describe('Property 3: Contact Form Field Completeness', () => {
           // Render the contact page
           const { unmount } = renderContact();
           
-          // Verify all required fields are present
+          // Verify all required fields are present (Requirements 6.1-6.5)
           const nameField = screen.getByLabelText(/name/i);
           const emailField = screen.getByLabelText(/email/i);
-          const companyField = screen.getByLabelText(/company/i);
           const phoneField = screen.getByLabelText(/phone/i);
-          const serviceInterestField = screen.getByLabelText(/service interest/i);
-          const messageField = screen.getByLabelText(/message/i);
+          const vehicleTypeField = screen.getByLabelText(/vehicle type/i);
+          const locationField = screen.getByLabelText(/location/i);
+          const industryField = screen.getByLabelText(/industry/i);
           
           // Assert all fields exist
           expect(nameField).toBeInTheDocument();
           expect(emailField).toBeInTheDocument();
-          expect(companyField).toBeInTheDocument();
           expect(phoneField).toBeInTheDocument();
-          expect(serviceInterestField).toBeInTheDocument();
-          expect(messageField).toBeInTheDocument();
+          expect(vehicleTypeField).toBeInTheDocument();
+          expect(locationField).toBeInTheDocument();
+          expect(industryField).toBeInTheDocument();
           
           // Verify field types
           expect(nameField).toHaveAttribute('type', 'text');
           expect(emailField).toHaveAttribute('type', 'email');
-          expect(companyField).toHaveAttribute('type', 'text');
           expect(phoneField).toHaveAttribute('type', 'tel');
-          expect(messageField.tagName).toBe('TEXTAREA');
+          expect(vehicleTypeField.tagName).toBe('SELECT');
+          expect(locationField.tagName).toBe('SELECT');
+          expect(industryField.tagName).toBe('SELECT');
           
           // Cleanup
           unmount();

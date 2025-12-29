@@ -1,11 +1,11 @@
 /**
  * Careers Data
  * Content and configuration for the Careers page
- * Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 2.1, 2.2, 2.3, 2.4, 2.5, 3.1, 3.2, 3.3, 3.4, 4.1, 4.2, 5.4, 5.5
+ * Requirements: 7.1, 7.2, 7.3, 7.4 - Commission-only positioning, no salary language
  */
 
 export const careersData = {
-  // Compensation structure - Requirements: 1.1, 1.2, 1.3, 1.4, 1.5
+  // Compensation structure - Commission-only, no salary language
   compensation: {
     rate: '10-15%',
     basis: 'collected and paid revenue',
@@ -13,7 +13,7 @@ export const careersData = {
     flexibility:
       'Commission rates for large accounts, bundled packages, regional deals, or special campaigns may be discussed and adjusted on a case-by-case basis.',
     disclaimer:
-      'All positions are commission-based only. There is no salary, hourly wage, or guaranteed income.',
+      'This is a commission-only sales opportunity. Your income is directly tied to your sales performance. There is no guaranteed income.',
   },
 
   // Sales roles - Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 3.1, 3.2, 3.3, 3.4

@@ -1,10 +1,13 @@
 import { motion } from 'framer-motion';
 import Button from '../../ui/Button';
 import useReducedMotion from '../../../hooks/useReducedMotion';
+import { SECONDARY_CTAS } from '../../../data/ctaConfig';
 
 /**
  * Portfolio/Visual Proof Section
  * Before-after, installs, vehicles on road (image-first)
+ * 
+ * Requirements: 8.2 - No duplicate CTAs per section
  */
 const PortfolioPreview = () => {
   const prefersReducedMotion = useReducedMotion();
@@ -92,8 +95,8 @@ const PortfolioPreview = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <Button variant="primary" size="lg" to="/case-studies" className="bg-accent-500 hover:bg-accent-600">
-            View Case Studies
+          <Button variant="primary" size="lg" to={SECONDARY_CTAS.viewPortfolio.href} className="bg-accent-500 hover:bg-accent-600">
+            {SECONDARY_CTAS.viewPortfolio.text}
           </Button>
         </motion.div>
       </div>

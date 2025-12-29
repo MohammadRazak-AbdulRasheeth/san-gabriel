@@ -29,7 +29,7 @@ export const differentiators = [
   {
     id: 'integrated-expertise',
     title: 'Integrated Expertise',
-    description: 'From brand strategy to campaign execution, our integrated approach ensures consistency and synergy across all marketing efforts. No silos, no disconnected tactics—just cohesive growth.',
+    description: 'From brand strategy to campaign execution, our integrated approach ensures consistency across all marketing efforts. No silos, no disconnected tactics—just cohesive growth.',
     icon: 'PuzzlePieceIcon',
     order: 4
   }

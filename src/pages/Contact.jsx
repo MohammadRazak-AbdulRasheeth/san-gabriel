@@ -1,156 +1,38 @@
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Button from '../components/ui/Button';
+import QuoteForm from '../components/sections/contact/QuoteForm';
 import SEO from '../components/SEO';
 import { pageSEOConfig } from '../utils/seo';
-import { audienceTypes, serviceTypes, budgetRanges } from '../data/pricingConfig';
+import useReducedMotion from '../hooks/useReducedMotion';
 
 /**
- * Contact / Book Call Page (Updated)
- * - "I am a..." dropdown
- * - Service selector
- * - Budget range (for advertisers)
- * - Calendly/booking integration placeholder
+ * Contact / Quote Page
+ * Vehicle Advertising Rebrand:
+ * - Replace generic form with QuoteForm component
+ * - Vehicle-specific quote form with fields for:
+ *   - name, email, phone, vehicleType, location (GTA), industry, logoUpload
+ * 
+ * Requirements: 6.1 (vehicle-advertising-rebrand)
  */
 const Contact = () => {
-  const [searchParams] = useSearchParams();
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errors, setErrors] = useState({});
-  
-  // Get preselected values from URL parameters
-  const preselectedService = searchParams.get('service') || '';
-  const preselectedAudience = searchParams.get('audience') || '';
-  
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    phone: '',
-    audienceType: preselectedAudience,
-    serviceType: preselectedService,
-    budgetRange: '',
-    message: ''
-  });
+  const prefersReducedMotion = useReducedMotion();
 
-  // Update form when URL parameters change
-  useEffect(() => {
-    setFormData(prev => ({
-      ...prev,
-      audienceType: preselectedAudience || prev.audienceType,
-      serviceType: preselectedService || prev.serviceType
-    }));
-  }, [preselectedAudience, preselectedService]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
+  const handleQuoteSubmit = async (formData) => {
+    // Handle form submission
+    console.log('Quote form submitted:', {
       ...formData,
-      [name]: value
+      logoFile: formData.logoFile ? {
+        name: formData.logoFile.name,
+        size: formData.logoFile.size,
+        type: formData.logoFile.type
+      } : null
     });
-    if (errors[name]) {
-      setErrors({
-        ...errors,
-        [name]: ''
-      });
-    }
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
-    }
-
-    if (!formData.audienceType) {
-      newErrors.audienceType = 'Please select who you are';
-    }
-
-    if (!formData.serviceType) {
-      newErrors.serviceType = 'Please select a service';
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Please provide more details (at least 10 characters)';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
     
-    if (!validateForm()) {
-      return;
-    }
-
-    setIsSubmitting(true);
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
     
-    try {
-      const inquiryData = {
-        ...formData,
-        timestamp: new Date().toISOString(),
-        source: 'contact_form'
-      };
-
-      console.log('Inquiry captured:', inquiryData);
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setIsSubmitted(true);
-    } catch (error) {
-      console.error('Form submission error:', error);
-      setErrors({
-        submit: 'There was an error submitting your request. Please try again or contact us directly.'
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    // In production, this would send to your backend/CRM
+    return true;
   };
-
-  if (isSubmitted) {
-    return (
-      <div className="pt-20">
-        <SEO {...pageSEOConfig.contact} />
-        
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-900 to-primary-600 text-white">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-2xl mx-auto px-4"
-          >
-            <div className="w-24 h-24 bg-accent-500 rounded-full flex items-center justify-center mx-auto mb-8">
-              <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Thank You!
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-200 mb-8">
-              We've received your request and will be in touch within 24 hours.
-            </p>
-            <p className="text-lg text-gray-300 mb-8">
-              In the meantime, feel free to call us directly at (437) 344-3563
-            </p>
-            <Button variant="primary" to="/" className="bg-accent-500 hover:bg-accent-600">
-              Return Home
-            </Button>
-          </motion.div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="pt-20">
@@ -167,253 +49,48 @@ const Contact = () => {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: prefersReducedMotion ? 0.01 : 0.6 }}
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Contact Us
+              Get Your Free Quote
             </h1>
             <p className="text-xl text-gray-200 max-w-2xl mx-auto">
-              Ready to get started? Let's discuss your advertising or branding needs.
+              Ready to turn your vehicle into a 24/7 moving billboard? 
+              Fill out the form below and we'll provide a custom quote.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Contact Form Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Quote Form Section */}
+      <section className="py-20 bg-neutral-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-12">
-            {/* Form */}
+            {/* Quote Form - Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6 */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: prefersReducedMotion ? 0.01 : 0.6 }}
               className="lg:col-span-3"
             >
-              <div className="bg-neutral-50 rounded-2xl p-8">
-                <h2 className="text-2xl font-bold text-primary-900 mb-2">
-                  Get in Touch
-                </h2>
-                <p className="text-neutral-600 mb-6">
-                  Fill out the form and we'll respond within 24 hours.
-                </p>
-
-                <form onSubmit={handleSubmit}>
-                  {errors.submit && (
-                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-                      <p className="text-red-600 text-sm">{errors.submit}</p>
-                    </div>
-                  )}
-
-                  <div className="space-y-6">
-                    {/* I am a... */}
-                    <div>
-                      <label htmlFor="audienceType" className="block text-sm font-semibold text-primary-900 mb-2">
-                        I am a... *
-                      </label>
-                      <select
-                        id="audienceType"
-                        name="audienceType"
-                        value={formData.audienceType}
-                        onChange={handleChange}
-                        required
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors ${
-                          errors.audienceType ? 'border-red-500' : 'border-neutral-300'
-                        }`}
-                      >
-                        <option value="">Select one</option>
-                        {audienceTypes.map(type => (
-                          <option key={type.value} value={type.value}>
-                            {type.label}
-                          </option>
-                        ))}
-                      </select>
-                      {errors.audienceType && (
-                        <p className="mt-1 text-sm text-red-600">{errors.audienceType}</p>
-                      )}
-                    </div>
-
-                    {/* Service Type */}
-                    <div>
-                      <label htmlFor="serviceType" className="block text-sm font-semibold text-primary-900 mb-2">
-                        Service Interest *
-                      </label>
-                      <select
-                        id="serviceType"
-                        name="serviceType"
-                        value={formData.serviceType}
-                        onChange={handleChange}
-                        required
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors ${
-                          errors.serviceType ? 'border-red-500' : 'border-neutral-300'
-                        }`}
-                      >
-                        <option value="">Select a service</option>
-                        {serviceTypes.map(type => (
-                          <option key={type.value} value={type.value}>
-                            {type.label}
-                          </option>
-                        ))}
-                      </select>
-                      {errors.serviceType && (
-                        <p className="mt-1 text-sm text-red-600">{errors.serviceType}</p>
-                      )}
-                    </div>
-
-                    {/* Name & Email */}
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-semibold text-primary-900 mb-2">
-                          Name *
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors ${
-                            errors.name ? 'border-red-500' : 'border-neutral-300'
-                          }`}
-                          placeholder="Your name"
-                        />
-                        {errors.name && (
-                          <p className="mt-1 text-sm text-red-600">{errors.name}</p>
-                        )}
-                      </div>
-
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-semibold text-primary-900 mb-2">
-                          Email *
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors ${
-                            errors.email ? 'border-red-500' : 'border-neutral-300'
-                          }`}
-                          placeholder="your@email.com"
-                        />
-                        {errors.email && (
-                          <p className="mt-1 text-sm text-red-600">{errors.email}</p>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Company & Phone */}
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="company" className="block text-sm font-semibold text-primary-900 mb-2">
-                          Company
-                        </label>
-                        <input
-                          type="text"
-                          id="company"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
-                          placeholder="Your company"
-                        />
-                      </div>
-
-                      <div>
-                        <label htmlFor="phone" className="block text-sm font-semibold text-primary-900 mb-2">
-                          Phone
-                        </label>
-                        <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
-                          placeholder="(555) 123-4567"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Budget Range (show for advertisers) */}
-                    {(formData.audienceType === 'advertiser' || formData.serviceType === 'advertising' || formData.serviceType === 'both') && (
-                      <div>
-                        <label htmlFor="budgetRange" className="block text-sm font-semibold text-primary-900 mb-2">
-                          Monthly Budget Range
-                        </label>
-                        <select
-                          id="budgetRange"
-                          name="budgetRange"
-                          value={formData.budgetRange}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
-                        >
-                          <option value="">Select budget range</option>
-                          {budgetRanges.map(range => (
-                            <option key={range.value} value={range.value}>
-                              {range.label}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    )}
-
-                    {/* Message */}
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-semibold text-primary-900 mb-2">
-                        Message *
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        rows={4}
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors ${
-                          errors.message ? 'border-red-500' : 'border-neutral-300'
-                        }`}
-                        placeholder="Tell us about your project or goals..."
-                      ></textarea>
-                      {errors.message && (
-                        <p className="mt-1 text-sm text-red-600">{errors.message}</p>
-                      )}
-                    </div>
-
-                    {/* Submit */}
-                    <Button 
-                      type="submit"
-                      variant="primary" 
-                      size="lg"
-                      disabled={isSubmitting}
-                      className="w-full"
-                    >
-                      {isSubmitting ? 'Sending...' : 'Send Message'}
-                    </Button>
-
-                    <p className="text-sm text-neutral-500 text-center">
-                      We typically respond within 24 hours.
-                    </p>
-                  </div>
-                </form>
-              </div>
+              <QuoteForm 
+                onSubmit={handleQuoteSubmit}
+                className="shadow-xl"
+              />
             </motion.div>
 
-            {/* Contact Info & Booking */}
+            {/* Contact Info & Why Choose Us */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="lg:col-span-2"
+              transition={{ duration: prefersReducedMotion ? 0.01 : 0.6, delay: prefersReducedMotion ? 0 : 0.2 }}
+              className="lg:col-span-2 space-y-6"
             >
               {/* Contact Info */}
-              <div className="bg-primary-900 text-white rounded-2xl p-8 mb-6">
+              <div className="bg-primary-900 text-white rounded-2xl p-8">
                 <h3 className="text-xl font-bold mb-6">Contact Information</h3>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
@@ -442,18 +119,64 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Book a Call Placeholder */}
+              {/* Why Choose Us */}
+              <div className="bg-white rounded-2xl p-8 shadow-lg">
+                <h3 className="text-xl font-bold text-primary-900 mb-6">Why Choose Us?</h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    <div>
+                      <span className="font-semibold text-primary-900">Professional Design Included</span>
+                      <p className="text-sm text-neutral-600">Custom designs tailored to your brand</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    <div>
+                      <span className="font-semibold text-primary-900">Premium Materials</span>
+                      <p className="text-sm text-neutral-600">3M vinyl and perforated window film</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    <div>
+                      <span className="font-semibold text-primary-900">Ontario Safety Compliant</span>
+                      <p className="text-sm text-neutral-600">All installations meet safety regulations</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    <div>
+                      <span className="font-semibold text-primary-900">Fast Turnaround</span>
+                      <p className="text-sm text-neutral-600">Most installations completed in 1-2 days</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Service Areas */}
               <div className="bg-accent-50 border border-accent-200 rounded-2xl p-8">
-                <h3 className="text-xl font-bold text-primary-900 mb-4">Book a Consultation</h3>
-                <p className="text-neutral-600 mb-6">
-                  Prefer to schedule a call? Book a time that works for you.
+                <h3 className="text-xl font-bold text-primary-900 mb-4">Service Areas</h3>
+                <p className="text-neutral-600 mb-4">
+                  We proudly serve the Greater Toronto Area including:
                 </p>
-                {/* Calendly placeholder - replace with actual embed */}
-                <div className="bg-white rounded-lg p-6 text-center border border-neutral-200">
-                  <p className="text-neutral-500 mb-4">Calendly booking widget coming soon</p>
-                  <Button variant="primary" href="tel:437-344-3563">
-                    Call Us Now
-                  </Button>
+                <div className="flex flex-wrap gap-2">
+                  {['Toronto', 'Mississauga', 'Brampton', 'Vaughan', 'Markham', 'Richmond Hill', 'Oakville', 'Burlington'].map((city) => (
+                    <span 
+                      key={city}
+                      className="bg-white px-3 py-1 rounded-full text-sm text-neutral-700 border border-neutral-200"
+                    >
+                      {city}
+                    </span>
+                  ))}
                 </div>
               </div>
             </motion.div>

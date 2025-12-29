@@ -24,7 +24,7 @@ export const portfolioItems = [
     type: 'websites',
     title: 'kavin10oc.com',
     description: 'Professional website for Kavin 10 OC',
-    imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80',
+    imageUrl: '/heroimages/servicesherosectionimage.jpeg',
     url: 'https://kavin10oc.com',
     featured: true,
     relatedServices: ['website-design'],
@@ -35,7 +35,7 @@ export const portfolioItems = [
     type: 'websites',
     title: 'luxuryautocollision.ca',
     description: 'Auto collision repair business website',
-    imageUrl: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&q=80',
+    imageUrl: '/heroimages/Truck-hero-home.png',
     url: 'https://luxuryautocollision.ca',
     featured: true,
     relatedServices: ['website-design'],
@@ -48,7 +48,7 @@ export const portfolioItems = [
     type: 'windows',
     title: 'Storefront Window Display',
     description: 'High-traffic storefront window advertising placement',
-    imageUrl: 'https://images.unsplash.com/photo-1582037928769-181f2644ecb7?w=600&q=80',
+    imageUrl: '/product-image/rear-window-ad.webp',
     url: null,
     featured: true,
     relatedServices: ['monetize-location', 'advertise-with-us']
@@ -58,7 +58,7 @@ export const portfolioItems = [
     type: 'windows',
     title: 'Retail Window Campaign',
     description: 'Multi-window advertising campaign for local business',
-    imageUrl: 'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=600&q=80',
+    imageUrl: '/product-image/rear-window-ad.webp',
     url: null,
     featured: false,
     relatedServices: ['monetize-location', 'advertise-with-us']
@@ -70,7 +70,7 @@ export const portfolioItems = [
     type: 'trucks',
     title: 'Full Truck Wrap',
     description: 'Complete vinyl wrap on delivery truck',
-    imageUrl: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=600&q=80',
+    imageUrl: '/heroimages/servicesherosectionimage.jpeg',
     url: null,
     featured: true,
     relatedServices: ['mobile-advertising']
@@ -80,7 +80,7 @@ export const portfolioItems = [
     type: 'trucks',
     title: 'Trailer Side Panel',
     description: 'Large format trailer advertising panel',
-    imageUrl: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=600&q=80',
+    imageUrl: '/product-image/truck-backandside-ad.png',
     url: null,
     featured: false,
     relatedServices: ['mobile-advertising']
@@ -90,7 +90,7 @@ export const portfolioItems = [
     type: 'trucks',
     title: 'Fleet Branding Campaign',
     description: 'Coordinated branding across multiple vehicles',
-    imageUrl: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80',
+    imageUrl: '/11servicesimages/3.MOBILE ADVERTISING – TRUCKING FLEETS .png',
     url: null,
     featured: true,
     relatedServices: ['mobile-advertising', 'branding-banners-signs']
@@ -102,7 +102,7 @@ export const portfolioItems = [
     type: 'banners',
     title: 'Roll-up Banner Set',
     description: 'Professional roll-up banners for trade show',
-    imageUrl: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80',
+    imageUrl: '/product-image/truck-side-ad.png',
     url: null,
     featured: true,
     relatedServices: ['branding-banners-signs']
@@ -112,7 +112,7 @@ export const portfolioItems = [
     type: 'banners',
     title: 'Step and Repeat Backdrop',
     description: 'Event backdrop with sponsor logos',
-    imageUrl: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&q=80',
+    imageUrl: '/product-image/Hoodwrap-ad.png',
     url: null,
     featured: false,
     relatedServices: ['branding-banners-signs', 'events-community']
@@ -122,7 +122,7 @@ export const portfolioItems = [
     type: 'banners',
     title: 'Storefront Signage',
     description: 'Custom storefront graphics and signage',
-    imageUrl: 'https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=600&q=80',
+    imageUrl: '/heroimages/Truck-hero-home.png',
     url: null,
     featured: true,
     relatedServices: ['branding-banners-signs']
@@ -174,7 +174,7 @@ export const portfolioItems = [
     type: 'events',
     title: 'Sponsor Wall Display',
     description: 'Large format sponsor recognition wall',
-    imageUrl: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80',
+    imageUrl: '/product-image/truck-side-ad.png',
     url: null,
     featured: false,
     relatedServices: ['events-community']

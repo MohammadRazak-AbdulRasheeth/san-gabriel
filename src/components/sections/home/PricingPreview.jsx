@@ -73,6 +73,7 @@ const PricingPreview = () => {
                 features={option.features}
                 badge={option.badge}
                 material={option.material}
+                image={option.image}
                 ctaText={option.ctaText}
                 ctaHref={option.ctaHref}
                 highlighted={option.badge === 'best-seller'}

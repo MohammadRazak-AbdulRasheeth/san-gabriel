@@ -61,7 +61,7 @@ const VehicleHero = () => {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 will-change-transform"
         style={{
-          backgroundImage: `url('/heroimages/homeherosection1.jpeg')`,
+          backgroundImage: `url('/heroimages/Truck-hero-home.png')`,
           transform: prefersReducedMotion ? 'none' : `translateY(${parallaxOffset}px) scale(1.1)`,
           top: '-5%',
           height: '110%',
@@ -117,14 +117,14 @@ const VehicleHero = () => {
 
           {/* CTAs - Requirement 1.3, 9.4 (Mobile CTA visibility) */}
           <motion.div
-            className="flex flex-col gap-3 sm:flex-row sm:gap-4 justify-center w-full px-4 sm:px-0"
+            className="flex flex-col gap-4 sm:flex-row sm:gap-5 justify-center w-full px-4 sm:px-0"
             variants={itemVariants}
           >
             <Button
               variant="primary"
               size="lg"
               to={HERO_CTAS.primary.href}
-              className="bg-accent-500 hover:bg-accent-600 shadow-lg w-full sm:w-auto min-h-[48px] text-base sm:text-lg font-semibold"
+              className="!bg-gradient-to-r !from-orange-500 !to-orange-600 hover:!from-orange-600 hover:!to-orange-700 !shadow-xl !shadow-orange-500/30 w-full sm:w-auto !min-h-[56px] !text-lg !font-bold !px-10 !rounded-xl hover:!shadow-2xl hover:!shadow-orange-500/40 hover:!-translate-y-1 transition-all duration-300"
             >
               {HERO_CTAS.primary.text}
             </Button>
@@ -132,7 +132,7 @@ const VehicleHero = () => {
               variant="secondary"
               size="lg"
               to={HERO_CTAS.secondary.href}
-              className="bg-white/10 border-white text-white hover:bg-white hover:text-primary-900 w-full sm:w-auto min-h-[48px] text-base sm:text-lg font-semibold"
+              className="!bg-white/10 !backdrop-blur-sm !border-2 !border-white/80 !text-white hover:!bg-white hover:!text-primary-900 w-full sm:w-auto !min-h-[56px] !text-lg !font-bold !px-10 !rounded-xl !shadow-lg hover:!shadow-xl hover:!-translate-y-1 transition-all duration-300"
             >
               {HERO_CTAS.secondary.text}
             </Button>

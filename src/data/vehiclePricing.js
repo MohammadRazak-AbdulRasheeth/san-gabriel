@@ -22,6 +22,7 @@ export const VEHICLE_PRICING = {
         'Ontario safety compliant'
       ],
       material: 'Perforated Vinyl',
+      image: '/product-image/rear-window-ad.png',
       ctaText: 'Get My Vehicle Wrapped',
       ctaHref: '/contact'
     },
@@ -39,6 +40,7 @@ export const VEHICLE_PRICING = {
         'Durable weather-resistant'
       ],
       material: '3M IJ35 Blockout Vinyl',
+      image: '/product-image/truck-side-ad.png',
       ctaText: 'Get My Vehicle Wrapped',
       ctaHref: '/contact'
     },
@@ -55,6 +57,7 @@ export const VEHICLE_PRICING = {
         'High visibility placement'
       ],
       material: '3M IJ35 Blockout Vinyl',
+      image: '/product-image/Hoodwrap-ad.png',
       ctaText: 'Get My Vehicle Wrapped',
       ctaHref: '/contact'
     }
@@ -73,6 +76,7 @@ export const VEHICLE_PRICING = {
         'Professional design'
       ],
       savings: null,
+      image: '/product-image/rear-window-ad.png',
       ctaText: 'Get Realtor Package',
       ctaHref: '/contact'
     },
@@ -90,6 +94,7 @@ export const VEHICLE_PRICING = {
         'Professional design'
       ],
       savings: null,
+      image: '/product-image/Hoodwrap-ad.png',
       ctaText: 'Get My Vehicle Wrapped',
       ctaHref: '/contact'
     },
@@ -107,6 +112,7 @@ export const VEHICLE_PRICING = {
         'Professional design'
       ],
       savings: null,
+      image: '/product-image/truck-backandside-ad.png',
       ctaText: 'Get My Vehicle Wrapped',
       ctaHref: '/contact'
     }

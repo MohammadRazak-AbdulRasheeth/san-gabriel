@@ -16,31 +16,31 @@ const PortfolioPreview = () => {
   const portfolioItems = [
     {
       id: 1,
-      title: 'Fleet Branding',
-      category: 'Full Wrap',
-      image: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=600&q=80',
-      description: 'Complete fleet transformation'
+      title: 'Rear Window Advertising',
+      category: 'Best Seller',
+      image: '/product-image/rear-window-ad.png',
+      description: 'Perforated vinyl rear window ads'
     },
     {
       id: 2,
-      title: 'Delivery Van',
-      category: 'Partial Wrap',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80',
-      description: 'High-visibility branding'
+      title: 'Truck Side Branding',
+      category: 'Side Wrap',
+      image: '/product-image/truck-side-ad.png',
+      description: 'High-visibility side panel branding'
     },
     {
       id: 3,
-      title: 'Box Truck',
-      category: 'Full Wrap',
-      image: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=600&q=80',
-      description: 'Maximum road presence'
+      title: 'Full Truck Wrap',
+      category: 'Commercial',
+      image: '/heroimages/servicesherosectionimage.jpeg',
+      description: 'Complete truck visibility package'
     },
     {
       id: 4,
-      title: 'Trailer Graphics',
-      category: '53\' Trailer',
-      image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=600&q=80',
-      description: 'Interstate advertising'
+      title: 'Hood Branding',
+      category: 'Premium',
+      image: '/product-image/Hoodwrap-ad.png',
+      description: 'Maximum front-facing impact'
     }
   ];
 

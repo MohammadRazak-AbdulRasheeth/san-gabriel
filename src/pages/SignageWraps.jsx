@@ -28,7 +28,7 @@ const SignageWraps = () => {
       />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-accent-600 via-accent-500 to-accent-600 text-white py-20 md:py-28 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div 
             className="absolute inset-0"
@@ -49,15 +49,15 @@ const SignageWraps = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               Professional Vehicle & Fleet Branding — Installed Right
             </h1>
-            <p className="text-xl md:text-2xl text-orange-100 mb-8">
+            <p className="text-xl md:text-2xl text-blue-100 mb-8">
               Turnkey packages including design, premium materials, and professional installation
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center">
-              <Button variant="secondary" size="lg" to="/contact?service=signage-wraps" className="!bg-white !text-accent-600 !border-white hover:!bg-gray-100">
+              <Button variant="primary" size="lg" to="/contact?service=signage-wraps">
                 Get My Vehicle Priced
               </Button>
-              <Button variant="secondary" size="lg" to="#packages" className="!bg-transparent !border-white !text-white hover:!bg-white hover:!text-accent-600">
+              <Button variant="secondary" size="lg" to="#packages" className="!bg-transparent !border-white !text-white hover:!bg-white hover:!text-primary-900">
                 View Packages
               </Button>
             </div>
@@ -258,13 +258,13 @@ const SignageWraps = () => {
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              'https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=600&q=80',
-              'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80',
-              'https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=600&q=80',
-              'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=600&q=80',
-              'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600&q=80',
-              'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80'
-            ].map((imageUrl, index) => (
+              { src: '/11servicesimages/3.MOBILE ADVERTISING – TRUCKING FLEETS .png', alt: 'Mobile Advertising - Trucking Fleets' },
+              { src: '/heroimages/servicesherosectionimage.jpeg', alt: 'Vehicle Branding Services' },
+              { src: '/heroimages/Truck-hero-home.png', alt: 'Truck Wrap Advertising' },
+              { src: '/product-image/rear-window-ad.webp', alt: 'Rear Window Advertising' },
+              { src: '/product-image/truck-backandside-ad.png', alt: 'Truck Back and Side Advertising' },
+              { src: '/product-image/Hoodwrap-ad.png', alt: 'Hood Wrap Advertising' }
+            ].map((image, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.95 }}
@@ -273,13 +273,9 @@ const SignageWraps = () => {
                 className="aspect-video bg-neutral-100 rounded-xl overflow-hidden"
               >
                 <img
-                  src={imageUrl}
-                  alt={`Portfolio item ${index + 1}`}
+                  src={image.src}
+                  alt={image.alt}
                   className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.parentElement.innerHTML = '<div class="w-full h-full flex items-center justify-center text-neutral-400">Portfolio Image</div>';
-                  }}
                 />
               </motion.div>
             ))}
@@ -288,7 +284,7 @@ const SignageWraps = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 bg-accent-500 text-white">
+      <section className="py-20 bg-primary-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
@@ -298,13 +294,13 @@ const SignageWraps = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Ready to Brand Your Vehicle?
             </h2>
-            <p className="text-xl text-orange-100 mb-8">
+            <p className="text-xl text-blue-200 mb-8">
               Get a custom quote for your vehicle or fleet. We'll help you choose the right package.
             </p>
-            <Button variant="secondary" size="lg" to="/contact?service=signage-wraps" className="!bg-white !text-accent-600 !border-white hover:!bg-gray-100">
+            <Button variant="primary" size="lg" to="/contact?service=signage-wraps">
               Get My Vehicle Priced
             </Button>
-            <p className="text-sm text-orange-200 mt-6">
+            <p className="text-sm text-blue-300 mt-6">
               We typically respond within 24 hours.
             </p>
           </motion.div>

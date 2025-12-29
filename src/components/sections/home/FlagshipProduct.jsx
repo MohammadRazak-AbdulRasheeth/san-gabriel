@@ -65,34 +65,44 @@ const FlagshipProduct = () => {
             <div className="grid md:grid-cols-2 gap-0">
               {/* Image Section */}
               <motion.div 
-                className="relative bg-gradient-to-br from-primary-600 to-primary-800 p-8 flex items-center justify-center min-h-[300px]"
+                className="relative min-h-[300px] overflow-hidden"
                 variants={itemVariants}
               >
-                <div className="absolute top-4 left-4">
+                <div className="absolute top-4 left-4 z-10">
                   <Badge variant="best-seller" size="lg">
                     Best Seller
                   </Badge>
                 </div>
-                <div className="text-center text-white">
-                  <div className="w-32 h-32 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
-                    <svg 
-                      className="w-16 h-16 text-white" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round" 
-                        strokeWidth={1.5} 
-                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" 
-                      />
-                    </svg>
+                {flagshipProduct.image ? (
+                  <img 
+                    src={flagshipProduct.image} 
+                    alt={flagshipProduct.name}
+                    className="w-full h-full object-cover min-h-[300px]"
+                  />
+                ) : (
+                  <div className="bg-gradient-to-br from-primary-600 to-primary-800 p-8 flex items-center justify-center h-full">
+                    <div className="text-center text-white">
+                      <div className="w-32 h-32 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
+                        <svg 
+                          className="w-16 h-16 text-white" 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                        >
+                          <path 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            strokeWidth={1.5} 
+                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" 
+                          />
+                        </svg>
+                      </div>
+                      <p className="text-lg font-medium text-white/90">
+                        Rear Window Advertising
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-lg font-medium text-white/90">
-                    Rear Window Advertising
-                  </p>
-                </div>
+                )}
               </motion.div>
 
               {/* Content Section */}

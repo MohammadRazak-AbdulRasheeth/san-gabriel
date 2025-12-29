@@ -83,6 +83,7 @@ const Pricing = () => {
                   features={service.features}
                   badge={service.badge}
                   material={service.material}
+                  image={service.image}
                   ctaText={service.ctaText}
                   ctaHref={service.ctaHref}
                   highlighted={service.badge === 'best-seller'}
@@ -131,6 +132,7 @@ const Pricing = () => {
                   includes={bundle.includes}
                   savings={bundle.savings}
                   badge={bundle.badge}
+                  image={bundle.image}
                   ctaText={bundle.ctaText}
                   ctaHref={bundle.ctaHref}
                   featured={bundle.id === 'realtor-starter'}

@@ -13,8 +13,8 @@ export const companyInfo = {
     country: 'Canada',
     full: '2967 Dundas Street West, Toronto, ON, Canada'
   },
-  phone: '437-344-3563',
-  phoneFormatted: '(437) 344-3563',
+  phone: '753-726-4227',
+  phoneFormatted: '(753) SAN-GABR',
   email: 'contact@sangabrielsolutions.com',
   
   // Core value proposition

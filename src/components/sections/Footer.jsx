@@ -124,9 +124,9 @@ const Footer = () => {
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-accent-500/20 rounded-full text-accent-400 text-sm font-medium mb-6"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-accent-500 to-accent-600 rounded-full text-white text-sm font-semibold mb-6 shadow-lg shadow-accent-500/40"
               >
-                <HiSparkles className="w-4 h-4" />
+                <HiSparkles className="w-5 h-5 animate-pulse" />
                 Ready to get started?
               </motion.div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -190,8 +190,8 @@ const Footer = () => {
                   className="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all duration-300 group"
                   whileHover={{ x: 5 }}
                 >
-                  <div className="w-10 h-10 rounded-lg bg-accent-500/20 flex items-center justify-center">
-                    <HiOutlineMail className="w-5 h-5 text-accent-400" />
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-500 to-accent-600 flex items-center justify-center shadow-lg shadow-accent-500/30">
+                    <HiOutlineMail className="w-5 h-5 text-white" />
                   </div>
                   <span className="text-gray-300 group-hover:text-white transition-colors">
                     Contact@sangabrielsolutions.com
@@ -202,8 +202,8 @@ const Footer = () => {
                   className="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all duration-300 group"
                   whileHover={{ x: 5 }}
                 >
-                  <div className="w-10 h-10 rounded-lg bg-accent-500/20 flex items-center justify-center">
-                    <HiOutlinePhone className="w-5 h-5 text-accent-400" />
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-500 to-accent-600 flex items-center justify-center shadow-lg shadow-accent-500/30">
+                    <HiOutlinePhone className="w-5 h-5 text-white" />
                   </div>
                   <span className="text-gray-300 group-hover:text-white transition-colors">
                     (753) SAN-GABR
@@ -213,8 +213,8 @@ const Footer = () => {
                   className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10"
                   whileHover={{ x: 5 }}
                 >
-                  <div className="w-10 h-10 rounded-lg bg-accent-500/20 flex items-center justify-center">
-                    <HiOutlineLocationMarker className="w-5 h-5 text-accent-400" />
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-500 to-accent-600 flex items-center justify-center shadow-lg shadow-accent-500/30">
+                    <HiOutlineLocationMarker className="w-5 h-5 text-white" />
                   </div>
                   <span className="text-gray-300">
                     2967 Dundas Street West<br />Toronto, ON, Canada
@@ -266,8 +266,8 @@ const Footer = () => {
                       to={service.to}
                       className="flex items-center gap-3 p-2 -ml-2 rounded-lg hover:bg-white/5 transition-all duration-300 group"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-accent-500/20 flex items-center justify-center">
-                        <service.Icon className="w-4 h-4 text-accent-400" />
+                      <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-accent-500 to-accent-600 flex items-center justify-center shadow-lg shadow-accent-500/30 group-hover:scale-110 transition-transform">
+                        <service.Icon className="w-4 h-4 text-white" />
                       </div>
                       <span className="text-gray-400 group-hover:text-white transition-colors">
                         {service.label}

@@ -169,8 +169,8 @@ describe('Card Component', () => {
     
     const actionButton = screen.getByRole('link');
     expect(actionButton).toHaveTextContent('Custom Action');
-    expect(actionButton).toHaveClass('bg-orange-500'); // primary variant
-    expect(actionButton).toHaveClass('px-8'); // lg size
+    expect(actionButton).toHaveClass('from-orange-500'); // primary variant uses gradient
+    expect(actionButton).toHaveClass('px-9'); // lg size uses px-9
   });
 
   test('card content is properly structured with flex layout', () => {

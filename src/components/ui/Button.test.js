@@ -31,38 +31,38 @@ describe('Button Component', () => {
   test('applies primary variant styles by default', () => {
     render(<Button>Primary Button</Button>);
     const button = screen.getByRole('button');
-    expect(button).toHaveClass('bg-orange-500');
+    expect(button).toHaveClass('from-orange-500');
     expect(button).toHaveClass('text-white');
   });
 
   test('applies secondary variant styles', () => {
     render(<Button variant="secondary">Secondary Button</Button>);
     const button = screen.getByRole('button');
-    expect(button).toHaveClass('bg-transparent');
-    expect(button).toHaveClass('text-orange-500');
-    expect(button).toHaveClass('border-orange-500');
+    expect(button).toHaveClass('bg-white');
+    expect(button).toHaveClass('text-gray-800');
+    expect(button).toHaveClass('border-gray-300');
   });
 
   test('applies outline variant styles', () => {
     render(<Button variant="outline">Outline Button</Button>);
     const button = screen.getByRole('button');
     expect(button).toHaveClass('bg-transparent');
-    expect(button).toHaveClass('text-blue-900');
-    expect(button).toHaveClass('border-blue-900');
+    expect(button).toHaveClass('text-primary-900');
+    expect(button).toHaveClass('border-primary-900');
   });
 
   test('applies small size styles', () => {
     render(<Button size="sm">Small Button</Button>);
     const button = screen.getByRole('button');
-    expect(button).toHaveClass('px-4');
-    expect(button).toHaveClass('py-2');
+    expect(button).toHaveClass('px-5');
+    expect(button).toHaveClass('py-2.5');
     expect(button).toHaveClass('text-sm');
   });
 
   test('applies medium size styles by default', () => {
     render(<Button>Medium Button</Button>);
     const button = screen.getByRole('button');
-    expect(button).toHaveClass('px-6');
+    expect(button).toHaveClass('px-7');
     expect(button).toHaveClass('py-3');
     expect(button).toHaveClass('text-base');
   });
@@ -70,7 +70,7 @@ describe('Button Component', () => {
   test('applies large size styles', () => {
     render(<Button size="lg">Large Button</Button>);
     const button = screen.getByRole('button');
-    expect(button).toHaveClass('px-8');
+    expect(button).toHaveClass('px-9');
     expect(button).toHaveClass('py-4');
     expect(button).toHaveClass('text-lg');
   });

@@ -1,14 +1,14 @@
 import { motion } from 'framer-motion';
-import { HiOutlineCheck } from 'react-icons/hi';
+import { HiOutlineCheck, HiOutlineTruck, HiOutlineSparkles, HiOutlineShieldCheck, HiArrowRight } from 'react-icons/hi';
+import { FaCar } from 'react-icons/fa';
 import Button from '../components/ui/Button';
 import SEO from '../components/SEO';
 import useReducedMotion from '../hooks/useReducedMotion';
-import { signagePackages } from '../data/pricingConfig';
 
 /**
  * Signage & Wraps Page (Production)
- * Package-based pricing - NOT $1/sq ft
- * Includes materials/design/install
+ * Service overview - pricing details on Pricing page
+ * Includes materials/design/install info
  */
 const SignageWraps = () => {
   const prefersReducedMotion = useReducedMotion();
@@ -20,11 +20,39 @@ const SignageWraps = () => {
     { step: 4, title: 'Install', description: 'Professional installation by certified technicians' }
   ];
 
+  const vehicleTypes = [
+    {
+      icon: FaCar,
+      title: 'Cars & Sedans',
+      description: 'Perfect for personal vehicles, rideshare drivers, and small business owners',
+      features: ['Back panel decals', 'Hood wraps', 'Side door signs', 'Full vehicle branding']
+    },
+    {
+      icon: HiOutlineTruck,
+      title: 'Vans & Box Trucks',
+      description: 'Ideal for delivery services, contractors, and service businesses',
+      features: ['Single side wraps', 'Full coverage packages', 'Rear door branding', 'Fleet consistency']
+    },
+    {
+      icon: HiOutlineTruck,
+      title: '53\' Trailers',
+      description: 'Maximum visibility for long-haul trucking and logistics companies',
+      features: ['Single side wraps', 'Full trailer coverage', 'High-impact graphics', 'Fleet-grade materials']
+    }
+  ];
+
+  const benefits = [
+    { icon: HiOutlineSparkles, title: 'Premium Materials', description: '3M and Avery certified vinyl for durability and vibrant colors' },
+    { icon: HiOutlineShieldCheck, title: 'Professional Installation', description: 'Certified technicians with years of experience' },
+    { icon: HiOutlineCheck, title: 'Design Included', description: 'Custom designs tailored to your brand identity' },
+    { icon: HiOutlineCheck, title: 'Warranty Coverage', description: 'Materials and installation backed by warranty' }
+  ];
+
   return (
     <div className="pt-20">
       <SEO 
-        title="Signage & Wraps | Vehicle Branding Packages | San Gabriel Solutions"
-        description="Professional vehicle and fleet branding. Turnkey packages including design, premium materials, and professional installation. Cars from $249, trucks from $1,500."
+        title="Signage & Wraps | Vehicle Branding Services | San Gabriel Solutions"
+        description="Professional vehicle and fleet branding. Turnkey packages including design, premium materials, and professional installation for cars, trucks, and trailers."
       />
 
       {/* Hero Section */}
@@ -55,18 +83,18 @@ const SignageWraps = () => {
 
             <div className="flex flex-wrap gap-4 justify-center">
               <Button variant="primary" size="lg" to="/contact?service=signage-wraps">
-                Get My Vehicle Priced
+                Get a Free Quote
               </Button>
-              <Button variant="secondary" size="lg" to="#packages" className="!bg-transparent !border-white !text-white hover:!bg-white hover:!text-primary-900">
-                View Packages
+              <Button variant="secondary" size="lg" to="/pricing" className="!bg-transparent !border-white !text-white hover:!bg-white hover:!text-primary-900">
+                View Pricing
               </Button>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Pricing Packages */}
-      <section id="packages" className="py-20 bg-white">
+      {/* Vehicle Types Section */}
+      <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
@@ -75,127 +103,95 @@ const SignageWraps = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-4">
-              Branding Packages
+              We Brand All Vehicle Types
             </h2>
             <p className="text-xl text-neutral-600">
-              All packages include design, materials, and professional installation
+              From personal cars to full commercial fleets
             </p>
           </motion.div>
 
-          {/* Cars & Sedans */}
-          <motion.div
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-12"
-          >
-            <h3 className="text-2xl font-bold text-primary-900 mb-6">{signagePackages.cars.title}</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full bg-neutral-50 rounded-xl overflow-hidden">
-                <thead className="bg-primary-900 text-white">
-                  <tr>
-                    <th className="px-6 py-4 text-left">Package</th>
-                    <th className="px-6 py-4 text-left">Description</th>
-                    <th className="px-6 py-4 text-right">Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {signagePackages.cars.packages.map((pkg, idx) => (
-                    <tr key={idx} className="border-b border-neutral-200 last:border-0">
-                      <td className="px-6 py-4 font-semibold text-primary-900">{pkg.name}</td>
-                      <td className="px-6 py-4 text-neutral-600">{pkg.description}</td>
-                      <td className="px-6 py-4 text-right font-bold text-accent-600">{pkg.priceDisplay}</td>
-                    </tr>
+          <div className="grid md:grid-cols-3 gap-8">
+            {vehicleTypes.map((vehicle, index) => (
+              <motion.div
+                key={vehicle.title}
+                initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-neutral-50 rounded-2xl p-8 hover:shadow-lg transition-shadow"
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-accent-500 to-accent-600 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-accent-500/30">
+                  <vehicle.icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-primary-900 mb-3">{vehicle.title}</h3>
+                <p className="text-neutral-600 mb-4">{vehicle.description}</p>
+                <ul className="space-y-2">
+                  {vehicle.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center gap-2 text-sm text-neutral-700">
+                      <HiOutlineCheck className="w-4 h-4 text-accent-500 flex-shrink-0" />
+                      {feature}
+                    </li>
                   ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {signagePackages.cars.includes.map((item, idx) => (
-                <span key={idx} className="inline-flex items-center gap-1 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
-                  <HiOutlineCheck className="w-4 h-4" /> {item}
-                </span>
-              ))}
-            </div>
-          </motion.div>
+                </ul>
+              </motion.div>
+            ))}
+          </div>
 
-          {/* Straight Trucks */}
+          {/* CTA to Pricing */}
           <motion.div
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mt-12 text-center"
           >
-            <h3 className="text-2xl font-bold text-primary-900 mb-6">{signagePackages.straightTrucks.title}</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full bg-neutral-50 rounded-xl overflow-hidden">
-                <thead className="bg-primary-900 text-white">
-                  <tr>
-                    <th className="px-6 py-4 text-left">Package</th>
-                    <th className="px-6 py-4 text-left">Description</th>
-                    <th className="px-6 py-4 text-right">Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {signagePackages.straightTrucks.packages.map((pkg, idx) => (
-                    <tr key={idx} className="border-b border-neutral-200 last:border-0">
-                      <td className="px-6 py-4 font-semibold text-primary-900">{pkg.name}</td>
-                      <td className="px-6 py-4 text-neutral-600">{pkg.description}</td>
-                      <td className="px-6 py-4 text-right font-bold text-accent-600">{pkg.priceDisplay}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {signagePackages.straightTrucks.includes.map((item, idx) => (
-                <span key={idx} className="inline-flex items-center gap-1 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
-                  <HiOutlineCheck className="w-4 h-4" /> {item}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* 53' Trailers */}
-          <motion.div
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-2xl font-bold text-primary-900 mb-6">{signagePackages.trailers.title}</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full bg-neutral-50 rounded-xl overflow-hidden">
-                <thead className="bg-primary-900 text-white">
-                  <tr>
-                    <th className="px-6 py-4 text-left">Package</th>
-                    <th className="px-6 py-4 text-left">Description</th>
-                    <th className="px-6 py-4 text-right">Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {signagePackages.trailers.packages.map((pkg, idx) => (
-                    <tr key={idx} className="border-b border-neutral-200 last:border-0">
-                      <td className="px-6 py-4 font-semibold text-primary-900">{pkg.name}</td>
-                      <td className="px-6 py-4 text-neutral-600">{pkg.description}</td>
-                      <td className="px-6 py-4 text-right font-bold text-accent-600">{pkg.priceDisplay}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {signagePackages.trailers.includes.map((item, idx) => (
-                <span key={idx} className="inline-flex items-center gap-1 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
-                  <HiOutlineCheck className="w-4 h-4" /> {item}
-                </span>
-              ))}
-            </div>
+            <Button variant="outline" size="lg" to="/pricing" className="group">
+              View All Pricing Options
+              <HiArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
           </motion.div>
         </div>
       </section>
 
-      {/* Process Section */}
+      {/* Benefits Section */}
       <section className="py-20 bg-neutral-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-4">
+              Why Choose Us
+            </h2>
+            <p className="text-xl text-neutral-600">
+              Quality materials, expert installation, lasting results
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={benefit.title}
+                initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white rounded-xl p-6 text-center shadow-sm"
+              >
+                <div className="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <benefit.icon className="w-6 h-6 text-accent-600" />
+                </div>
+                <h3 className="font-bold text-primary-900 mb-2">{benefit.title}</h3>
+                <p className="text-sm text-neutral-600">{benefit.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
@@ -239,8 +235,8 @@ const SignageWraps = () => {
         </div>
       </section>
 
-      {/* Portfolio Gallery Placeholder */}
-      <section className="py-20 bg-white">
+      {/* Portfolio Gallery */}
+      <section className="py-20 bg-neutral-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
@@ -261,7 +257,7 @@ const SignageWraps = () => {
               { src: '/11servicesimages/3.MOBILE ADVERTISING – TRUCKING FLEETS .png', alt: 'Mobile Advertising - Trucking Fleets' },
               { src: '/heroimages/servicesherosectionimage.jpeg', alt: 'Vehicle Branding Services' },
               { src: '/heroimages/Truck-hero-home.png', alt: 'Truck Wrap Advertising' },
-              { src: '/product-image/rear-window-ad.webp', alt: 'Rear Window Advertising' },
+              { src: '/product-image/rear-window-ad.png', alt: 'Rear Window Advertising' },
               { src: '/product-image/truck-backandside-ad.png', alt: 'Truck Back and Side Advertising' },
               { src: '/product-image/Hoodwrap-ad.png', alt: 'Hood Wrap Advertising' }
             ].map((image, index) => (
@@ -270,12 +266,12 @@ const SignageWraps = () => {
                 initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="aspect-video bg-neutral-100 rounded-xl overflow-hidden"
+                className="aspect-video bg-neutral-100 rounded-xl overflow-hidden group"
               >
                 <img
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </motion.div>
             ))}
@@ -297,9 +293,14 @@ const SignageWraps = () => {
             <p className="text-xl text-blue-200 mb-8">
               Get a custom quote for your vehicle or fleet. We'll help you choose the right package.
             </p>
-            <Button variant="primary" size="lg" to="/contact?service=signage-wraps">
-              Get My Vehicle Priced
-            </Button>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Button variant="primary" size="lg" to="/contact?service=signage-wraps">
+                Get a Free Quote
+              </Button>
+              <Button variant="secondary" size="lg" to="/pricing" className="!bg-transparent !border-white !text-white hover:!bg-white hover:!text-primary-900">
+                View Pricing
+              </Button>
+            </div>
             <p className="text-sm text-blue-300 mt-6">
               We typically respond within 24 hours.
             </p>

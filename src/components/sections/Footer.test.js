@@ -93,8 +93,8 @@ describe('Property 2: Footer Presence Consistency', () => {
 
     // Services section should have links
     expect(screen.getAllByText('Our Services').length).toBeGreaterThan(0);
-    expect(screen.getByRole('link', { name: /advertise on our network/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /vehicle & fleet branding/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /vehicle advertising/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /fleet branding/i })).toBeInTheDocument();
   });
 
   test('footer has newsletter signup', () => {
@@ -121,10 +121,10 @@ describe('Footer unit tests', () => {
     expect(screen.getByText('Quick Links')).toBeInTheDocument();
   });
 
-  test('renders Connect With Us section', () => {
+  test('renders Stay Connected section', () => {
     renderWithRouter(<Footer />);
     
-    expect(screen.getByText('Connect With Us')).toBeInTheDocument();
+    expect(screen.getByText('Stay Connected')).toBeInTheDocument();
   });
 
   test('renders current year in copyright', () => {

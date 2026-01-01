@@ -27,6 +27,8 @@ import InsightDetail from './pages/InsightDetail';
 import Industries from './pages/Industries';
 import Careers from './pages/Careers';
 import Portfolio from './pages/Portfolio';
+import OwnerOperatorSoftware from './pages/OwnerOperatorSoftware';
+import OnboardingForm from './pages/OnboardingForm';
 
 // Import layout components
 import Header from './components/layout/Header';
@@ -82,6 +84,9 @@ function App() {
             <Route path="/insights" element={<Insights />} />
             <Route path="/insights/:slug" element={<InsightDetail />} />
             <Route path="/careers" element={<Careers />} />
+            <Route path="/owner-operator-software" element={<OwnerOperatorSoftware />} />
+            <Route path="/onboarding" element={<OnboardingForm />} />
+            <Route path="/onboarding/short" element={<OnboardingForm />} />
           </Routes>
         </main>
         <Footer />

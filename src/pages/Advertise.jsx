@@ -266,8 +266,8 @@ const Advertise = () => {
               <Button variant="primary" size="lg" to="/contact?service=advertising" className="bg-accent-500 hover:bg-accent-600">
                 Get Campaign Quote
               </Button>
-              <Button variant="secondary" size="lg" href="tel:437-344-3563" className="bg-white/10 border-white text-white hover:bg-white hover:text-primary-900">
-                Call (437) 344-3563
+              <Button variant="secondary" size="lg" href="tel:753-726-4274" className="bg-white/10 border-white text-white hover:bg-white hover:text-primary-900">
+                Call (753) SAN GABRIEL
               </Button>
             </div>
             <p className="text-sm text-blue-300 mt-6">

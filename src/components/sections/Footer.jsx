@@ -198,7 +198,7 @@ const Footer = () => {
                   </span>
                 </motion.a>
                 <motion.a
-                  href="tel:753-726-4227"
+                  href="tel:753-726-4274"
                   className="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all duration-300 group"
                   whileHover={{ x: 5 }}
                 >
@@ -206,7 +206,7 @@ const Footer = () => {
                     <HiOutlinePhone className="w-5 h-5 text-white" />
                   </div>
                   <span className="text-gray-300 group-hover:text-white transition-colors">
-                    (753) SAN-GABR
+                    (753) SAN GABRIEL
                   </span>
                 </motion.a>
                 <motion.div

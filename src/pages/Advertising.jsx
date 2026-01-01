@@ -231,8 +231,8 @@ const Advertising = () => {
                 <Button variant="primary" to="/contact" className="w-full bg-accent-500 hover:bg-accent-600">
                   Start Advertising
                 </Button>
-                <Button variant="outline" href="tel:437-344-3563" className="w-full border-white text-white hover:bg-white hover:text-primary-900">
-                  Call (437) 344-3563
+                <Button variant="outline" href="tel:753-726-4274" className="w-full border-white text-white hover:bg-white hover:text-primary-900">
+                  Call (753) SAN GABRIEL
                 </Button>
               </div>
             </motion.div>

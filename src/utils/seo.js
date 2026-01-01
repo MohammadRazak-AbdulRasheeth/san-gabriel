@@ -91,7 +91,7 @@ export const getOrganizationStructuredData = () => {
     "logo": `${window.location.origin}/logo512.png`,
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+1-437-344-3563",
+      "telephone": "+1-753-726-4274",
       "contactType": "Customer Service",
       "areaServed": ["CA"],
       "availableLanguage": "English"
@@ -224,7 +224,7 @@ export const pageSEOConfig = {
   },
   contact: {
     title: 'Contact Us | Book a Consultation | San Gabriel Solutions',
-    description: 'Get a quote for advertising or vehicle branding. Contact San Gabriel Solutions at 437-344-3563 or visit us at 2967 Dundas Street West, Toronto.',
+    description: 'Get a quote for advertising or vehicle branding. Contact San Gabriel Solutions at (753) SAN GABRIEL or visit us at 2967 Dundas Street West, Toronto.',
     keywords: 'contact san gabriel, advertising quote, vehicle wrap inquiry, Toronto advertising company',
     ogImage: '/sangabriel-hero-image.jpg',
     ogType: 'website'
